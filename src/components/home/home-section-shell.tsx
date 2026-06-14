@@ -4,11 +4,22 @@ import { cn } from "@/lib/utils";
 
 const TOTAL_SECTIONS = 9;
 
+export type SectionVariant = "default" | "home";
+
 interface HomeSectionShellProps {
   id?: string;
   index: number;
   children: React.ReactNode;
   className?: string;
+}
+
+interface SectionLayoutProps {
+  id?: string;
+  variant?: SectionVariant;
+  sectionIndex?: number;
+  className?: string;
+  compact?: boolean;
+  children: React.ReactNode;
 }
 
 const SECTION_THEMES: Record<
@@ -64,7 +75,7 @@ export function HomeSectionShell({
       <div className={cn("home-section-inner relative overflow-hidden", theme.shell)}>
         <span
           className={cn(
-            "absolute top-5 z-10 font-mono text-[11px] tracking-wider text-white/25 sm:top-6",
+            "absolute top-5 z-10 font-mono text-[11px] tracking-wider text-[var(--section-label)] sm:top-6",
             theme.labelSide === "left" ? "left-5 sm:left-8" : "right-5 sm:right-8"
           )}
         >
@@ -87,13 +98,41 @@ export function HomeSectionShell({
   );
 }
 
-/** @deprecated Use homeSectionCardClass(sectionIndex) for home variant cards */
-export const homeGlassCard =
-  "home-glass-card rounded-2xl border border-[var(--border)] bg-[var(--card)] backdrop-blur-xl transition-all duration-300";
+export function SectionLayout({
+  id,
+  variant = "default",
+  sectionIndex,
+  className,
+  compact = false,
+  children,
+}: SectionLayoutProps) {
+  if (variant === "home" && sectionIndex) {
+    return (
+      <HomeSectionShell id={id} index={sectionIndex} className={className}>
+        {children}
+      </HomeSectionShell>
+    );
+  }
 
-/** @deprecated Use homeSectionCardClass(sectionIndex) */
-export const homeGlassCardHover =
-  "hover:border-[var(--orange)]/25 hover:bg-white/[0.04] hover:shadow-[0_0_24px_rgba(249,115,22,0.06)]";
+  return (
+    <section
+      id={id}
+      className={cn(
+        "relative",
+        compact ? "py-16 md:py-24" : "py-24 md:py-32",
+        className
+      )}
+    >
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">{children}</div>
+    </section>
+  );
+}
+
+export function sectionHeadingVariant(
+  variant: SectionVariant
+): "default" | "home" {
+  return variant === "home" ? "home" : "default";
+}
 
 export const homeIconWrap =
-  "flex items-center justify-center rounded-xl border border-[var(--border)] bg-white/[0.04] text-[var(--orange)] transition-colors group-hover:border-[var(--orange)]/30 group-hover:bg-[var(--orange)]/10";
+  "flex items-center justify-center rounded-xl border border-[var(--border)] bg-[var(--home-icon-bg)] text-[var(--orange)] transition-colors group-hover:border-[var(--orange)]/30 group-hover:bg-[var(--orange)]/10";

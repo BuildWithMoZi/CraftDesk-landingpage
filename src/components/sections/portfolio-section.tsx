@@ -11,8 +11,9 @@ import {
   SectionLayout,
   sectionHeadingVariant,
   type SectionVariant,
-} from "@/components/home/section-layout";
-import { homeSectionCardClass } from "@/components/home/home-section-shell";
+  homeSectionCardClass,
+} from "@/components/home/home-section-shell";
+import { CoverImage } from "@/components/ui/cover-image";
 import { cn } from "@/lib/utils";
 
 interface PortfolioSectionProps {
@@ -51,21 +52,26 @@ export function PortfolioSection({
               "group overflow-hidden",
               isHome ?
                 homeSectionCardClass(sectionIndex ?? 3)
-              : "rounded-2xl border border-white/10 bg-white/[0.02] backdrop-blur-xl"
+              : "rounded-2xl border border-[var(--border)] bg-[var(--card-solid)] backdrop-blur-xl"
             )}
           >
-            <div
-              className={`relative h-44 bg-gradient-to-br sm:h-48 ${project.gradient} p-6`}
-            >
-              <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:32px_32px]" />
-              <Badge className="relative">{project.category}</Badge>
-              <h3 className="relative mt-4 text-xl font-bold text-[var(--foreground)] sm:text-2xl">
-                {project.title}
-              </h3>
+            <div className="relative h-44 sm:h-48">
+              <CoverImage
+                src={project.image}
+                alt={`${project.title} project preview`}
+                className="absolute inset-0"
+                priority={index < 2}
+              />
+              <div className="relative z-10 flex h-full flex-col justify-end p-6">
+                <Badge>{project.category}</Badge>
+                <h3 className="mt-4 text-xl font-bold text-white sm:text-2xl">
+                  {project.title}
+                </h3>
+              </div>
             </div>
 
             <div className="p-6">
-              <p className="mb-4 text-sm text-white/45">{project.description}</p>
+              <p className="mb-4 text-sm text-[var(--muted)]">{project.description}</p>
 
               <div className="mb-6 flex flex-wrap gap-2">
                 {project.metrics.map((metric) => (
@@ -82,8 +88,8 @@ export function PortfolioSection({
                 className={cn(
                   "rounded-xl p-4",
                   isHome ?
-                    "border border-[var(--border)] bg-white/[0.02]"
-                  : "border border-white/5 bg-white/[0.02]"
+                    "border border-[var(--border)] bg-[var(--card-solid)]"
+                  : "border border-[var(--border-subtle)] bg-[var(--card-solid)]"
                 )}
               >
                 <div className="mb-2 flex gap-0.5">
@@ -91,10 +97,10 @@ export function PortfolioSection({
                     <Star key={i} className="h-3.5 w-3.5 fill-[var(--orange)] text-[var(--orange)]" />
                   ))}
                 </div>
-                <p className="text-sm italic text-white/70">
+                <p className="text-sm italic text-[var(--muted-strong)]">
                   &ldquo;{project.testimonial.quote}&rdquo;
                 </p>
-                <p className="mt-2 text-xs text-white/35">
+                <p className="mt-2 text-xs text-[var(--muted-subtle)]">
                   — {project.testimonial.author}, {project.testimonial.role}
                 </p>
               </div>

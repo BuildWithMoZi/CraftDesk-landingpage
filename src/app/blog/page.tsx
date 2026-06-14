@@ -6,11 +6,12 @@ import { PageHero } from "@/components/sections/page-hero";
 import { createMetadata } from "@/lib/metadata";
 import { blogPosts } from "@/lib/data";
 import { Badge } from "@/components/ui/badge";
+import { CoverImage } from "@/components/ui/cover-image";
 
 export const metadata: Metadata = createMetadata({
   title: "Blog",
   description:
-    "Insights on software development, SaaS, AI integration, cloud migration, and digital transformation from Kyron Solutions.",
+    "Insights on software development, SaaS, AI integration, cloud migration, and digital transformation from CraftDesk Solutions.",
   path: "/blog",
 });
 
@@ -29,23 +30,31 @@ export default function BlogPage() {
             {blogPosts.map((post) => (
               <article
                 key={post.slug}
-                className="group flex flex-col rounded-2xl border border-white/10 bg-white/[0.03] overflow-hidden backdrop-blur-xl transition-colors hover:border-orange-500/30"
+                className="group flex flex-col rounded-2xl border border-[var(--border)] bg-[var(--card)] overflow-hidden backdrop-blur-xl transition-colors hover:border-orange-500/30"
               >
-                <div className="h-48 bg-gradient-to-br from-orange-900/30 via-zinc-900 to-black p-6">
-                  <Badge variant="secondary">{post.category}</Badge>
+                <div className="relative h-48">
+                  <CoverImage
+                    src={post.image}
+                    alt={post.title}
+                    className="absolute inset-0"
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                  />
+                  <div className="relative z-10 p-6">
+                    <Badge variant="secondary">{post.category}</Badge>
+                  </div>
                 </div>
                 <div className="flex flex-1 flex-col p-6">
-                  <div className="mb-3 flex items-center gap-3 text-xs text-zinc-500">
+                  <div className="mb-3 flex items-center gap-3 text-xs text-[var(--muted-foreground)]">
                     <span>{post.date}</span>
                     <span className="flex items-center gap-1">
                       <Clock className="h-3 w-3" />
                       {post.readTime}
                     </span>
                   </div>
-                  <h2 className="text-lg font-semibold text-white group-hover:text-orange-400 transition-colors">
+                  <h2 className="text-lg font-semibold text-[var(--foreground)] group-hover:text-orange-400 transition-colors">
                     <Link href={`/blog/${post.slug}`}>{post.title}</Link>
                   </h2>
-                  <p className="mt-3 flex-1 text-sm text-zinc-400">{post.excerpt}</p>
+                  <p className="mt-3 flex-1 text-sm text-[var(--muted-foreground)]">{post.excerpt}</p>
                   <Link
                     href={`/blog/${post.slug}`}
                     className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-orange-400 hover:gap-2 transition-all"

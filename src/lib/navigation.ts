@@ -1,4 +1,4 @@
-const SKIP_HOME_LOADER_KEY = "kyron-skip-home-loader";
+const SKIP_HOME_LOADER_KEY = "craftdesk-skip-home-loader";
 const LEGACY_SKIP_HOME_LOADER_KEY = "aurex-skip-home-loader";
 
 let skipNextHomeLoader = false;

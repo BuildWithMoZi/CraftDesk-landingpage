@@ -6,13 +6,14 @@ import { PageHero } from "@/components/sections/page-hero";
 import { TestimonialsSection } from "@/components/sections/testimonials-section";
 import { createMetadata } from "@/lib/metadata";
 import { portfolioProjects } from "@/lib/data";
+import { CoverImage } from "@/components/ui/cover-image";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 
 export const metadata: Metadata = createMetadata({
   title: "Portfolio",
   description:
-    "View Kyron Solutions' portfolio of successful web, mobile, and SaaS projects with measurable business impact.",
+    "View CraftDesk Solutions' portfolio of successful web, mobile, and SaaS projects with measurable business impact.",
   path: "/portfolio",
 });
 
@@ -31,20 +32,22 @@ export default function PortfolioPage() {
             {portfolioProjects.map((project) => (
               <article
                 key={project.id}
-                className="overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02] backdrop-blur-xl lg:grid lg:grid-cols-2"
+                className="overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--card-solid)] backdrop-blur-xl lg:grid lg:grid-cols-2"
               >
-                <div
-                  className={`relative flex min-h-[240px] items-end bg-gradient-to-br ${project.gradient} p-8`}
-                >
-                  <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:32px_32px]" />
-                  <div className="relative">
+                <div className="relative min-h-[240px]">
+                  <CoverImage
+                    src={project.image}
+                    alt={`${project.title} project preview`}
+                    className="absolute inset-0"
+                  />
+                  <div className="relative z-10 flex h-full min-h-[240px] flex-col justify-end p-8">
                     <Badge>{project.category}</Badge>
                     <h2 className="mt-3 text-3xl font-bold text-white">{project.title}</h2>
                   </div>
                 </div>
 
                 <div className="flex flex-col justify-center p-8">
-                  <p className="text-zinc-400 leading-relaxed">{project.description}</p>
+                  <p className="text-[var(--muted-foreground)] leading-relaxed">{project.description}</p>
 
                   <div className="mt-6 flex flex-wrap gap-2">
                     {project.metrics.map((metric) => (
@@ -57,16 +60,16 @@ export default function PortfolioPage() {
                     ))}
                   </div>
 
-                  <div className="mt-8 rounded-xl border border-white/5 bg-white/[0.02] p-5">
+                  <div className="mt-8 rounded-xl border border-[var(--border-subtle)] bg-[var(--card-solid)] p-5">
                     <div className="mb-2 flex gap-0.5">
                       {Array.from({ length: project.testimonial.rating }).map((_, i) => (
                         <Star key={i} className="h-4 w-4 fill-orange-400 text-orange-400" />
                       ))}
                     </div>
-                    <p className="text-sm italic text-zinc-300">
+                    <p className="text-sm italic text-[var(--muted-strong)]">
                       &ldquo;{project.testimonial.quote}&rdquo;
                     </p>
-                    <p className="mt-3 text-sm text-zinc-500">
+                    <p className="mt-3 text-sm text-[var(--muted-foreground)]">
                       — {project.testimonial.author}, {project.testimonial.role}
                     </p>
                   </div>
@@ -76,8 +79,8 @@ export default function PortfolioPage() {
           </div>
 
           <div className="mt-16 text-center">
-            <h2 className="text-2xl font-bold text-white">Ready to be our next success story?</h2>
-            <p className="mt-3 text-zinc-400">Let&apos;s discuss how we can help achieve your goals.</p>
+            <h2 className="text-2xl font-bold text-[var(--foreground)]">Ready to be our next success story?</h2>
+            <p className="mt-3 text-[var(--muted-foreground)]">Let&apos;s discuss how we can help achieve your goals.</p>
             <Button asChild className="mt-6" size="lg">
               <Link href="/contact">Start Your Project</Link>
             </Button>

@@ -58,7 +58,7 @@ export function SectionHeading({
         <p
           className={cn(
             "mt-4 md:text-lg",
-            variant === "home" ? "text-sm text-white/45 sm:text-base" : "text-base text-zinc-400"
+            variant === "home" ? "text-sm text-[var(--muted)] sm:text-base" : "text-base text-[var(--muted-foreground)]"
           )}
         >
           {description}

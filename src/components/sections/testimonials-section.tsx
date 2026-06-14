@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { Star, Quote } from "lucide-react";
 import { testimonials } from "@/lib/data";
 import { SectionHeading } from "@/components/ui/section-heading";
@@ -8,8 +9,8 @@ import {
   SectionLayout,
   sectionHeadingVariant,
   type SectionVariant,
-} from "@/components/home/section-layout";
-import { homeSectionCardClass } from "@/components/home/home-section-shell";
+  homeSectionCardClass,
+} from "@/components/home/home-section-shell";
 import { cn } from "@/lib/utils";
 
 interface TestimonialsSectionProps {
@@ -49,7 +50,7 @@ export function TestimonialsSection({
               "relative p-6",
               isHome ?
                 homeSectionCardClass(sectionIndex ?? 7)
-              : "rounded-2xl border border-white/10 bg-white/[0.03] backdrop-blur-xl"
+              : "rounded-2xl border border-[var(--border)] bg-[var(--card)] backdrop-blur-xl"
             )}
           >
             <Quote className="absolute right-6 top-6 h-8 w-8 text-[var(--orange)]/10" />
@@ -58,18 +59,24 @@ export function TestimonialsSection({
                 <Star key={i} className="h-4 w-4 fill-[var(--orange)] text-[var(--orange)]" />
               ))}
             </div>
-            <p className="mb-6 text-sm leading-relaxed text-white/70">
+            <p className="mb-6 text-sm leading-relaxed text-[var(--muted-strong)]">
               &ldquo;{testimonial.quote}&rdquo;
             </p>
             <div className="flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-[var(--orange)] to-[var(--orange-light)] text-sm font-bold text-black">
-                {testimonial.author[0]}
+              <div className="relative h-10 w-10 overflow-hidden rounded-full border border-[var(--border)]">
+                <Image
+                  src={testimonial.avatar}
+                  alt={testimonial.author}
+                  fill
+                  className="object-cover"
+                  sizes="40px"
+                />
               </div>
               <div>
                 <p className="text-sm font-semibold text-[var(--foreground)]">
                   {testimonial.author}
                 </p>
-                <p className="text-xs text-white/35">
+                <p className="text-xs text-[var(--muted-subtle)]">
                   {testimonial.role}, {testimonial.company}
                 </p>
               </div>

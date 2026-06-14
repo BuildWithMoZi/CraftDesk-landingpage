@@ -10,30 +10,43 @@ import {
   SectionLayout,
   sectionHeadingVariant,
   type SectionVariant,
-} from "@/components/home/section-layout";
-import { homeSectionCardClass } from "@/components/home/home-section-shell";
+  homeSectionCardClass,
+} from "@/components/home/home-section-shell";
 import { cn } from "@/lib/utils";
 
 interface PricingSectionProps {
   variant?: SectionVariant;
   sectionIndex?: number;
+  hideHeading?: boolean;
+  showFooterCta?: boolean;
+  compact?: boolean;
 }
 
 export function PricingSection({
   variant = "default",
   sectionIndex,
+  hideHeading = false,
+  showFooterCta = true,
+  compact = false,
 }: PricingSectionProps) {
   const hv = sectionHeadingVariant(variant);
   const isHome = variant === "home";
 
   return (
-    <SectionLayout id="pricing" variant={variant} sectionIndex={sectionIndex}>
-      <SectionHeading
-        variant={hv}
-        badge="Pricing"
-        title="Transparent, Flexible Pricing"
-        description="Choose a package that fits your needs. All plans include our commitment to quality and on-time delivery."
-      />
+    <SectionLayout
+      id="pricing"
+      variant={variant}
+      sectionIndex={sectionIndex}
+      compact={compact}
+    >
+      {!hideHeading && (
+        <SectionHeading
+          variant={hv}
+          badge="Pricing"
+          title="Transparent, Flexible Pricing"
+          description="Choose a package that fits your needs. All plans include our commitment to quality and on-time delivery."
+        />
+      )}
 
       <div className="grid gap-6 lg:grid-cols-3">
         {pricingPlans.map((plan, index) => (
@@ -56,7 +69,7 @@ export function PricingSection({
                   "rounded-2xl border backdrop-blur-xl",
                   plan.highlighted ?
                     "border-orange-500/50 bg-gradient-to-b from-orange-500/10 to-transparent shadow-lg shadow-orange-500/10"
-                  : "border-white/10 bg-white/[0.03]"
+                  : "border-[var(--border)] bg-[var(--card)]"
                 )
             )}
           >
@@ -68,13 +81,13 @@ export function PricingSection({
             <h3 className="text-xl font-bold text-[var(--foreground)]">{plan.name}</h3>
             <div className="mt-4">
               <span className="text-4xl font-bold text-[var(--foreground)]">{plan.price}</span>
-              <span className="ml-2 text-sm text-white/35">{plan.period}</span>
+              <span className="ml-2 text-sm text-[var(--muted-subtle)]">{plan.period}</span>
             </div>
-            <p className="mt-3 text-sm text-white/45">{plan.description}</p>
+            <p className="mt-3 text-sm text-[var(--muted)]">{plan.description}</p>
 
             <ul className="mt-8 flex-1 space-y-3">
               {plan.features.map((feature) => (
-                <li key={feature} className="flex items-start gap-3 text-sm text-white/70">
+                <li key={feature} className="flex items-start gap-3 text-sm text-[var(--muted-strong)]">
                   <Check className="mt-0.5 h-4 w-4 shrink-0 text-[var(--orange)]" />
                   {feature}
                 </li>
@@ -92,11 +105,13 @@ export function PricingSection({
         ))}
       </div>
 
-      <div className="mt-12 text-center">
-        <Button asChild variant="outline">
-          <Link href="/pricing">View Detailed Pricing</Link>
-        </Button>
-      </div>
+      {showFooterCta && (
+        <div className="mt-12 text-center">
+          <Button asChild variant="outline">
+            <Link href="/pricing">View Detailed Pricing</Link>
+          </Button>
+        </div>
+      )}
     </SectionLayout>
   );
 }

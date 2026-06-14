@@ -6,6 +6,7 @@ import { MainLayout } from "@/components/layout/main-layout";
 import { createMetadata } from "@/lib/metadata";
 import { blogPosts } from "@/lib/data";
 import { Badge } from "@/components/ui/badge";
+import { CoverImage } from "@/components/ui/cover-image";
 import { Button } from "@/components/ui/button";
 
 interface BlogPostPageProps {
@@ -43,11 +44,20 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             </Link>
           </Button>
 
+          <div className="relative mb-8 aspect-[16/9] overflow-hidden rounded-2xl border border-[var(--border)]">
+            <CoverImage
+              src={post.image}
+              alt={post.title}
+              className="absolute inset-0"
+              sizes="(max-width: 768px) 100vw, 768px"
+            />
+          </div>
+
           <Badge className="mb-4">{post.category}</Badge>
-          <h1 className="text-3xl font-bold text-white md:text-4xl lg:text-5xl">
+          <h1 className="text-3xl font-bold text-[var(--foreground)] md:text-4xl lg:text-5xl">
             {post.title}
           </h1>
-          <div className="mt-4 flex items-center gap-4 text-sm text-zinc-500">
+          <div className="mt-4 flex items-center gap-4 text-sm text-[var(--muted-foreground)]">
             <span>{post.date}</span>
             <span className="flex items-center gap-1">
               <Clock className="h-4 w-4" />
@@ -56,22 +66,22 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           </div>
 
           <div className="prose prose-invert mt-10 max-w-none">
-            <p className="text-lg text-zinc-300 leading-relaxed">{post.excerpt}</p>
-            <p className="mt-6 text-zinc-400 leading-relaxed">
-              At Kyron Solutions, we help businesses navigate the complexities of modern
+            <p className="text-lg text-[var(--muted-strong)] leading-relaxed">{post.excerpt}</p>
+            <p className="mt-6 text-[var(--muted-foreground)] leading-relaxed">
+              At CraftDesk Solutions, we help businesses navigate the complexities of modern
               software development. Whether you&apos;re building a new product from scratch or
               scaling an existing platform, our team brings the expertise and experience to
               deliver results that matter.
             </p>
-            <p className="mt-4 text-zinc-400 leading-relaxed">
+            <p className="mt-4 text-[var(--muted-foreground)] leading-relaxed">
               Stay tuned for the full article. In the meantime, reach out to our team for
               personalized guidance on your next project.
             </p>
           </div>
 
           <div className="mt-12 rounded-2xl border border-orange-500/20 bg-orange-500/5 p-8 text-center">
-            <h2 className="text-xl font-semibold text-white">Need expert guidance?</h2>
-            <p className="mt-2 text-sm text-zinc-400">
+            <h2 className="text-xl font-semibold text-[var(--foreground)]">Need expert guidance?</h2>
+            <p className="mt-2 text-sm text-[var(--muted-foreground)]">
               Our team is ready to help you implement these best practices.
             </p>
             <Button asChild className="mt-4">

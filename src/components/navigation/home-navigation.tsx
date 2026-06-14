@@ -1,12 +1,25 @@
 "use client";
 
-import { useLayoutEffect, useRef } from "react";
+import Link from "next/link";
+import { useEffect, useLayoutEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
 import {
   isHomeDestination,
   markInternalHomeNavigation,
+  onHomeLinkClick,
   resetHomeLoaderCache,
+  scrollToTop,
 } from "@/lib/navigation";
+
+export function ScrollToTop() {
+  const pathname = usePathname();
+
+  useEffect(() => {
+    scrollToTop(true);
+  }, [pathname]);
+
+  return null;
+}
 
 function handleHomeLinkInteraction(event: Event) {
   if (window.location.pathname === "/") return;
@@ -49,4 +62,24 @@ export function HomeLoaderGuard() {
   }, [pathname]);
 
   return null;
+}
+
+interface HomeLinkProps {
+  children: React.ReactNode;
+  className?: string;
+  onClick?: () => void;
+}
+
+export function HomeLink({ children, className, onClick }: HomeLinkProps) {
+  const pathname = usePathname();
+
+  return (
+    <Link
+      href="/"
+      className={className}
+      onClick={() => onHomeLinkClick(pathname, onClick)}
+    >
+      {children}
+    </Link>
+  );
 }

@@ -6,7 +6,7 @@ import { createMetadata } from "@/lib/metadata";
 export const metadata: Metadata = createMetadata({
   title: "Contact",
   description:
-    "Get in touch with Kyron Solutions for a free consultation. Tell us about your project and we'll respond within 24 hours.",
+    "Get in touch with CraftDesk Solutions for a free consultation. Tell us about your project and we'll respond within 24 hours.",
   path: "/contact",
 });
 

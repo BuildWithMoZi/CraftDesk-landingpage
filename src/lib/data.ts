@@ -1,23 +1,16 @@
 import {
-  Brain,
-  Cloud,
+  Calendar,
   Code2,
   Database,
   Globe,
-  Layers,
+  LayoutTemplate,
   LineChart,
-  Lock,
-  MessageSquare,
-  Palette,
   Rocket,
-  Server,
   Shield,
+  ShieldCheck,
   Smartphone,
   Sparkles,
-  Timer,
-  Users,
   Wallet,
-  Wrench,
   Zap,
   type LucideIcon,
 } from "lucide-react";
@@ -33,130 +26,141 @@ export const navLinks = [
   { href: "/contact", label: "Contact" },
 ];
 
-export const services: {
+export type ServiceItem = {
+  id: string;
   title: string;
   description: string;
+  category: string;
+  image: string;
   icon: LucideIcon;
-}[] = [
+  stats: { label: string; value: string }[];
+  price: string;
+  offerPrice: string;
+};
+
+export const services: ServiceItem[] = [
   {
-    title: "Custom Web Development",
+    id: "landing-page",
+    title: "Landing Page Development",
     description:
-      "Scalable, high-performance web applications built with modern frameworks and best practices.",
-    icon: Globe,
+      "High-converting landing pages optimized for lead generation, campaigns, and product launches.",
+    category: "Web Development · Marketing",
+    image: "/services/landing-page.jpg",
+    icon: LayoutTemplate,
+    stats: [
+      { label: "Timeline", value: "2-3 W" },
+      { label: "Pages", value: "1-5" },
+      { label: "Rating", value: "4.9" },
+    ],
+    price: "₹66,000",
+    offerPrice: "₹5,999/- only",
   },
   {
+    id: "website",
+    title: "Website Development",
+    description:
+      "Business websites, portfolios, corporate sites, and custom web platforms built for growth.",
+    category: "Web Development · Business",
+    image: "/services/website.jpg",
+    icon: Globe,
+    stats: [
+      { label: "Timeline", value: "3-6 W" },
+      { label: "Pages", value: "5-20" },
+      { label: "Rating", value: "4.9" },
+    ],
+    price: "₹1,66,000",
+    offerPrice: "₹5,999/- only",
+  },
+  {
+    id: "mobile-app",
     title: "Mobile App Development",
     description:
-      "Native and cross-platform iOS & Android apps with seamless user experiences.",
+      "Android and iOS applications with polished UI, secure backends, and scalable architecture.",
+    category: "Mobile · Product",
+    image: "/services/mobile-app.jpg",
     icon: Smartphone,
+    stats: [
+      { label: "Timeline", value: "6-12 W" },
+      { label: "Platforms", value: "2" },
+      { label: "Rating", value: "4.8" },
+    ],
+    price: "₹4,15,000",
+    offerPrice: "₹5,999/- only",
   },
   {
-    title: "SaaS Product Development",
+    id: "booking",
+    title: "Appointment Booking Systems",
     description:
-      "End-to-end SaaS platforms from MVP to enterprise-grade multi-tenant solutions.",
-    icon: Layers,
+      "Scheduling systems for clinics, salons, and consultants with reminders and admin panels.",
+    category: "SaaS · Scheduling",
+    image: "/services/booking.jpg",
+    icon: Calendar,
+    stats: [
+      { label: "Timeline", value: "4-8 W" },
+      { label: "Modules", value: "6+" },
+      { label: "Rating", value: "4.9" },
+    ],
+    price: "₹2,07,000",
+    offerPrice: "₹5,999/- only",
   },
   {
-    title: "Enterprise Software",
+    id: "custom-software",
+    title: "Custom Software Development",
     description:
-      "Robust enterprise systems that streamline operations and drive efficiency.",
-    icon: Server,
-  },
-  {
-    title: "E-Commerce Development",
-    description:
-      "Conversion-optimized online stores with secure payments and inventory management.",
-    icon: Wallet,
-  },
-  {
-    title: "UI/UX Design",
-    description:
-      "User-centered design that combines aesthetics with intuitive functionality.",
-    icon: Palette,
-  },
-  {
-    title: "AI & Automation",
-    description:
-      "Intelligent automation, ML integrations, and AI-powered business solutions.",
-    icon: Brain,
-  },
-  {
-    title: "Cloud Solutions",
-    description:
-      "Cloud architecture, migration, and DevOps for scalable infrastructure.",
-    icon: Cloud,
-  },
-  {
-    title: "API Development",
-    description:
-      "RESTful and GraphQL APIs with seamless third-party integrations.",
+      "CRM systems, dashboards, ERP tools, and business automation tailored to your workflow.",
+    category: "Enterprise · Automation",
+    image: "/services/custom-software.jpg",
     icon: Code2,
+    stats: [
+      { label: "Timeline", value: "8-16 W" },
+      { label: "Systems", value: "CRM+" },
+      { label: "Rating", value: "5.0" },
+    ],
+    price: "₹6,64,000",
+    offerPrice: "₹5,999/- only",
   },
   {
+    id: "maintenance",
     title: "Maintenance & Support",
     description:
-      "Ongoing maintenance, updates, and 24/7 technical support for your products.",
-    icon: Wrench,
+      "Long-term technical support, monitoring, security updates, and performance improvements.",
+    category: "Support · DevOps",
+    image: "/services/maintenance.jpg",
+    icon: ShieldCheck,
+    stats: [
+      { label: "Uptime", value: "99.9%" },
+      { label: "Support", value: "24/7" },
+      { label: "Rating", value: "4.9" },
+    ],
+    price: "₹41,000/mo",
+    offerPrice: "₹5,999/- only",
   },
 ];
 
-export const whyChooseUs: { title: string; description: string; icon: LucideIcon }[] = [
-  {
-    title: "Experienced Team",
-    description: "Senior developers and designers with 10+ years of industry expertise.",
-    icon: Users,
-  },
-  {
-    title: "Agile Process",
-    description: "Iterative development with regular demos and flexible scope management.",
-    icon: Zap,
-  },
-  {
-    title: "Transparent Communication",
-    description: "Real-time updates, clear timelines, and direct access to your team.",
-    icon: MessageSquare,
-  },
-  {
-    title: "Scalable Architecture",
-    description: "Future-proof systems designed to grow with your business needs.",
-    icon: Layers,
-  },
-  {
-    title: "Security First",
-    description: "Industry-standard security practices and compliance-ready solutions.",
-    icon: Shield,
-  },
-  {
-    title: "Affordable Pricing",
-    description: "Competitive rates without compromising on quality or delivery.",
-    icon: Wallet,
-  },
-  {
-    title: "On-Time Delivery",
-    description: "Proven track record of meeting deadlines and launch dates.",
-    icon: Timer,
-  },
-  {
-    title: "Dedicated Support",
-    description: "Post-launch support and long-term partnership for your success.",
-    icon: Lock,
-  },
-];
+export const whyStory = {
+  lines: [
+    "You bring the idea.",
+    "We shape it, build it, and ship it on time.",
+    "Then we stay — support, updates, and growth.",
+  ],
+  note: "Senior team · Clear updates · Secure builds · Long-term partnership",
+};
 
 export const portfolioProjects = [
   {
     id: "finflow",
     title: "FinFlow Analytics",
     category: "FinTech SaaS",
+    image: "/portfolio/finflow.jpg",
     description:
       "Real-time financial analytics platform serving 50K+ users with sub-second data processing.",
     metrics: ["50K+ Users", "99.9% Uptime", "3x Revenue Growth"],
     gradient: "from-orange-600/40 via-amber-500/20 to-zinc-900",
     testimonial: {
       quote:
-        "Kyron transformed our vision into a market-leading product. Their expertise in fintech compliance was invaluable.",
-      author: "Sarah Chen",
-      role: "CEO, FinFlow Inc.",
+        "CraftDesk transformed our vision into a market-leading product. Their expertise in fintech compliance was invaluable.",
+      author: "Priya Sharma",
+      role: "CEO, FinFlow Pvt. Ltd.",
       rating: 5,
     },
   },
@@ -164,14 +168,15 @@ export const portfolioProjects = [
     id: "healthbridge",
     title: "HealthBridge Portal",
     category: "Healthcare",
+    image: "/portfolio/healthbridge.jpg",
     description:
-      "HIPAA-compliant patient management system connecting 200+ healthcare providers.",
-    metrics: ["200+ Providers", "40% Efficiency Gain", "HIPAA Compliant"],
+      "NABH-compliant patient management system connecting 200+ healthcare providers.",
+    metrics: ["200+ Providers", "40% Efficiency Gain", "NABH Compliant"],
     gradient: "from-zinc-800 via-orange-900/30 to-black",
     testimonial: {
       quote:
         "The team delivered a secure, user-friendly platform that revolutionized our patient care workflow.",
-      author: "Dr. Michael Torres",
+      author: "Dr. Rajesh Mehta",
       role: "CMO, HealthBridge",
       rating: 5,
     },
@@ -180,14 +185,15 @@ export const portfolioProjects = [
     id: "shopnova",
     title: "ShopNova Commerce",
     category: "E-Commerce",
+    image: "/portfolio/shopnova.jpg",
     description:
-      "Multi-vendor marketplace with AI-powered recommendations and global payment support.",
-    metrics: ["$2M+ GMV", "150+ Vendors", "45% Conversion Lift"],
+      "Multi-vendor marketplace with AI-powered recommendations and UPI & Razorpay payment support.",
+    metrics: ["₹16 Cr+ GMV", "150+ Vendors", "45% Conversion Lift"],
     gradient: "from-amber-600/30 via-orange-500/10 to-zinc-950",
     testimonial: {
       quote:
-        "Our marketplace went from concept to launch in 4 months. Kyron exceeded every expectation.",
-      author: "James Wright",
+        "Our marketplace went from concept to launch in 4 months. CraftDesk exceeded every expectation.",
+      author: "Arjun Malhotra",
       role: "Founder, ShopNova",
       rating: 5,
     },
@@ -196,14 +202,15 @@ export const portfolioProjects = [
     id: "logitrack",
     title: "LogiTrack Pro",
     category: "Logistics",
+    image: "/portfolio/logitrack.jpg",
     description:
       "Fleet management and route optimization platform reducing delivery costs by 35%.",
     metrics: ["35% Cost Reduction", "500+ Vehicles", "Real-time Tracking"],
     gradient: "from-orange-700/20 via-zinc-800 to-black",
     testimonial: {
       quote:
-        "The logistics platform Kyron built has become the backbone of our operations nationwide.",
-      author: "Lisa Park",
+        "The logistics platform CraftDesk built has become the backbone of our operations across India.",
+      author: "Ananya Reddy",
       role: "COO, LogiTrack",
       rating: 5,
     },
@@ -253,7 +260,7 @@ export const techStack = {
 export const industries = [
   {
     name: "Healthcare",
-    description: "HIPAA-compliant solutions for providers, patients, and health tech startups.",
+    description: "NABH-compliant solutions for providers, patients, and health tech startups.",
     icon: Shield,
   },
   {
@@ -296,42 +303,46 @@ export const industries = [
 export const testimonials = [
   {
     quote:
-      "Kyron Solutions delivered our SaaS platform ahead of schedule. Their technical expertise and communication were exceptional throughout the project.",
-    author: "Emily Rodriguez",
+      "CraftDesk Solutions delivered our SaaS platform ahead of schedule. Their technical expertise and communication were exceptional throughout the project.",
+    author: "Neha Patel",
     company: "TechVenture Labs",
     role: "CTO",
     rating: 5,
+    avatar: "/avatars/emily.jpg",
   },
   {
     quote:
-      "Working with Kyron felt like having an in-house development team. They understood our vision and brought it to life beautifully.",
-    author: "David Kim",
-    company: "NovaStart Inc.",
+      "Working with CraftDesk felt like having an in-house development team. They understood our vision and brought it to life beautifully.",
+    author: "Rohit Kumar",
+    company: "NovaStart Technologies",
     role: "Founder & CEO",
     rating: 5,
+    avatar: "/avatars/david.jpg",
   },
   {
     quote:
       "The mobile app they built for us has a 4.8-star rating on both app stores. Incredible attention to detail and performance.",
-    author: "Rachel Thompson",
-    company: "FitLife Global",
+    author: "Kavya Singh",
+    company: "FitLife India",
     role: "Product Director",
     rating: 5,
+    avatar: "/avatars/rachel.jpg",
   },
   {
     quote:
       "From discovery to deployment, every phase was handled professionally. Our enterprise portal now serves 10,000+ employees daily.",
-    author: "Mark Anderson",
-    company: "GlobalCorp Industries",
+    author: "Vikram Sharma",
+    company: "BharatCorp Industries",
     role: "VP of Technology",
     rating: 5,
+    avatar: "/avatars/mark.jpg",
   },
 ];
 
 export const pricingPlans = [
   {
     name: "Startup",
-    price: "$4,999",
+    price: "₹4,15,000",
     period: "starting at",
     description: "Perfect for MVPs and early-stage startups launching their first product.",
     features: [
@@ -347,7 +358,7 @@ export const pricingPlans = [
   },
   {
     name: "Business",
-    price: "$14,999",
+    price: "₹12,45,000",
     period: "starting at",
     description: "Ideal for growing businesses needing scalable, feature-rich solutions.",
     features: [
@@ -375,7 +386,7 @@ export const pricingPlans = [
       "AI & advanced integrations",
       "Compliance & audit support",
       "24/7 dedicated support",
-      "On-site consultation available",
+      "On-site consultation across India",
     ],
     highlighted: false,
     cta: "Contact Sales",
@@ -389,6 +400,7 @@ export const blogPosts = [
     excerpt:
       "A comprehensive guide to selecting technologies that balance performance, scalability, and team expertise.",
     category: "Development",
+    image: "/blog/tech-stack.jpg",
     date: "May 28, 2026",
     readTime: "8 min read",
   },
@@ -398,6 +410,7 @@ export const blogPosts = [
     excerpt:
       "Step-by-step strategies for validating your idea and shipping a minimum viable product fast.",
     category: "SaaS",
+    image: "/blog/saas-mvp.jpg",
     date: "May 15, 2026",
     readTime: "12 min read",
   },
@@ -407,6 +420,7 @@ export const blogPosts = [
     excerpt:
       "How companies are leveraging AI and automation to reduce costs and improve customer experience.",
     category: "AI",
+    image: "/blog/ai-integration.jpg",
     date: "April 30, 2026",
     readTime: "10 min read",
   },
@@ -416,6 +430,7 @@ export const blogPosts = [
     excerpt:
       "Essential security measures every mobile application should implement before going to production.",
     category: "Security",
+    image: "/blog/mobile-security.jpg",
     date: "April 18, 2026",
     readTime: "7 min read",
   },
@@ -425,6 +440,7 @@ export const blogPosts = [
     excerpt:
       "Planning your move to the cloud with minimal downtime and maximum ROI.",
     category: "Cloud",
+    image: "/blog/cloud-migration.jpg",
     date: "April 5, 2026",
     readTime: "9 min read",
   },
@@ -434,17 +450,18 @@ export const blogPosts = [
     excerpt:
       "Proven design principles that turn visitors into customers and increase engagement.",
     category: "Design",
+    image: "/blog/ux-design.jpg",
     date: "March 22, 2026",
     readTime: "6 min read",
   },
 ];
 
 export const budgetOptions = [
-  "Under $5,000",
-  "$5,000 - $15,000",
-  "$15,000 - $50,000",
-  "$50,000 - $100,000",
-  "$100,000+",
+  "Under ₹4 Lakh",
+  "₹4 Lakh - ₹12 Lakh",
+  "₹12 Lakh - ₹40 Lakh",
+  "₹40 Lakh - ₹80 Lakh",
+  "₹80 Lakh+",
   "Not sure yet",
 ];
 

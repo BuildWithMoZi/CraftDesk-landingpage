@@ -9,8 +9,6 @@ import {
   SectionLayout,
   sectionHeadingVariant,
   type SectionVariant,
-} from "@/components/home/section-layout";
-import {
   homeSectionCardClass,
   homeIconWrap,
 } from "@/components/home/home-section-shell";
@@ -19,23 +17,36 @@ import { cn } from "@/lib/utils";
 interface IndustriesSectionProps {
   variant?: SectionVariant;
   sectionIndex?: number;
+  hideHeading?: boolean;
+  showFooterCta?: boolean;
+  compact?: boolean;
 }
 
 export function IndustriesSection({
   variant = "default",
   sectionIndex,
+  hideHeading = false,
+  showFooterCta = true,
+  compact = false,
 }: IndustriesSectionProps) {
   const hv = sectionHeadingVariant(variant);
   const isHome = variant === "home";
 
   return (
-    <SectionLayout id="industries" variant={variant} sectionIndex={sectionIndex}>
-      <SectionHeading
-        variant={hv}
-        badge="Industries"
-        title="Industries We Serve"
-        description="Deep domain expertise across diverse sectors, delivering tailored solutions for every industry."
-      />
+    <SectionLayout
+      id="industries"
+      variant={variant}
+      sectionIndex={sectionIndex}
+      compact={compact}
+    >
+      {!hideHeading && (
+        <SectionHeading
+          variant={hv}
+          badge="Industries"
+          title="Industries We Serve"
+          description="Deep domain expertise across diverse sectors, delivering tailored solutions for every industry."
+        />
+      )}
 
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {industries.map((industry, index) => (
@@ -50,7 +61,7 @@ export function IndustriesSection({
               "group cursor-default p-6",
               isHome ?
                 homeSectionCardClass(sectionIndex ?? 6)
-              : "rounded-2xl border border-white/10 bg-gradient-to-b from-white/[0.04] to-transparent transition-all hover:border-orange-500/30"
+              : "rounded-2xl border border-[var(--border)] bg-gradient-to-b from-[var(--card)] to-transparent transition-all hover:border-orange-500/30"
             )}
           >
             <div
@@ -62,16 +73,18 @@ export function IndustriesSection({
               <industry.icon className="h-6 w-6" />
             </div>
             <h3 className="mb-2 font-semibold text-[var(--foreground)]">{industry.name}</h3>
-            <p className="text-sm text-white/45">{industry.description}</p>
+            <p className="text-sm text-[var(--muted)]">{industry.description}</p>
           </motion.div>
         ))}
       </div>
 
-      <div className="mt-12 text-center">
-        <Button asChild variant="outline">
-          <Link href="/industries">Learn More About Industries</Link>
-        </Button>
-      </div>
+      {showFooterCta && (
+        <div className="mt-12 text-center">
+          <Button asChild variant="outline">
+            <Link href="/industries">Learn More About Industries</Link>
+          </Button>
+        </div>
+      )}
     </SectionLayout>
   );
 }

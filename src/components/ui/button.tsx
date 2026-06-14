@@ -11,10 +11,11 @@ const buttonVariants = cva(
         default:
           "bg-gradient-to-r from-orange-500 to-amber-500 text-black shadow-lg shadow-orange-500/25 hover:shadow-orange-500/40 hover:brightness-110",
         outline:
-          "border border-white/10 bg-white/5 text-white backdrop-blur-sm hover:border-orange-500/50 hover:bg-orange-500/10",
-        ghost: "text-zinc-300 hover:bg-white/5 hover:text-white",
+          "border border-[var(--border)] bg-[var(--subtle)] text-[var(--foreground)] backdrop-blur-sm hover:border-orange-500/50 hover:bg-orange-500/10",
+        ghost:
+          "text-[var(--muted-strong)] hover:bg-[var(--subtle)] hover:text-[var(--foreground)]",
         secondary:
-          "bg-zinc-800 text-white hover:bg-zinc-700 border border-white/5",
+          "border border-[var(--border-subtle)] bg-[var(--card)] text-[var(--foreground)] hover:bg-[var(--subtle-strong)]",
         link: "text-orange-400 underline-offset-4 hover:underline",
       },
       size: {

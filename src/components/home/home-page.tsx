@@ -3,8 +3,8 @@
 import { useState, useCallback, useLayoutEffect } from "react";
 import { LoadingScreen } from "@/components/layout/loading-screen";
 import { Footer } from "@/components/layout/footer";
-import { HomeFrame } from "@/components/home/home-frame";
-import { HomeBottomNav } from "@/components/home/home-nav";
+import { HomeNav, HomeBottomNav } from "@/components/home/home-nav";
+import { HomeHero } from "@/components/home/home-hero";
 import { ServicesSection } from "@/components/sections/services-section";
 import { WhyChooseUs } from "@/components/sections/why-choose-us";
 import { PortfolioSection } from "@/components/sections/portfolio-section";
@@ -48,10 +48,15 @@ export function HomePage() {
 
   return (
     <>
-      <HomeFrame />
+      <div className="bg-[var(--background)] px-3 py-3 sm:px-4 sm:py-4">
+        <div className="relative mx-auto max-w-[1440px] overflow-hidden rounded-[28px] border border-[var(--border)] bg-[var(--surface)] sm:rounded-[36px] md:rounded-[40px]">
+          <HomeNav />
+          <HomeHero />
+        </div>
+      </div>
       <HomeBottomNav />
       <main className="bg-[var(--background)] px-3 pb-4 pt-4 sm:px-4 sm:pb-5 sm:pt-5">
-        <div className="home-section-stack relative mx-auto max-w-[1440px] overflow-hidden rounded-[24px] border border-[var(--border)] bg-[#050505] sm:rounded-[32px]">
+        <div className="home-section-stack relative mx-auto max-w-[1440px] overflow-hidden rounded-[24px] border border-[var(--border)] bg-[var(--surface)] sm:rounded-[32px]">
           <ServicesSection variant={HOME_VARIANT} sectionIndex={1} />
           <WhyChooseUs variant={HOME_VARIANT} sectionIndex={2} />
           <PortfolioSection variant={HOME_VARIANT} sectionIndex={3} />

@@ -7,8 +7,8 @@ import {
   SectionLayout,
   sectionHeadingVariant,
   type SectionVariant,
-} from "@/components/home/section-layout";
-import { homeSectionCardClass } from "@/components/home/home-section-shell";
+  homeSectionCardClass,
+} from "@/components/home/home-section-shell";
 import { cn } from "@/lib/utils";
 
 interface ProcessSectionProps {
@@ -48,7 +48,7 @@ export function ProcessSection({
                 }`}
               >
                 <div className="hidden md:block md:w-1/2" />
-                <div className="absolute left-8 z-10 hidden h-4 w-4 -translate-x-1/2 rounded-full border-2 border-orange-500 bg-black md:left-1/2 md:flex" />
+                <div className="absolute left-8 z-10 hidden h-4 w-4 -translate-x-1/2 rounded-full border-2 border-orange-500 bg-[var(--background)] md:left-1/2 md:flex" />
                 <div
                   className={`md:w-1/2 ${
                     index % 2 === 0 ? "md:pr-12 md:text-right" : "md:pl-12"
@@ -59,14 +59,14 @@ export function ProcessSection({
                       "ml-16 p-6 md:ml-0",
                       isHome ?
                         homeSectionCardClass(sectionIndex ?? 4)
-                      : "rounded-2xl border border-white/10 bg-white/[0.03] backdrop-blur-xl"
+                      : "rounded-2xl border border-[var(--border)] bg-[var(--card)] backdrop-blur-xl"
                     )}
                   >
                     <span className="mb-2 inline-block font-mono text-sm font-bold text-[var(--orange)]">
                       {String(step.step).padStart(2, "0")}
                     </span>
                     <h3 className="mb-2 text-lg font-semibold text-[var(--foreground)]">{step.title}</h3>
-                    <p className="text-sm text-white/45">{step.description}</p>
+                    <p className="text-sm text-[var(--muted)]">{step.description}</p>
                   </div>
                 </div>
               </motion.div>
