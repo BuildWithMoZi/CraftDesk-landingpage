@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { BrandName, Logo } from "@/components/ui/brand-name";
 import { siteConfig } from "@/lib/metadata";
+import { assetPath } from "@/lib/paths";
 
 interface LoadingScreenProps {
   onComplete: () => void;
@@ -120,7 +121,7 @@ export function LoadingScreen({ onComplete }: LoadingScreenProps) {
           aria-valuemax={100}>
           <video
             ref={videoRef}
-            src='/loader-video.mp4'
+            src={assetPath("/loader-video.mp4")}
             muted
             playsInline
             autoPlay

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { absoluteAssetUrl, assetPath } from "@/lib/paths";
 
 const siteUrl =
   process.env.NEXT_PUBLIC_SITE_URL ??
@@ -20,7 +21,11 @@ export const siteConfig = {
 };
 
 export function logoUrl(version = siteConfig.logoVersion) {
-  return `${siteConfig.logo}?v=${version}`;
+  return `${assetPath(siteConfig.logo)}?v=${version}`;
+}
+
+export function logoAbsoluteUrl(version = siteConfig.logoVersion) {
+  return `${absoluteAssetUrl(siteConfig.logo)}?v=${version}`;
 }
 
 export function createMetadata({
@@ -54,7 +59,7 @@ export function createMetadata({
       locale: "en_IN",
       images: [
         {
-          url: logoUrl(),
+          url: logoAbsoluteUrl(),
           alt: siteConfig.name,
         },
       ],
@@ -63,7 +68,7 @@ export function createMetadata({
       card: "summary_large_image",
       title: pageTitle,
       description: pageDescription,
-      images: [logoUrl()],
+      images: [logoAbsoluteUrl()],
     },
     robots: { index: true, follow: true },
   };
