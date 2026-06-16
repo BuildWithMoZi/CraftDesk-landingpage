@@ -1,5 +1,6 @@
 import { homeFaqs, testimonials } from "@/lib/data";
 import { siteConfig } from "@/lib/metadata";
+import { absoluteAssetUrl } from "@/lib/paths";
 import type { SeoLandingPageData } from "@/lib/seo-pages";
 
 type JsonLd = Record<string, unknown>;
@@ -10,7 +11,7 @@ export function organizationSchema(): JsonLd {
     "@type": "Organization",
     name: siteConfig.name,
     url: siteConfig.url,
-    logo: `${siteConfig.url}${siteConfig.logo}`,
+    logo: absoluteAssetUrl(siteConfig.logo),
     description: siteConfig.description,
     email: siteConfig.email,
     telephone: siteConfig.phone,

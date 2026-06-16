@@ -1,3 +1,4 @@
+import { assetPath } from "@/lib/paths";
 import {
   Calendar,
   Code2,
@@ -17,6 +18,8 @@ import {
   Zap,
   type LucideIcon,
 } from "lucide-react";
+
+const img = (path: string) => assetPath(path);
 
 export const navLinks = [
   { href: "/", label: "Home" },
@@ -90,7 +93,7 @@ export const services: ServiceItem[] = [
     description:
       "High-converting landing pages optimized for lead generation, campaigns, and product launches.",
     category: "Web Development · Marketing",
-    image: "/services/landing-page.jpg",
+    image: img("/services/landing-page.jpg"),
     icon: LayoutTemplate,
     stats: [
       { label: "Timeline", value: "2-3 W" },
@@ -108,7 +111,7 @@ export const services: ServiceItem[] = [
     description:
       "Business websites, portfolios, corporate sites, and custom web platforms built for growth.",
     category: "Web Development · Business",
-    image: "/services/website.jpg",
+    image: img("/services/website.jpg"),
     icon: Globe,
     stats: [
       { label: "Timeline", value: "3-6 W" },
@@ -126,7 +129,7 @@ export const services: ServiceItem[] = [
     description:
       "Android and iOS applications with polished UI, secure backends, and scalable architecture.",
     category: "Mobile · Product",
-    image: "/services/mobile-app.jpg",
+    image: img("/services/mobile-app.jpg"),
     icon: Smartphone,
     stats: [
       { label: "Timeline", value: "6-12 W" },
@@ -144,7 +147,7 @@ export const services: ServiceItem[] = [
     description:
       "Scheduling systems for clinics, salons, and consultants with reminders and admin panels.",
     category: "SaaS · Scheduling",
-    image: "/services/booking.jpg",
+    image: img("/services/booking.jpg"),
     icon: Calendar,
     stats: [
       { label: "Timeline", value: "4-8 W" },
@@ -162,7 +165,7 @@ export const services: ServiceItem[] = [
     description:
       "CRM systems, dashboards, ERP tools, and business automation tailored to your workflow.",
     category: "Enterprise · Automation",
-    image: "/services/custom-software.jpg",
+    image: img("/services/custom-software.jpg"),
     icon: Code2,
     stats: [
       { label: "Timeline", value: "8-16 W" },
@@ -180,7 +183,7 @@ export const services: ServiceItem[] = [
     description:
       "Long-term technical support, monitoring, security updates, and performance improvements.",
     category: "Support · DevOps",
-    image: "/services/maintenance.jpg",
+    image: img("/services/maintenance.jpg"),
     icon: ShieldCheck,
     stats: [
       { label: "Uptime", value: "99.9%" },
@@ -234,7 +237,7 @@ export const solutionPaths: SolutionPath[] = [
     highlights: [],
     cta: "Explore Packages",
     href: "/contact",
-    image: "/services/landing-page.jpg",
+    image: img("/services/landing-page.jpg"),
     price: "Contact us",
     priceNote: "Get a custom quote",
     badge: "Landing Sprint",
@@ -249,7 +252,7 @@ export const solutionPaths: SolutionPath[] = [
     highlights: [],
     cta: "Book a Consultation",
     href: "/contact",
-    image: "/services/custom-software.jpg",
+    image: img("/services/custom-software.jpg"),
     price: "Contact us",
     priceNote: "Scoped after discovery",
     badge: "Full Platform",
@@ -269,7 +272,7 @@ export const bentoServices: BentoServiceItem[] = [
     variant: "overlay",
     gradient: "from-zinc-900 via-orange-950/80 to-amber-900/60",
     subtitle: "High-velocity sprint",
-    image: "/services/landing-page.jpg",
+    image: img("/services/landing-page.jpg"),
   },
   {
     id: "full-stack-websites",
@@ -281,7 +284,7 @@ export const bentoServices: BentoServiceItem[] = [
     variant: "split",
     gradient: "from-sky-900/70 via-blue-800/50 to-zinc-900",
     subtitle: "Productized website tier",
-    image: "/services/website.jpg",
+    image: img("/services/website.jpg"),
   },
   {
     id: "mobile-apps",
@@ -293,7 +296,7 @@ export const bentoServices: BentoServiceItem[] = [
     variant: "split",
     gradient: "from-indigo-950 via-violet-900/70 to-zinc-900",
     subtitle: "Cross-platform build",
-    image: "/services/mobile-app.jpg",
+    image: img("/services/mobile-app.jpg"),
   },
   {
     id: "micro-saas",
@@ -306,7 +309,7 @@ export const bentoServices: BentoServiceItem[] = [
     variant: "overlay",
     gradient: "from-violet-950 via-purple-900/60 to-zinc-900",
     subtitle: "MVP accelerator",
-    image: "/services/custom-software.jpg",
+    image: img("/services/custom-software.jpg"),
   },
 ];
 
@@ -361,7 +364,7 @@ export const portfolioProjects = [
     id: "finflow",
     title: "FinFlow Analytics",
     category: "FinTech SaaS",
-    image: "/portfolio/finflow.jpg",
+    image: img("/portfolio/finflow.jpg"),
     description:
       "Real-time financial analytics platform serving 50K+ users with sub-second data processing.",
     metrics: ["50K+ Users", "99.9% Uptime", "3x Revenue Growth"],
@@ -378,7 +381,7 @@ export const portfolioProjects = [
     id: "healthbridge",
     title: "HealthBridge Portal",
     category: "Healthcare",
-    image: "/portfolio/healthbridge.jpg",
+    image: img("/portfolio/healthbridge.jpg"),
     description:
       "NABH-compliant patient management system connecting 200+ healthcare providers.",
     metrics: ["200+ Providers", "40% Efficiency Gain", "NABH Compliant"],
@@ -395,7 +398,7 @@ export const portfolioProjects = [
     id: "shopnova",
     title: "ShopNova Commerce",
     category: "E-Commerce",
-    image: "/portfolio/shopnova.jpg",
+    image: img("/portfolio/shopnova.jpg"),
     description:
       "Multi-vendor marketplace with AI-powered recommendations and UPI & Razorpay payment support.",
     metrics: ["₹16 Cr+ GMV", "150+ Vendors", "45% Conversion Lift"],
@@ -412,7 +415,7 @@ export const portfolioProjects = [
     id: "logitrack",
     title: "LogiTrack Pro",
     category: "Logistics",
-    image: "/portfolio/logitrack.jpg",
+    image: img("/portfolio/logitrack.jpg"),
     description:
       "Fleet management and route optimization platform reducing delivery costs by 35%.",
     metrics: ["35% Cost Reduction", "500+ Vehicles", "Real-time Tracking"],
@@ -629,7 +632,7 @@ export const blogPosts = [
     excerpt:
       "A comprehensive guide to selecting technologies that balance performance, scalability, and team expertise.",
     category: "Development",
-    image: "/blog/tech-stack.jpg",
+    image: img("/blog/tech-stack.jpg"),
     date: "May 28, 2026",
     readTime: "8 min read",
     gradient: "from-slate-900 via-zinc-800 to-orange-950/40",
@@ -642,7 +645,7 @@ export const blogPosts = [
     excerpt:
       "Step-by-step strategies for validating your idea and shipping a minimum viable product fast.",
     category: "SaaS",
-    image: "/blog/saas-mvp.jpg",
+    image: img("/blog/saas-mvp.jpg"),
     date: "May 15, 2026",
     readTime: "12 min read",
     gradient: "from-violet-950 via-indigo-900/70 to-zinc-900",
@@ -655,7 +658,7 @@ export const blogPosts = [
     excerpt:
       "How companies are leveraging AI and automation to reduce costs and improve customer experience.",
     category: "AI",
-    image: "/blog/ai-integration.jpg",
+    image: img("/blog/ai-integration.jpg"),
     date: "April 30, 2026",
     readTime: "10 min read",
     gradient: "from-cyan-950/80 via-blue-900/50 to-zinc-900",
@@ -668,7 +671,7 @@ export const blogPosts = [
     excerpt:
       "Essential security measures every mobile application should implement before going to production.",
     category: "Security",
-    image: "/blog/mobile-security.jpg",
+    image: img("/blog/mobile-security.jpg"),
     date: "April 18, 2026",
     readTime: "7 min read",
     gradient: "from-indigo-950 via-violet-900/60 to-zinc-900",
@@ -681,7 +684,7 @@ export const blogPosts = [
     excerpt:
       "Planning your move to the cloud with minimal downtime and maximum ROI.",
     category: "Cloud",
-    image: "/blog/cloud-migration.jpg",
+    image: img("/blog/cloud-migration.jpg"),
     date: "April 5, 2026",
     readTime: "9 min read",
     gradient: "from-sky-950 via-blue-900/50 to-zinc-900",
@@ -694,7 +697,7 @@ export const blogPosts = [
     excerpt:
       "Proven design principles that turn visitors into customers and increase engagement.",
     category: "Design",
-    image: "/blog/ux-design.jpg",
+    image: img("/blog/ux-design.jpg"),
     date: "March 22, 2026",
     readTime: "6 min read",
     gradient: "from-orange-950/80 via-amber-900/50 to-zinc-900",
@@ -707,7 +710,7 @@ export const blogPosts = [
     excerpt:
       "How fixed-scope packages reduce friction, speed up delivery, and build trust with modern buyers.",
     category: "Strategy",
-    image: "/blog/ux-design.jpg",
+    image: img("/blog/ux-design.jpg"),
     date: "June 10, 2026",
     readTime: "7 min read",
     gradient: "from-zinc-900 via-stone-800 to-orange-950/30",
@@ -720,7 +723,7 @@ export const blogPosts = [
     excerpt:
       "A practical audit framework for SaaS landing pages — from hero copy to CTA placement and page speed.",
     category: "Marketing",
-    image: "/blog/saas-mvp.jpg",
+    image: img("/blog/saas-mvp.jpg"),
     date: "June 5, 2026",
     readTime: "9 min read",
     gradient: "from-amber-950/70 via-orange-900/40 to-zinc-900",
@@ -746,7 +749,7 @@ export const socialLinks = [
 
 export const heroContent = {
   image: {
-    src: "/hero-center-img-Photoroom.png",
+    src: img("/hero-center-img-Photoroom.png"),
     alt: "CraftDesk creative innovation",
   },
 };
