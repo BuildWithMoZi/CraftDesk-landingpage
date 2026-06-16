@@ -1,23 +1,19 @@
 import {
-  Brain,
-  Cloud,
+  Calendar,
   Code2,
   Database,
+  FileText,
   Globe,
   Layers,
+  LayoutTemplate,
   LineChart,
-  Lock,
-  MessageSquare,
-  Palette,
+  Receipt,
   Rocket,
-  Server,
   Shield,
+  ShieldCheck,
   Smartphone,
   Sparkles,
-  Timer,
-  Users,
   Wallet,
-  Wrench,
   Zap,
   type LucideIcon,
 } from "lucide-react";
@@ -26,137 +22,355 @@ export const navLinks = [
   { href: "/", label: "Home" },
   { href: "/about", label: "About" },
   { href: "/services", label: "Services" },
-  { href: "/portfolio", label: "Portfolio" },
-  { href: "/industries", label: "Industries" },
-  { href: "/pricing", label: "Pricing" },
-  { href: "/blog", label: "Blog" },
+  { href: "/products", label: "Products" },
   { href: "/contact", label: "Contact" },
 ];
 
-export const services: {
+export const CONTACT_FOR_PRICING_LABEL = "Contact for pricing";
+
+export type ServiceItem = {
+  id: string;
   title: string;
   description: string;
+  category: string;
+  image: string;
   icon: LucideIcon;
-}[] = [
+  stats: { label: string; value: string }[];
+  href?: string;
+  variant?: "overlay" | "split";
+  gradient: string;
+  subtitle: string;
+};
+
+export type BentoServiceItem = {
+  id: string;
+  title: string;
+  description: string;
+  timeline: string;
+  icon: LucideIcon;
+  href: string;
+  span?: "normal" | "wide";
+  variant: "overlay" | "split";
+  gradient: string;
+  image?: string;
+  subtitle: string;
+};
+
+export type MicroSaasProduct = {
+  id: string;
+  name: string;
+  tagline: string;
+  description: string;
+  status: "live" | "beta" | "coming-soon";
+  metrics?: string;
+  gradient: string;
+  href?: string;
+  variant: "overlay" | "split";
+  image?: string;
+};
+
+export type FaqItem = {
+  question: string;
+  answer: string;
+};
+
+export type TestimonialItem = {
+  quote: string;
+  author: string;
+  company: string;
+  role: string;
+  rating: number;
+  companyInitial: string;
+};
+
+export const services: ServiceItem[] = [
   {
-    title: "Custom Web Development",
+    id: "landing-page",
+    title: "Landing Page Development",
     description:
-      "Scalable, high-performance web applications built with modern frameworks and best practices.",
-    icon: Globe,
+      "High-converting landing pages optimized for lead generation, campaigns, and product launches.",
+    category: "Web Development · Marketing",
+    image: "/services/landing-page.jpg",
+    icon: LayoutTemplate,
+    stats: [
+      { label: "Timeline", value: "2-3 W" },
+      { label: "Pages", value: "1-5" },
+      { label: "Rating", value: "4.9" },
+    ],
+    href: "/landing-page-design-agency",
+    variant: "overlay",
+    gradient: "from-zinc-900 via-orange-950/80 to-amber-900/60",
+    subtitle: "Conversion sprint · Marketing",
   },
   {
+    id: "website",
+    title: "Website Development",
+    description:
+      "Business websites, portfolios, corporate sites, and custom web platforms built for growth.",
+    category: "Web Development · Business",
+    image: "/services/website.jpg",
+    icon: Globe,
+    stats: [
+      { label: "Timeline", value: "3-6 W" },
+      { label: "Pages", value: "5-20" },
+      { label: "Rating", value: "4.9" },
+    ],
+    href: "/productized-website-design",
+    variant: "split",
+    gradient: "from-sky-900/70 via-blue-800/50 to-zinc-900",
+    subtitle: "CMS ready · Business sites",
+  },
+  {
+    id: "mobile-app",
     title: "Mobile App Development",
     description:
-      "Native and cross-platform iOS & Android apps with seamless user experiences.",
+      "Android and iOS applications with polished UI, secure backends, and scalable architecture.",
+    category: "Mobile · Product",
+    image: "/services/mobile-app.jpg",
     icon: Smartphone,
+    stats: [
+      { label: "Timeline", value: "6-12 W" },
+      { label: "Platforms", value: "2" },
+      { label: "Rating", value: "4.8" },
+    ],
+    href: "/react-native-app-development",
+    variant: "overlay",
+    gradient: "from-indigo-950 via-violet-900/70 to-zinc-900",
+    subtitle: "iOS + Android · React Native",
   },
   {
-    title: "SaaS Product Development",
+    id: "booking",
+    title: "Appointment Booking Systems",
     description:
-      "End-to-end SaaS platforms from MVP to enterprise-grade multi-tenant solutions.",
-    icon: Layers,
+      "Scheduling systems for clinics, salons, and consultants with reminders and admin panels.",
+    category: "SaaS · Scheduling",
+    image: "/services/booking.jpg",
+    icon: Calendar,
+    stats: [
+      { label: "Timeline", value: "4-8 W" },
+      { label: "Modules", value: "6+" },
+      { label: "Rating", value: "4.9" },
+    ],
+    href: "/contact",
+    variant: "split",
+    gradient: "from-teal-900/60 via-emerald-900/40 to-zinc-900",
+    subtitle: "Scheduling · SaaS module",
   },
   {
-    title: "Enterprise Software",
+    id: "custom-software",
+    title: "Custom Software Development",
     description:
-      "Robust enterprise systems that streamline operations and drive efficiency.",
-    icon: Server,
-  },
-  {
-    title: "E-Commerce Development",
-    description:
-      "Conversion-optimized online stores with secure payments and inventory management.",
-    icon: Wallet,
-  },
-  {
-    title: "UI/UX Design",
-    description:
-      "User-centered design that combines aesthetics with intuitive functionality.",
-    icon: Palette,
-  },
-  {
-    title: "AI & Automation",
-    description:
-      "Intelligent automation, ML integrations, and AI-powered business solutions.",
-    icon: Brain,
-  },
-  {
-    title: "Cloud Solutions",
-    description:
-      "Cloud architecture, migration, and DevOps for scalable infrastructure.",
-    icon: Cloud,
-  },
-  {
-    title: "API Development",
-    description:
-      "RESTful and GraphQL APIs with seamless third-party integrations.",
+      "CRM systems, dashboards, ERP tools, and business automation tailored to your workflow.",
+    category: "Enterprise · Automation",
+    image: "/services/custom-software.jpg",
     icon: Code2,
+    stats: [
+      { label: "Timeline", value: "8-16 W" },
+      { label: "Systems", value: "CRM+" },
+      { label: "Rating", value: "5.0" },
+    ],
+    href: "/contact",
+    variant: "overlay",
+    gradient: "from-slate-900 via-zinc-800 to-orange-950/50",
+    subtitle: "Enterprise · Automation",
   },
   {
+    id: "maintenance",
     title: "Maintenance & Support",
     description:
-      "Ongoing maintenance, updates, and 24/7 technical support for your products.",
-    icon: Wrench,
+      "Long-term technical support, monitoring, security updates, and performance improvements.",
+    category: "Support · DevOps",
+    image: "/services/maintenance.jpg",
+    icon: ShieldCheck,
+    stats: [
+      { label: "Uptime", value: "99.9%" },
+      { label: "Support", value: "24/7" },
+      { label: "Rating", value: "4.9" },
+    ],
+    href: "/contact",
+    variant: "split",
+    gradient: "from-orange-900/50 via-amber-900/30 to-zinc-900",
+    subtitle: "DevOps · Long-term support",
   },
 ];
 
-export const whyChooseUs: { title: string; description: string; icon: LucideIcon }[] = [
+export const deployedProjects = [
+  "Cavrio",
+  "Belfrie & co Cafe",
+  "Safal Toy studio",
+  "Mykonos",
+  "CarftDesk",
+  "Naziya Makeovers",
+  "scanTable",
+];
+
+type SolutionHighlight = {
+  icon: LucideIcon;
+  text: string;
+};
+
+export type SolutionPath = {
+  id: string;
+  title: string;
+  subtitle: string;
+  description: string;
+  highlights: SolutionHighlight[];
+  cta: string;
+  href: string;
+  image: string;
+  price: string;
+  priceNote: string;
+  badge: string;
+  accent: "prebuilt" | "custom";
+};
+
+export const solutionPaths: SolutionPath[] = [
   {
-    title: "Experienced Team",
-    description: "Senior developers and designers with 10+ years of industry expertise.",
-    icon: Users,
+    id: "prebuilt",
+    title: "Prebuilt Products",
+    subtitle: "Launch your prebuilt site in days",
+    description:
+      "Landing pages, campaign sites, and Micro SaaS MVPs delivered on strict timelines with clear scope.",
+    highlights: [],
+    cta: "Explore Packages",
+    href: "/contact",
+    image: "/services/landing-page.jpg",
+    price: "Contact us",
+    priceNote: "Get a custom quote",
+    badge: "Landing Sprint",
+    accent: "prebuilt" as const,
   },
   {
-    title: "Agile Process",
-    description: "Iterative development with regular demos and flexible scope management.",
-    icon: Zap,
-  },
-  {
-    title: "Transparent Communication",
-    description: "Real-time updates, clear timelines, and direct access to your team.",
-    icon: MessageSquare,
-  },
-  {
-    title: "Scalable Architecture",
-    description: "Future-proof systems designed to grow with your business needs.",
-    icon: Layers,
-  },
-  {
-    title: "Security First",
-    description: "Industry-standard security practices and compliance-ready solutions.",
-    icon: Shield,
-  },
-  {
-    title: "Affordable Pricing",
-    description: "Competitive rates without compromising on quality or delivery.",
-    icon: Wallet,
-  },
-  {
-    title: "On-Time Delivery",
-    description: "Proven track record of meeting deadlines and launch dates.",
-    icon: Timer,
-  },
-  {
-    title: "Dedicated Support",
-    description: "Post-launch support and long-term partnership for your success.",
-    icon: Lock,
+    id: "custom",
+    title: "Custom Build",
+    subtitle: "Tailor-made platforms built for scale",
+    description:
+      "Complex web apps, mobile products, and enterprise systems engineered for long-term growth.",
+    highlights: [],
+    cta: "Book a Consultation",
+    href: "/contact",
+    image: "/services/custom-software.jpg",
+    price: "Contact us",
+    priceNote: "Scoped after discovery",
+    badge: "Full Platform",
+    accent: "custom" as const,
   },
 ];
+
+export const bentoServices: BentoServiceItem[] = [
+  {
+    id: "landing-architecture",
+    title: "Landing Page Architecture",
+    description: "Conversion-focused pages built for campaigns, launches, and lead generation.",
+    timeline: "5–7 days",
+    icon: LayoutTemplate,
+    href: "/landing-page-design-agency",
+    span: "wide",
+    variant: "overlay",
+    gradient: "from-zinc-900 via-orange-950/80 to-amber-900/60",
+    subtitle: "High-velocity sprint",
+    image: "/services/landing-page.jpg",
+  },
+  {
+    id: "full-stack-websites",
+    title: "Full-Stack Websites",
+    description: "Marketing sites and CMS platforms with clean structure and premium polish.",
+    timeline: "3–5 weeks",
+    icon: Globe,
+    href: "/productized-website-design",
+    variant: "split",
+    gradient: "from-sky-900/70 via-blue-800/50 to-zinc-900",
+    subtitle: "Productized website tier",
+    image: "/services/website.jpg",
+  },
+  {
+    id: "mobile-apps",
+    title: "Mobile Apps",
+    description: "React Native and native builds with secure backends and polished UX.",
+    timeline: "6–10 weeks",
+    icon: Smartphone,
+    href: "/react-native-app-development",
+    variant: "split",
+    gradient: "from-indigo-950 via-violet-900/70 to-zinc-900",
+    subtitle: "Cross-platform build",
+    image: "/services/mobile-app.jpg",
+  },
+  {
+    id: "micro-saas",
+    title: "Micro SaaS Builds",
+    description: "Focused software products with auth, payments, and deployment included.",
+    timeline: "4–6 weeks",
+    icon: Rocket,
+    href: "/micro-saas-development",
+    span: "wide",
+    variant: "overlay",
+    gradient: "from-violet-950 via-purple-900/60 to-zinc-900",
+    subtitle: "MVP accelerator",
+    image: "/services/custom-software.jpg",
+  },
+];
+
+export const microSaasProducts: MicroSaasProduct[] = [
+  {
+    id: "code-review-ai",
+    name: "CodeReview AI",
+    tagline: "AI-powered code review assistant",
+    description:
+      "Contextual suggestions for pull requests — built for dev teams who ship fast without sacrificing quality.",
+    status: "beta",
+    metrics: "500+ reviews processed",
+    gradient: "from-violet-600/30 via-indigo-500/20 to-zinc-900",
+    href: "/contact",
+    variant: "overlay",
+  },
+  {
+    id: "shopify-seo-auditor",
+    name: "StoreSEO Auditor",
+    tagline: "Automated e-commerce SEO audits",
+    description:
+      "Scans Shopify stores for speed, schema markup, and technical SEO gaps — with actionable fix lists.",
+    status: "live",
+    metrics: "120+ stores audited",
+    gradient: "from-emerald-600/30 via-teal-500/15 to-zinc-900",
+    href: "/contact",
+    variant: "split",
+  },
+  {
+    id: "content-refine",
+    name: "ContentRefine",
+    tagline: "AI content refinement for SMBs",
+    description:
+      "Audits existing copy and suggests stronger headlines, CTAs, and keyword placement.",
+    status: "coming-soon",
+    gradient: "from-orange-600/30 via-amber-500/15 to-zinc-900",
+    variant: "split",
+  },
+];
+
+export const whyStory = {
+  lines: [
+    "You bring the idea.",
+    "We shape it, build it, and ship it on time.",
+    "Then we stay — support, updates, and growth.",
+  ],
+  note: "Senior team · Clear updates · Secure builds · Long-term partnership",
+};
 
 export const portfolioProjects = [
   {
     id: "finflow",
     title: "FinFlow Analytics",
     category: "FinTech SaaS",
+    image: "/portfolio/finflow.jpg",
     description:
       "Real-time financial analytics platform serving 50K+ users with sub-second data processing.",
     metrics: ["50K+ Users", "99.9% Uptime", "3x Revenue Growth"],
     gradient: "from-orange-600/40 via-amber-500/20 to-zinc-900",
     testimonial: {
       quote:
-        "Kyron transformed our vision into a market-leading product. Their expertise in fintech compliance was invaluable.",
-      author: "Sarah Chen",
-      role: "CEO, FinFlow Inc.",
+        "CraftDesk transformed our vision into a market-leading product. Their expertise in fintech compliance was invaluable.",
+      author: "Priya Sharma",
+      role: "CEO, FinFlow Pvt. Ltd.",
       rating: 5,
     },
   },
@@ -164,14 +378,15 @@ export const portfolioProjects = [
     id: "healthbridge",
     title: "HealthBridge Portal",
     category: "Healthcare",
+    image: "/portfolio/healthbridge.jpg",
     description:
-      "HIPAA-compliant patient management system connecting 200+ healthcare providers.",
-    metrics: ["200+ Providers", "40% Efficiency Gain", "HIPAA Compliant"],
+      "NABH-compliant patient management system connecting 200+ healthcare providers.",
+    metrics: ["200+ Providers", "40% Efficiency Gain", "NABH Compliant"],
     gradient: "from-zinc-800 via-orange-900/30 to-black",
     testimonial: {
       quote:
         "The team delivered a secure, user-friendly platform that revolutionized our patient care workflow.",
-      author: "Dr. Michael Torres",
+      author: "Dr. Rajesh Mehta",
       role: "CMO, HealthBridge",
       rating: 5,
     },
@@ -180,14 +395,15 @@ export const portfolioProjects = [
     id: "shopnova",
     title: "ShopNova Commerce",
     category: "E-Commerce",
+    image: "/portfolio/shopnova.jpg",
     description:
-      "Multi-vendor marketplace with AI-powered recommendations and global payment support.",
-    metrics: ["$2M+ GMV", "150+ Vendors", "45% Conversion Lift"],
+      "Multi-vendor marketplace with AI-powered recommendations and UPI & Razorpay payment support.",
+    metrics: ["₹16 Cr+ GMV", "150+ Vendors", "45% Conversion Lift"],
     gradient: "from-amber-600/30 via-orange-500/10 to-zinc-950",
     testimonial: {
       quote:
-        "Our marketplace went from concept to launch in 4 months. Kyron exceeded every expectation.",
-      author: "James Wright",
+        "Our marketplace went from concept to launch in 4 months. CraftDesk exceeded every expectation.",
+      author: "Arjun Malhotra",
       role: "Founder, ShopNova",
       rating: 5,
     },
@@ -196,14 +412,15 @@ export const portfolioProjects = [
     id: "logitrack",
     title: "LogiTrack Pro",
     category: "Logistics",
+    image: "/portfolio/logitrack.jpg",
     description:
       "Fleet management and route optimization platform reducing delivery costs by 35%.",
     metrics: ["35% Cost Reduction", "500+ Vehicles", "Real-time Tracking"],
     gradient: "from-orange-700/20 via-zinc-800 to-black",
     testimonial: {
       quote:
-        "The logistics platform Kyron built has become the backbone of our operations nationwide.",
-      author: "Lisa Park",
+        "The logistics platform CraftDesk built has become the backbone of our operations across India.",
+      author: "Ananya Reddy",
       role: "COO, LogiTrack",
       rating: 5,
     },
@@ -213,33 +430,27 @@ export const portfolioProjects = [
 export const processSteps = [
   {
     step: 1,
-    title: "Discovery & Planning",
-    description: "We analyze your goals, users, and requirements to create a detailed project roadmap.",
+    title: "Discovery",
+    description:
+      "We align on goals, users, scope, and success metrics to define a clear project roadmap.",
   },
   {
     step: 2,
-    title: "UI/UX Design",
-    description: "Wireframes, prototypes, and pixel-perfect designs aligned with your brand.",
+    title: "Design",
+    description:
+      "Wireframes, UI systems, and prototypes shaped for conversion, clarity, and brand consistency.",
   },
   {
     step: 3,
-    title: "Development",
-    description: "Agile sprints with clean code, regular demos, and continuous integration.",
+    title: "Technical Development",
+    description:
+      "Agile sprints with clean code, regular demos, integrations, and performance-first engineering.",
   },
   {
     step: 4,
-    title: "Quality Assurance",
-    description: "Rigorous testing across devices, browsers, and performance benchmarks.",
-  },
-  {
-    step: 5,
-    title: "Deployment",
-    description: "Seamless launch with CI/CD pipelines, monitoring, and zero-downtime deploys.",
-  },
-  {
-    step: 6,
-    title: "Ongoing Support",
-    description: "Maintenance, updates, scaling, and dedicated support for long-term success.",
+    title: "Launch",
+    description:
+      "Deployment, QA, handoff, and go-live support so your product ships confidently on schedule.",
   },
 ];
 
@@ -253,7 +464,7 @@ export const techStack = {
 export const industries = [
   {
     name: "Healthcare",
-    description: "HIPAA-compliant solutions for providers, patients, and health tech startups.",
+    description: "NABH-compliant solutions for providers, patients, and health tech startups.",
     icon: Shield,
   },
   {
@@ -293,92 +504,121 @@ export const industries = [
   },
 ];
 
-export const testimonials = [
+export const testimonials: TestimonialItem[] = [
   {
     quote:
-      "Kyron Solutions delivered our SaaS platform ahead of schedule. Their technical expertise and communication were exceptional throughout the project.",
-    author: "Emily Rodriguez",
+      "CraftDesk Solutions delivered our SaaS platform ahead of schedule. Their technical expertise and communication were exceptional throughout the project.",
+    author: "Neha Patel",
     company: "TechVenture Labs",
     role: "CTO",
     rating: 5,
+    companyInitial: "TV",
   },
   {
     quote:
-      "Working with Kyron felt like having an in-house development team. They understood our vision and brought it to life beautifully.",
-    author: "David Kim",
-    company: "NovaStart Inc.",
+      "Working with CraftDesk felt like having an in-house development team. They understood our vision and brought it to life beautifully.",
+    author: "Rohit Kumar",
+    company: "NovaStart Technologies",
     role: "Founder & CEO",
     rating: 5,
+    companyInitial: "NS",
   },
   {
     quote:
       "The mobile app they built for us has a 4.8-star rating on both app stores. Incredible attention to detail and performance.",
-    author: "Rachel Thompson",
-    company: "FitLife Global",
+    author: "Kavya Singh",
+    company: "FitLife India",
     role: "Product Director",
     rating: 5,
+    companyInitial: "FL",
   },
   {
     quote:
       "From discovery to deployment, every phase was handled professionally. Our enterprise portal now serves 10,000+ employees daily.",
-    author: "Mark Anderson",
-    company: "GlobalCorp Industries",
+    author: "Vikram Sharma",
+    company: "BharatCorp Industries",
     role: "VP of Technology",
     rating: 5,
+    companyInitial: "BC",
   },
 ];
 
 export const pricingPlans = [
   {
-    name: "Startup",
-    price: "$4,999",
-    period: "starting at",
-    description: "Perfect for MVPs and early-stage startups launching their first product.",
+    name: "Landing Page Sprint",
+    timeline: "5–7 days",
+    description:
+      "A fully designed, copywritten, and developed landing page — delivered on a strict timeline.",
     features: [
-      "Up to 5 core features",
-      "Responsive web or mobile app",
-      "UI/UX design included",
-      "3 months post-launch support",
-      "Basic analytics integration",
-      "2-week sprint cycles",
+      "Conversion-focused UI/UX design",
+      "Mobile-responsive development",
+      "Copywriting & SEO basics",
+      "1 structured revision round",
+      "Analytics setup",
+      "Launch support",
     ],
     highlighted: false,
-    cta: "Get Started",
+    cta: "Contact Us",
   },
   {
-    name: "Business",
-    price: "$14,999",
-    period: "starting at",
-    description: "Ideal for growing businesses needing scalable, feature-rich solutions.",
+    name: "Website Ecosystem",
+    timeline: "3–5 weeks",
+    description:
+      "Clean marketing websites with optional CMS, blog, and growth-ready structure.",
     features: [
-      "Unlimited core features",
-      "Web + mobile applications",
-      "Advanced UI/UX & prototyping",
-      "6 months post-launch support",
-      "API integrations & automation",
-      "Cloud deployment & DevOps",
-      "Priority support channel",
+      "Up to 5 custom pages",
+      "CMS integration available",
+      "Responsive across all devices",
+      "Performance optimization",
+      "Contact forms & integrations",
+      "3 months post-launch support",
     ],
     highlighted: true,
-    cta: "Most Popular",
+    cta: "Contact Us",
   },
   {
-    name: "Enterprise",
-    price: "Custom",
-    period: "tailored pricing",
-    description: "Full-scale enterprise solutions with dedicated teams and SLA guarantees.",
+    name: "Micro SaaS MVP Accelerator",
+    timeline: "4–6 weeks",
+    description:
+      "A working MVP for non-technical founders — auth, core features, payments, and deployment.",
     features: [
-      "Dedicated development team",
-      "Custom architecture & security",
-      "Multi-platform deployment",
-      "12+ months support & SLA",
-      "AI & advanced integrations",
-      "Compliance & audit support",
-      "24/7 dedicated support",
-      "On-site consultation available",
+      "Product scoping & architecture",
+      "Auth & user management",
+      "Core feature development",
+      "Payment gateway integration",
+      "Cloud deployment",
+      "30-day post-launch support",
     ],
     highlighted: false,
-    cta: "Contact Sales",
+    cta: "Contact Us",
+  },
+];
+
+export const homeFaqs: FaqItem[] = [
+  {
+    question: "How long does a typical project take?",
+    answer:
+      "Landing page sprints ship in 5–7 days. Websites take 3–5 weeks. Mobile apps and Micro SaaS MVPs typically run 4–10 weeks depending on scope. We provide a fixed timeline before work begins.",
+  },
+  {
+    question: "How do I get pricing for my project?",
+    answer:
+      "Reach out via our contact form or book a free consultation. We'll scope your requirements and share a transparent quote tailored to your project — no hidden fees.",
+  },
+  {
+    question: "How many revisions are included?",
+    answer:
+      "Productized packages include structured revision rounds (typically 1–2). Additional iterations can be added as fixed-scope change requests.",
+  },
+  {
+    question: "Do you offer payment plans?",
+    answer:
+      "Yes — milestone-based payments aligned with project phases: typically 30% upfront, 40% at midpoint, and 30% at delivery.",
+  },
+  {
+    question: "Who owns the code and designs?",
+    answer:
+      "You do. Upon final payment, all source code, designs, and assets are transferred to you with full ownership rights.",
   },
 ];
 
@@ -389,8 +629,12 @@ export const blogPosts = [
     excerpt:
       "A comprehensive guide to selecting technologies that balance performance, scalability, and team expertise.",
     category: "Development",
+    image: "/blog/tech-stack.jpg",
     date: "May 28, 2026",
     readTime: "8 min read",
+    gradient: "from-slate-900 via-zinc-800 to-orange-950/40",
+    variant: "overlay" as const,
+    relatedHref: "/productized-website-design",
   },
   {
     slug: "saas-mvp-launch-guide",
@@ -398,8 +642,12 @@ export const blogPosts = [
     excerpt:
       "Step-by-step strategies for validating your idea and shipping a minimum viable product fast.",
     category: "SaaS",
+    image: "/blog/saas-mvp.jpg",
     date: "May 15, 2026",
     readTime: "12 min read",
+    gradient: "from-violet-950 via-indigo-900/70 to-zinc-900",
+    variant: "split" as const,
+    relatedHref: "/micro-saas-development",
   },
   {
     slug: "ai-integration-business",
@@ -407,8 +655,12 @@ export const blogPosts = [
     excerpt:
       "How companies are leveraging AI and automation to reduce costs and improve customer experience.",
     category: "AI",
+    image: "/blog/ai-integration.jpg",
     date: "April 30, 2026",
     readTime: "10 min read",
+    gradient: "from-cyan-950/80 via-blue-900/50 to-zinc-900",
+    variant: "overlay" as const,
+    relatedHref: "/contact",
   },
   {
     slug: "mobile-app-security-best-practices",
@@ -416,8 +668,12 @@ export const blogPosts = [
     excerpt:
       "Essential security measures every mobile application should implement before going to production.",
     category: "Security",
+    image: "/blog/mobile-security.jpg",
     date: "April 18, 2026",
     readTime: "7 min read",
+    gradient: "from-indigo-950 via-violet-900/60 to-zinc-900",
+    variant: "split" as const,
+    relatedHref: "/react-native-app-development",
   },
   {
     slug: "cloud-migration-strategies",
@@ -425,8 +681,12 @@ export const blogPosts = [
     excerpt:
       "Planning your move to the cloud with minimal downtime and maximum ROI.",
     category: "Cloud",
+    image: "/blog/cloud-migration.jpg",
     date: "April 5, 2026",
     readTime: "9 min read",
+    gradient: "from-sky-950 via-blue-900/50 to-zinc-900",
+    variant: "overlay" as const,
+    relatedHref: "/contact",
   },
   {
     slug: "ux-design-conversion-rates",
@@ -434,26 +694,73 @@ export const blogPosts = [
     excerpt:
       "Proven design principles that turn visitors into customers and increase engagement.",
     category: "Design",
+    image: "/blog/ux-design.jpg",
     date: "March 22, 2026",
     readTime: "6 min read",
+    gradient: "from-orange-950/80 via-amber-900/50 to-zinc-900",
+    variant: "split" as const,
+    relatedHref: "/landing-page-design-agency",
+  },
+  {
+    slug: "productized-agency-model-guide",
+    title: "Why Productized Agencies Beat Custom Quotes Every Time",
+    excerpt:
+      "How fixed-scope packages reduce friction, speed up delivery, and build trust with modern buyers.",
+    category: "Strategy",
+    image: "/blog/ux-design.jpg",
+    date: "June 10, 2026",
+    readTime: "7 min read",
+    gradient: "from-zinc-900 via-stone-800 to-orange-950/30",
+    variant: "overlay" as const,
+    relatedHref: "/contact",
+  },
+  {
+    slug: "landing-page-conversion-checklist",
+    title: "The B2B Landing Page Conversion Checklist for 2026",
+    excerpt:
+      "A practical audit framework for SaaS landing pages — from hero copy to CTA placement and page speed.",
+    category: "Marketing",
+    image: "/blog/saas-mvp.jpg",
+    date: "June 5, 2026",
+    readTime: "9 min read",
+    gradient: "from-amber-950/70 via-orange-900/40 to-zinc-900",
+    variant: "split" as const,
+    relatedHref: "/landing-page-design-agency",
   },
 ];
 
 export const budgetOptions = [
-  "Under $5,000",
-  "$5,000 - $15,000",
-  "$15,000 - $50,000",
-  "$50,000 - $100,000",
-  "$100,000+",
+  "Small scope",
+  "Medium scope",
+  "Large / enterprise",
+  "Ongoing support",
   "Not sure yet",
 ];
 
 export const socialLinks = [
-  { name: "LinkedIn", href: "https://linkedin.com" },
-  { name: "Twitter", href: "https://twitter.com" },
-  { name: "GitHub", href: "https://github.com" },
-  { name: "Instagram", href: "https://instagram.com" },
+  { name: "LinkedIn", href: "https://www.linkedin.com/company/craftdesk" },
+  { name: "Twitter", href: "https://twitter.com/craftdesk" },
+  { name: "Gmail", href: "mailto:craftdesk.tech@gmail.com" },
+  { name: "Instagram", href: "https://instagram.com/craftdesk" },
 ];
+
+export const heroContent = {
+  image: {
+    src: "/hero-center-img-Photoroom.png",
+    alt: "CraftDesk creative innovation",
+  },
+};
+
+export const heroSocialLinks = {
+  whatsapp: {
+    label: "WhatsApp",
+    href: "https://wa.me/919403429923",
+  },
+  instagram: {
+    label: "Instagram",
+    href: "https://instagram.com",
+  },
+};
 
 export const stats = [
   { value: "150+", label: "Projects Delivered" },

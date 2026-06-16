@@ -1,9 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { BrandName } from "@/components/ui/brand-name";
+import { BrandName, Logo } from "@/components/ui/brand-name";
 import { siteConfig } from "@/lib/metadata";
 
 interface LoadingScreenProps {
@@ -113,54 +112,48 @@ export function LoadingScreen({ onComplete }: LoadingScreenProps) {
           initial={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.5, ease: "easeInOut" }}
-          className="fixed inset-0 z-[200] flex flex-col items-center justify-center overflow-hidden bg-black"
+          className='fixed inset-0 z-[200] flex flex-col items-center justify-center overflow-hidden bg-black'
           aria-label={`Loading ${siteConfig.name}`}
-          role="progressbar"
+          role='progressbar'
           aria-valuenow={Math.round(progress)}
           aria-valuemin={0}
-          aria-valuemax={100}
-        >
+          aria-valuemax={100}>
           <video
             ref={videoRef}
-            src="/loader-video.mp4"
+            src='/loader-video.mp4'
             muted
             playsInline
             autoPlay
-            preload="auto"
-            className="absolute inset-0 h-full w-full object-cover"
+            preload='auto'
+            className='absolute inset-0 h-full w-full object-cover'
           />
 
-          <div className="absolute inset-0 bg-black/50" />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-black/60" />
-          <div className="pointer-events-none absolute left-1/2 top-1/2 h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-orange-500/10 blur-[150px]" />
+          <div className='absolute inset-0 bg-black/50' />
+          <div className='absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-black/60' />
+          <div className='pointer-events-none absolute left-1/2 top-1/2 h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-orange-500/10 blur-[150px]' />
 
-          <div className="relative z-10 flex flex-col items-center px-6">
+          <div className='relative z-10 flex flex-col items-center px-6'>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.15, duration: 0.7 }}
-              className="mb-12 flex flex-col items-center gap-4"
-            >
-              <div className="relative flex items-center gap-4">
-                <div className="absolute -inset-6 rounded-full bg-orange-500/20 blur-2xl animate-pulse" />
-                <Image
-                  src="/logo.png"
-                  alt={siteConfig.name}
-                  width={64}
-                  height={64}
-                  className="relative h-16 w-16 object-contain drop-shadow-[0_0_30px_rgba(249,115,22,0.5)] md:h-20 md:w-20"
+              className='mb-12 flex flex-col items-center gap-4'>
+              <div className='relative flex items-center gap-4'>
+                <div className='absolute -inset-6 rounded-full bg-orange-500/20 blur-2xl animate-pulse' />
+                <Logo
+                  size={64}
                   priority
+                  className='relative h-16 w-16 drop-shadow-[0_0_30px_rgba(249,115,22,0.5)] md:h-20 md:w-20'
                 />
-                <h1 className="relative">
-                  <BrandName variant="full" />
+                <h1 className='relative'>
+                  <BrandName variant='full' />
                 </h1>
               </div>
               <motion.p
                 animate={{ opacity: [0.5, 1, 0.5] }}
                 transition={{ duration: 2, repeat: Infinity }}
-                className="text-sm font-medium tracking-[0.25em] text-orange-400 uppercase md:text-base"
-              >
-                Engineering Digital Excellence
+                className='font-brand text-sm font-medium uppercase tracking-[0.25em] text-orange-400 md:text-base'>
+                {siteConfig.tagline}
               </motion.p>
             </motion.div>
 
@@ -168,15 +161,14 @@ export function LoadingScreen({ onComplete }: LoadingScreenProps) {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.7 }}
-              className="w-full max-w-sm md:max-w-md"
-            >
-              <div className="mb-2 flex justify-between text-xs font-medium text-zinc-400">
+              className='w-full max-w-sm md:max-w-md'>
+              <div className='mb-2 flex justify-between text-xs font-medium text-zinc-400'>
                 <span>Loading</span>
                 <span>{Math.round(progress)}%</span>
               </div>
-              <div className="h-2 overflow-hidden rounded-full bg-white/10 backdrop-blur-sm">
+              <div className='h-2 overflow-hidden rounded-full bg-white/10 backdrop-blur-sm'>
                 <div
-                  className="h-full rounded-full bg-gradient-to-r from-orange-600 via-orange-400 to-amber-400 shadow-[0_0_24px_rgba(249,115,22,0.7)] transition-[width] duration-200 ease-linear"
+                  className='h-full rounded-full bg-gradient-to-r from-orange-600 via-orange-400 to-amber-400 shadow-[0_0_24px_rgba(249,115,22,0.7)] transition-[width] duration-200 ease-linear'
                   style={{ width: `${progress}%` }}
                 />
               </div>

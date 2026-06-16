@@ -1,15 +1,15 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Star, Quote } from "lucide-react";
+import { Star, Quote, Building2 } from "lucide-react";
 import { testimonials } from "@/lib/data";
 import { SectionHeading } from "@/components/ui/section-heading";
 import {
   SectionLayout,
   sectionHeadingVariant,
   type SectionVariant,
-} from "@/components/home/section-layout";
-import { homeSectionCardClass } from "@/components/home/home-section-shell";
+  homeSectionCardClass,
+} from "@/components/home/home-section-shell";
 import { cn } from "@/lib/utils";
 
 interface TestimonialsSectionProps {
@@ -31,9 +31,9 @@ export function TestimonialsSection({
       )}
       <SectionHeading
         variant={hv}
-        badge="Testimonials"
-        title="What Our Clients Say"
-        description="Don't just take our word for it — hear from the businesses we've helped succeed."
+        badge="Client Proof"
+        title="Trusted by Founders & Teams"
+        description="Real names, roles, and companies — proof of delivery without the personal brand noise."
         align={isHome ? "left" : "center"}
       />
 
@@ -48,8 +48,8 @@ export function TestimonialsSection({
             className={cn(
               "relative p-6",
               isHome ?
-                homeSectionCardClass(sectionIndex ?? 7)
-              : "rounded-2xl border border-white/10 bg-white/[0.03] backdrop-blur-xl"
+                homeSectionCardClass(sectionIndex ?? 6)
+              : "rounded-2xl border border-[var(--border)] bg-[var(--card)] backdrop-blur-xl"
             )}
           >
             <Quote className="absolute right-6 top-6 h-8 w-8 text-[var(--orange)]/10" />
@@ -58,18 +58,21 @@ export function TestimonialsSection({
                 <Star key={i} className="h-4 w-4 fill-[var(--orange)] text-[var(--orange)]" />
               ))}
             </div>
-            <p className="mb-6 text-sm leading-relaxed text-white/70">
+            <p className="mb-6 text-sm leading-relaxed text-[var(--muted-strong)]">
               &ldquo;{testimonial.quote}&rdquo;
             </p>
             <div className="flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-[var(--orange)] to-[var(--orange-light)] text-sm font-bold text-black">
-                {testimonial.author[0]}
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-[var(--border)] bg-[var(--subtle)]">
+                <span className="text-xs font-bold text-[var(--orange)]">
+                  {testimonial.companyInitial}
+                </span>
               </div>
-              <div>
-                <p className="text-sm font-semibold text-[var(--foreground)]">
+              <div className="min-w-0">
+                <p className="truncate text-sm font-semibold text-[var(--foreground)]">
                   {testimonial.author}
                 </p>
-                <p className="text-xs text-white/35">
+                <p className="flex items-center gap-1 truncate text-xs text-[var(--muted-subtle)]">
+                  <Building2 className="h-3 w-3 shrink-0" />
                   {testimonial.role}, {testimonial.company}
                 </p>
               </div>

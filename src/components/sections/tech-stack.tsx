@@ -7,8 +7,8 @@ import {
   SectionLayout,
   sectionHeadingVariant,
   type SectionVariant,
-} from "@/components/home/section-layout";
-import { homeSectionCardClass } from "@/components/home/home-section-shell";
+  homeSectionCardClass,
+} from "@/components/home/home-section-shell";
 import { cn } from "@/lib/utils";
 
 const categories = [
@@ -54,7 +54,7 @@ export function TechStack({
               "p-6",
               isHome ?
                 cn(homeSectionCardClass(sectionIndex ?? 5), "group")
-              : "rounded-2xl border border-white/10 bg-white/[0.03] backdrop-blur-xl"
+              : "rounded-2xl border border-[var(--border)] bg-[var(--card)] backdrop-blur-xl"
             )}
           >
             <h3 className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-[var(--orange)]">
@@ -67,8 +67,8 @@ export function TechStack({
                   className={cn(
                     "rounded-full px-3 py-1.5 text-sm transition-colors",
                     isHome ?
-                      "border border-[var(--border)] bg-white/[0.03] text-white/60 group-hover:border-[var(--orange)]/20 group-hover:text-[var(--foreground)]"
-                    : "rounded-lg border border-white/5 bg-white/5 text-zinc-300 hover:border-orange-500/30 hover:text-orange-400"
+                      "border border-[var(--border)] bg-[var(--card)] text-[var(--muted-strong)] group-hover:border-[var(--orange)]/20 group-hover:text-[var(--foreground)]"
+                    : "rounded-lg border border-[var(--border-subtle)] bg-[var(--subtle)] text-[var(--muted-strong)] hover:border-orange-500/30 hover:text-orange-400"
                   )}
                 >
                   {tech}

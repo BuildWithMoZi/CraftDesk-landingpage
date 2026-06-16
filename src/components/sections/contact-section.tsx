@@ -1,6 +1,8 @@
 "use client";
 
+import * as React from "react";
 import { useState } from "react";
+import * as LabelPrimitive from "@radix-ui/react-label";
 import { motion } from "framer-motion";
 import { Send, CheckCircle } from "lucide-react";
 import { budgetOptions } from "@/lib/data";
@@ -8,18 +10,45 @@ import { siteConfig } from "@/lib/metadata";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
 import {
   SectionLayout,
   sectionHeadingVariant,
   type SectionVariant,
-} from "@/components/home/section-layout";
-import { homeSectionCardClass } from "@/components/home/home-section-shell";
+  homeSectionCardClass,
+} from "@/components/home/home-section-shell";
 import { cn } from "@/lib/utils";
 
-interface ContactSectionProps {
-  variant?: SectionVariant;
+const Label = React.forwardRef<
+  React.ComponentRef<typeof LabelPrimitive.Root>,
+  React.ComponentPropsWithoutRef<typeof LabelPrimitive.Root>
+>(({ className, ...props }, ref) => (
+  <LabelPrimitive.Root
+    ref={ref}
+    className={cn(
+      "text-sm font-medium leading-none text-[var(--muted-strong)] peer-disabled:cursor-not-allowed peer-disabled:opacity-70",
+      className
+    )}
+    {...props}
+  />
+));
+Label.displayName = LabelPrimitive.Root.displayName;
+
+const Textarea = React.forwardRef<
+  HTMLTextAreaElement,
+  React.ComponentProps<"textarea">
+>(({ className, ...props }, ref) => (
+  <textarea
+    className={cn(
+      "flex min-h-[120px] w-full rounded-xl border border-[var(--border)] bg-[var(--input-bg)] px-4 py-3 text-sm text-[var(--foreground)] placeholder:text-[var(--muted-foreground)] backdrop-blur-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500/50 focus-visible:border-orange-500/30 disabled:cursor-not-allowed disabled:opacity-50 resize-y",
+      className
+    )}
+    ref={ref}
+    {...props}
+  />
+));
+Textarea.displayName = "Textarea";
+
+interface ContactSectionProps {  variant?: SectionVariant;
   sectionIndex?: number;
 }
 
@@ -40,7 +69,7 @@ export function ContactSection({
     "p-6 backdrop-blur-xl md:p-8",
     isHome ?
       homeSectionCardClass(sectionIndex ?? 9)
-    : "rounded-2xl border border-white/10 bg-white/[0.03]"
+    : "rounded-2xl border border-[var(--border)] bg-[var(--card)]"
   );
 
   return (
@@ -65,21 +94,21 @@ export function ContactSection({
           <div className="space-y-4">
             <div className={panelClass}>
               <h3 className="mb-4 font-semibold text-[var(--foreground)]">Get in Touch</h3>
-              <div className="space-y-4 text-sm text-white/45">
+              <div className="space-y-4 text-sm text-[var(--muted)]">
                 <p>
-                  <span className="block text-white/30">Email</span>
+                  <span className="block text-[var(--muted-subtle)]">Email</span>
                   <a href={`mailto:${siteConfig.email}`} className="text-[var(--orange)] hover:underline">
                     {siteConfig.email}
                   </a>
                 </p>
                 <p>
-                  <span className="block text-white/30">Phone</span>
+                  <span className="block text-[var(--muted-subtle)]">Phone</span>
                   <a href={`tel:${siteConfig.phone.replace(/\s/g, "")}`} className="text-[var(--orange)] hover:underline">
                     {siteConfig.phone}
                   </a>
                 </p>
                 <p>
-                  <span className="block text-white/30">Address</span>
+                  <span className="block text-[var(--muted-subtle)]">Address</span>
                   {siteConfig.address}
                 </p>
               </div>
@@ -90,7 +119,7 @@ export function ContactSection({
                 isHome && "backdrop-blur-md"
               )}
             >
-              <p className="text-sm text-white/70">
+              <p className="text-sm text-[var(--muted-strong)]">
                 <strong className="text-[var(--orange)]">Free Consultation:</strong> Schedule a
                 no-obligation call to discuss your project requirements and get a custom quote.
               </p>
@@ -108,7 +137,7 @@ export function ContactSection({
             <div className="flex flex-col items-center justify-center rounded-2xl border border-green-500/30 bg-green-500/5 p-12 text-center">
               <CheckCircle className="mb-4 h-12 w-12 text-green-400" />
               <h3 className="text-xl font-semibold text-[var(--foreground)]">Message Sent!</h3>
-              <p className="mt-2 text-sm text-white/45">
+              <p className="mt-2 text-sm text-[var(--muted)]">
                 Thank you for reaching out. We&apos;ll get back to you within 24 hours.
               </p>
             </div>
@@ -120,11 +149,11 @@ export function ContactSection({
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="email">Email *</Label>
-                  <Input id="email" name="email" type="email" required placeholder="john@company.com" />
+                  <Input id="email" name="email" type="email" required placeholder="you@company.in" />
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="phone">Phone Number</Label>
-                  <Input id="phone" name="phone" type="tel" placeholder="+1 (555) 000-0000" />
+                  <Input id="phone" name="phone" type="tel" placeholder="+91 94034 29923" />
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="company">Company Name</Label>
@@ -133,15 +162,15 @@ export function ContactSection({
               </div>
 
               <div className="mt-5 space-y-2">
-                <Label htmlFor="budget">Project Budget</Label>
+                <Label htmlFor="budget">Project Scope</Label>
                 <select
                   id="budget"
                   name="budget"
-                  className="flex h-11 w-full rounded-xl border border-white/10 bg-white/5 px-4 py-2 text-sm text-white backdrop-blur-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500/50"
+                  className="flex h-11 w-full rounded-xl border border-[var(--border)] bg-[var(--subtle)] px-4 py-2 text-sm text-[var(--foreground)] backdrop-blur-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500/50"
                 >
-                  <option value="" className="bg-zinc-900">Select budget range</option>
+                  <option value="" className="bg-[var(--surface)]">Select project scope</option>
                   {budgetOptions.map((option) => (
-                    <option key={option} value={option} className="bg-zinc-900">
+                    <option key={option} value={option} className="bg-[var(--surface)]">
                       {option}
                     </option>
                   ))}

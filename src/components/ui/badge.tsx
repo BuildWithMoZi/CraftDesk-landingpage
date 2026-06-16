@@ -9,8 +9,8 @@ const badgeVariants = cva(
         default:
           "border-orange-500/30 bg-orange-500/10 text-orange-400",
         secondary:
-          "border-white/10 bg-white/5 text-zinc-300",
-        outline: "border-white/20 text-zinc-400",
+          "border-[var(--border)] bg-[var(--subtle)] text-[var(--muted-strong)]",
+        outline: "border-[var(--border)] text-[var(--muted-foreground)]",
       },
     },
     defaultVariants: {

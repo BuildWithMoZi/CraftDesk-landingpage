@@ -2,7 +2,9 @@
 
 import { cn } from "@/lib/utils";
 
-const TOTAL_SECTIONS = 9;
+const TOTAL_SECTIONS = 6;
+
+export type SectionVariant = "default" | "home";
 
 interface HomeSectionShellProps {
   id?: string;
@@ -11,31 +13,34 @@ interface HomeSectionShellProps {
   className?: string;
 }
 
+interface SectionLayoutProps {
+  id?: string;
+  variant?: SectionVariant;
+  sectionIndex?: number;
+  className?: string;
+  compact?: boolean;
+  children: React.ReactNode;
+}
+
 const SECTION_THEMES: Record<
   number,
   { shell: string; content: string; labelSide: "left" | "right" }
 > = {
-  1: { shell: "home-theme-services", content: "max-w-7xl", labelSide: "right" },
-  2: { shell: "home-theme-why", content: "max-w-5xl", labelSide: "left" },
+  1: { shell: "home-theme-trust", content: "max-w-7xl", labelSide: "right" },
+  2: { shell: "home-theme-why", content: "max-w-6xl", labelSide: "left" },
   3: { shell: "home-theme-portfolio", content: "max-w-7xl", labelSide: "right" },
-  4: { shell: "home-theme-process", content: "max-w-6xl", labelSide: "left" },
-  5: { shell: "home-theme-tech", content: "max-w-7xl", labelSide: "right" },
-  6: { shell: "home-theme-industries", content: "max-w-7xl", labelSide: "left" },
-  7: { shell: "home-theme-testimonials", content: "max-w-5xl", labelSide: "right" },
-  8: { shell: "home-theme-pricing", content: "max-w-6xl", labelSide: "left" },
-  9: { shell: "home-theme-contact", content: "max-w-7xl", labelSide: "right" },
+  4: { shell: "home-theme-testimonials", content: "max-w-5xl", labelSide: "right" },
+  5: { shell: "home-theme-faq", content: "max-w-5xl", labelSide: "right" },
+  6: { shell: "home-theme-cta", content: "max-w-6xl", labelSide: "left" },
 };
 
 const HOME_CARD_VARIANTS: Record<number, string> = {
-  1: "home-card-tile",
+  1: "home-card-chip",
   2: "home-card-accent",
   3: "home-card-media",
-  4: "home-card-step",
-  5: "home-card-chip",
-  6: "home-card-icon",
-  7: "home-card-quote",
-  8: "home-card-plan",
-  9: "home-card-form",
+  4: "home-card-quote",
+  5: "home-card-tile",
+  6: "home-glass-card",
 };
 
 export function homeSectionCardClass(sectionIndex: number, extra?: string) {
@@ -64,7 +69,7 @@ export function HomeSectionShell({
       <div className={cn("home-section-inner relative overflow-hidden", theme.shell)}>
         <span
           className={cn(
-            "absolute top-5 z-10 font-mono text-[11px] tracking-wider text-white/25 sm:top-6",
+            "absolute top-5 z-10 font-mono text-[11px] tracking-wider text-[var(--section-label)] sm:top-6",
             theme.labelSide === "left" ? "left-5 sm:left-8" : "right-5 sm:right-8"
           )}
         >
@@ -87,13 +92,41 @@ export function HomeSectionShell({
   );
 }
 
-/** @deprecated Use homeSectionCardClass(sectionIndex) for home variant cards */
-export const homeGlassCard =
-  "home-glass-card rounded-2xl border border-[var(--border)] bg-[var(--card)] backdrop-blur-xl transition-all duration-300";
+export function SectionLayout({
+  id,
+  variant = "default",
+  sectionIndex,
+  className,
+  compact = false,
+  children,
+}: SectionLayoutProps) {
+  if (variant === "home" && sectionIndex) {
+    return (
+      <HomeSectionShell id={id} index={sectionIndex} className={className}>
+        {children}
+      </HomeSectionShell>
+    );
+  }
 
-/** @deprecated Use homeSectionCardClass(sectionIndex) */
-export const homeGlassCardHover =
-  "hover:border-[var(--orange)]/25 hover:bg-white/[0.04] hover:shadow-[0_0_24px_rgba(249,115,22,0.06)]";
+  return (
+    <section
+      id={id}
+      className={cn(
+        "relative",
+        compact ? "py-16 md:py-24" : "py-24 md:py-32",
+        className
+      )}
+    >
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">{children}</div>
+    </section>
+  );
+}
+
+export function sectionHeadingVariant(
+  variant: SectionVariant
+): "default" | "home" {
+  return variant === "home" ? "home" : "default";
+}
 
 export const homeIconWrap =
-  "flex items-center justify-center rounded-xl border border-[var(--border)] bg-white/[0.04] text-[var(--orange)] transition-colors group-hover:border-[var(--orange)]/30 group-hover:bg-[var(--orange)]/10";
+  "flex items-center justify-center rounded-xl border border-[var(--border)] bg-[var(--home-icon-bg)] text-[var(--orange)] transition-colors group-hover:border-[var(--orange)]/30 group-hover:bg-[var(--orange)]/10";

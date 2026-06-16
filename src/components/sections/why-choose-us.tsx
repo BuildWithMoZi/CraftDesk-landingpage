@@ -1,16 +1,11 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { whyChooseUs } from "@/lib/data";
-import { SectionHeading } from "@/components/ui/section-heading";
+import { whyStory } from "@/lib/data";
+import { siteConfig } from "@/lib/metadata";
 import {
   SectionLayout,
-  sectionHeadingVariant,
   type SectionVariant,
-} from "@/components/home/section-layout";
-import {
-  homeSectionCardClass,
-  homeIconWrap,
 } from "@/components/home/home-section-shell";
 import { cn } from "@/lib/utils";
 
@@ -23,47 +18,54 @@ export function WhyChooseUs({
   variant = "default",
   sectionIndex,
 }: WhyChooseUsProps) {
-  const hv = sectionHeadingVariant(variant);
   const isHome = variant === "home";
 
   return (
-    <SectionLayout variant={variant} sectionIndex={sectionIndex}>
-      <SectionHeading
-        variant={hv}
-        badge="Why Kyron"
-        title="Why Choose Kyron Solutions"
-        description="We combine technical excellence with business acumen to deliver solutions that drive real results."
-        align={isHome ? "left" : "center"}
-      />
+    <SectionLayout variant={variant} sectionIndex={sectionIndex} compact>
+      <motion.div
+        initial={{ opacity: 0, y: 16 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-60px" }}
+        transition={{ duration: 0.55 }}
+        className={cn(
+          "max-w-2xl",
+          isHome ? "text-left" : "mx-auto text-center",
+        )}>
+        <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-[var(--orange)]">
+          Why {siteConfig.brand}
+        </p>
 
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        {whyChooseUs.map((item, index) => (
-          <motion.div
-            key={item.title}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: index * 0.08 }}
-            className={cn(
-              "group p-6",
-              isHome ?
-                homeSectionCardClass(sectionIndex ?? 2)
-              : "rounded-2xl border border-white/5 bg-gradient-to-b from-white/[0.04] to-transparent transition-colors hover:border-orange-500/20"
-            )}
-          >
-            <div
+        <div className="mt-5 space-y-1">
+          {whyStory.lines.map((line, index) => (
+            <motion.p
+              key={line}
+              initial={{ opacity: 0, x: isHome ? -12 : 0, y: isHome ? 0 : 8 }}
+              whileInView={{ opacity: 1, x: 0, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.45, delay: 0.12 + index * 0.1 }}
               className={cn(
-                "mb-4 flex h-11 w-11 items-center justify-center",
-                isHome ? homeIconWrap : "rounded-lg bg-orange-500/10 text-orange-400 group-hover:bg-orange-500/20"
-              )}
-            >
-              <item.icon className="h-5 w-5" />
-            </div>
-            <h3 className="mb-2 font-semibold text-[var(--foreground)]">{item.title}</h3>
-            <p className="text-sm text-white/45">{item.description}</p>
-          </motion.div>
-        ))}
-      </div>
+                "leading-snug text-[var(--foreground)]",
+                index === 0 ?
+                  "text-2xl font-semibold sm:text-[1.75rem]"
+                : "text-lg text-[var(--muted-strong)] sm:text-xl",
+              )}>
+              {line}
+            </motion.p>
+          ))}
+        </div>
+
+        <motion.p
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.45, delay: 0.45 }}
+          className={cn(
+            "mt-6 text-xs tracking-wide text-[var(--muted-subtle)] sm:text-sm",
+            !isHome && "mx-auto max-w-lg",
+          )}>
+          {whyStory.note}
+        </motion.p>
+      </motion.div>
     </SectionLayout>
   );
 }
