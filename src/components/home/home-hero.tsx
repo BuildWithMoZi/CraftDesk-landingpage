@@ -155,7 +155,7 @@ export function HomeHero() {
   return (
     <section
       id='home-hero'
-      className='relative flex min-h-0 flex-1 flex-col overflow-hidden'>
+      className='relative flex min-h-0 flex-1 flex-col max-md:overflow-visible md:overflow-hidden'>
 
       {/* Ambient glows — orange & white */}
       <div className='pointer-events-none absolute -left-32 top-1/4 h-80 w-80 rounded-full bg-[var(--orange)]/10 blur-[120px]' />
@@ -198,13 +198,13 @@ export function HomeHero() {
       <HomeCircuitLines />
 
       {/* Hero copy — title overlaps image like Future Desks */}
-      <div className='relative z-20 mx-auto flex min-h-0 flex-1 flex-col items-center justify-center px-4 pb-20 pt-4 text-center sm:px-6 sm:pb-24 md:pb-28 md:pt-6'>
+      <div className='relative z-20 mx-auto flex min-h-0 flex-1 flex-col items-center justify-center px-4 pb-14 pt-3 text-center max-md:pb-16 sm:px-6 sm:pb-24 md:pb-28 md:pt-6'>
         <div className='relative w-full max-w-4xl'>
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className='relative mx-auto w-full max-w-[140px] sm:max-w-[180px] md:max-w-[220px] lg:max-w-[260px]'>
+            className='relative mx-auto w-full max-w-[120px] sm:max-w-[180px] md:max-w-[220px] lg:max-w-[260px]'>
             <Image
               src={heroContent.image.src}
               alt={heroContent.image.alt}
@@ -219,7 +219,7 @@ export function HomeHero() {
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.1 }}
-            className='relative z-10 mx-auto -mt-6 max-w-4xl px-2 text-3xl font-bold leading-[1.05] tracking-tight text-[var(--foreground)] sm:-mt-8 sm:text-4xl md:-mt-10 md:text-5xl lg:-mt-12 lg:text-6xl'>
+            className='relative z-10 mx-auto -mt-5 max-w-4xl px-2 text-2xl font-bold leading-[1.05] tracking-tight text-[var(--foreground)] sm:-mt-8 sm:text-4xl md:-mt-10 md:text-5xl lg:-mt-12 lg:text-6xl'>
             Build Your Startup
             <br />
             <span className='text-[var(--foreground)]'>With CraftDesk</span>
@@ -255,7 +255,7 @@ export function HomeHero() {
       </div>
 
       {/* Bottom bar — scroll + progress */}
-      <div className='absolute bottom-0 left-0 right-0 z-20 px-4 pb-6 sm:px-8'>
+      <div className='absolute bottom-0 left-0 right-0 z-20 px-4 pb-4 sm:px-8 md:pb-6'>
         <div className='mb-6 flex items-end justify-between gap-4'>
           <a
             href='#trust'

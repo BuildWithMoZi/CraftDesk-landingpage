@@ -131,6 +131,14 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+@media (max-width: 767px) {
+  html,
+  body {
+    max-width: 100%;
+    overflow-x: clip;
+  }
+}
+
 ::selection {
   background: rgba(249, 115, 22, 0.3);
   color: var(--selection-fg);
@@ -316,6 +324,31 @@ body {
 .bottom-nav-inner {
   position: relative;
   z-index: 1;
+}
+
+@media (max-width: 767px) {
+  .bottom-nav-shell {
+    width: 100%;
+    max-width: 100%;
+    overflow: visible;
+  }
+
+  .bottom-nav-glow-ring {
+    overflow: hidden;
+    width: 100%;
+    max-width: 100%;
+    --beam-inset: 0.5rem;
+    --beam-size: 48px;
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.35);
+  }
+
+  .bottom-nav-ambient-glow {
+    inset: -3px -6px;
+  }
+
+  .bottom-nav-dropdown {
+    z-index: 100;
+  }
 }
 
 /* Home page sections — hero-family styling */
@@ -524,6 +557,16 @@ body {
   content: "\201C";
   color: rgba(249, 115, 22, 0.07);
   font-family: Georgia, serif;
+}
+
+@media (max-width: 767px) {
+  .home-theme-testimonials::before {
+    display: none;
+  }
+
+  .home-theme-testimonials::after {
+    opacity: 0.35;
+  }
 }
 
 .home-theme-testimonials::after {
