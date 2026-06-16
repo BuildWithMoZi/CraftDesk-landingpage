@@ -14,26 +14,63 @@ import { cn } from "@/lib/utils";
 interface ProcessSectionProps {
   variant?: SectionVariant;
   sectionIndex?: number;
+  layout?: "timeline" | "horizontal";
 }
 
 export function ProcessSection({
   variant = "default",
   sectionIndex,
+  layout = "timeline",
 }: ProcessSectionProps) {
   const hv = sectionHeadingVariant(variant);
   const isHome = variant === "home";
+  const isHorizontal = layout === "horizontal";
 
   return (
     <SectionLayout variant={variant} sectionIndex={sectionIndex}>
       <SectionHeading
         variant={hv}
-        badge="Our Process"
-        title="How We Build Your Product"
-        description="A proven, transparent development process that ensures quality at every stage."
+        badge="How We Build"
+        title="From Discovery to Launch"
+        description="A proven, transparent four-step framework that keeps quality high and timelines predictable."
         align={isHome ? "left" : "center"}
       />
 
-      <div className="relative">
+      {isHorizontal ?
+        <div className="relative">
+          <div
+            className="absolute left-4 right-4 top-8 hidden h-px bg-gradient-to-r from-transparent via-[var(--orange)]/40 to-transparent sm:block md:top-10"
+            aria-hidden
+          />
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:gap-5">
+            {processSteps.map((step, index) => (
+              <motion.div
+                key={step.step}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.08 }}
+                className={cn(
+                  "relative p-5 sm:p-6",
+                  isHome ?
+                    homeSectionCardClass(sectionIndex ?? 6)
+                  : "rounded-2xl border border-[var(--border)] bg-[var(--card)] backdrop-blur-xl",
+                )}
+              >
+                <span className="mb-4 inline-flex h-9 w-9 items-center justify-center rounded-full border border-[var(--orange)]/30 bg-[var(--orange)]/10 font-mono text-sm font-bold text-[var(--orange)]">
+                  {String(step.step).padStart(2, "0")}
+                </span>
+                <h3 className="text-base font-semibold text-[var(--foreground)] sm:text-lg">
+                  {step.title}
+                </h3>
+                <p className="mt-2 text-sm leading-relaxed text-[var(--muted)]">
+                  {step.description}
+                </p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      : <div className="relative">
           <div className="absolute left-8 top-0 hidden h-full w-px bg-gradient-to-b from-orange-500/50 via-orange-500/20 to-transparent md:left-1/2 md:block" />
           <div className="space-y-8 md:space-y-0">
             {processSteps.map((step, index) => (
@@ -58,21 +95,24 @@ export function ProcessSection({
                     className={cn(
                       "ml-16 p-6 md:ml-0",
                       isHome ?
-                        homeSectionCardClass(sectionIndex ?? 4)
-                      : "rounded-2xl border border-[var(--border)] bg-[var(--card)] backdrop-blur-xl"
+                        homeSectionCardClass(sectionIndex ?? 6)
+                      : "rounded-2xl border border-[var(--border)] bg-[var(--card)] backdrop-blur-xl",
                     )}
                   >
                     <span className="mb-2 inline-block font-mono text-sm font-bold text-[var(--orange)]">
                       {String(step.step).padStart(2, "0")}
                     </span>
-                    <h3 className="mb-2 text-lg font-semibold text-[var(--foreground)]">{step.title}</h3>
+                    <h3 className="mb-2 text-lg font-semibold text-[var(--foreground)]">
+                      {step.title}
+                    </h3>
                     <p className="text-sm text-[var(--muted)]">{step.description}</p>
                   </div>
                 </div>
               </motion.div>
             ))}
           </div>
-      </div>
+        </div>
+      }
     </SectionLayout>
   );
 }

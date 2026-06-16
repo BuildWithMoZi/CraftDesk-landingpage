@@ -2,7 +2,7 @@
 
 import { cn } from "@/lib/utils";
 
-const TOTAL_SECTIONS = 9;
+const TOTAL_SECTIONS = 6;
 
 export type SectionVariant = "default" | "home";
 
@@ -26,27 +26,21 @@ const SECTION_THEMES: Record<
   number,
   { shell: string; content: string; labelSide: "left" | "right" }
 > = {
-  1: { shell: "home-theme-services", content: "max-w-7xl", labelSide: "right" },
-  2: { shell: "home-theme-why", content: "max-w-5xl", labelSide: "left" },
+  1: { shell: "home-theme-trust", content: "max-w-7xl", labelSide: "right" },
+  2: { shell: "home-theme-why", content: "max-w-6xl", labelSide: "left" },
   3: { shell: "home-theme-portfolio", content: "max-w-7xl", labelSide: "right" },
-  4: { shell: "home-theme-process", content: "max-w-6xl", labelSide: "left" },
-  5: { shell: "home-theme-tech", content: "max-w-7xl", labelSide: "right" },
-  6: { shell: "home-theme-industries", content: "max-w-7xl", labelSide: "left" },
-  7: { shell: "home-theme-testimonials", content: "max-w-5xl", labelSide: "right" },
-  8: { shell: "home-theme-pricing", content: "max-w-6xl", labelSide: "left" },
-  9: { shell: "home-theme-contact", content: "max-w-7xl", labelSide: "right" },
+  4: { shell: "home-theme-testimonials", content: "max-w-5xl", labelSide: "right" },
+  5: { shell: "home-theme-faq", content: "max-w-5xl", labelSide: "right" },
+  6: { shell: "home-theme-cta", content: "max-w-6xl", labelSide: "left" },
 };
 
 const HOME_CARD_VARIANTS: Record<number, string> = {
-  1: "home-card-tile",
+  1: "home-card-chip",
   2: "home-card-accent",
   3: "home-card-media",
-  4: "home-card-step",
-  5: "home-card-chip",
-  6: "home-card-icon",
-  7: "home-card-quote",
-  8: "home-card-plan",
-  9: "home-card-form",
+  4: "home-card-quote",
+  5: "home-card-tile",
+  6: "home-glass-card",
 };
 
 export function homeSectionCardClass(sectionIndex: number, extra?: string) {

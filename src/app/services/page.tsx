@@ -3,7 +3,6 @@ import Link from "next/link";
 import { MainLayout } from "@/components/layout/main-layout";
 import { PageHero } from "@/components/sections/page-hero";
 import { ServicesSection } from "@/components/sections/services-section";
-import { TechStack } from "@/components/sections/tech-stack";
 import { ProcessSection } from "@/components/sections/process-section";
 import { createMetadata } from "@/lib/metadata";
 import { Button } from "@/components/ui/button";
@@ -43,8 +42,7 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      <TechStack />
-      <ProcessSection />
+      <ProcessSection layout="horizontal" />
     </MainLayout>
   );
 }

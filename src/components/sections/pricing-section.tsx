@@ -42,9 +42,9 @@ export function PricingSection({
       {!hideHeading && (
         <SectionHeading
           variant={hv}
-          badge="Pricing"
-          title="Transparent, Flexible Pricing"
-          description="Choose a package that fits your needs. All plans include our commitment to quality and on-time delivery."
+          badge="Packages"
+          title="Productized Packages, Zero Guesswork"
+          description="Fixed-scope offerings with clear deliverables — contact us for a quote and start building."
         />
       )}
 
@@ -79,10 +79,7 @@ export function PricingSection({
               </span>
             )}
             <h3 className="text-xl font-bold text-[var(--foreground)]">{plan.name}</h3>
-            <div className="mt-4">
-              <span className="text-4xl font-bold text-[var(--foreground)]">{plan.price}</span>
-              <span className="ml-2 text-sm text-[var(--muted-subtle)]">{plan.period}</span>
-            </div>
+            <p className="mt-3 text-sm font-medium text-[var(--orange)]">{plan.timeline}</p>
             <p className="mt-3 text-sm text-[var(--muted)]">{plan.description}</p>
 
             <ul className="mt-8 flex-1 space-y-3">
@@ -108,7 +105,7 @@ export function PricingSection({
       {showFooterCta && (
         <div className="mt-12 text-center">
           <Button asChild variant="outline">
-            <Link href="/pricing">View Detailed Pricing</Link>
+            <Link href="/contact">Contact for Pricing</Link>
           </Button>
         </div>
       )}

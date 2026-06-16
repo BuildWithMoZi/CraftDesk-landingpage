@@ -12,9 +12,9 @@ export const siteConfig = {
   description:
     "CraftDesk Solutions is a full-service software development company specializing in custom web development, mobile apps, SaaS platforms, enterprise software, UI/UX design, cloud solutions, and AI integrations.",
   url: siteUrl,
-  email: "hello@craftdesk.com",
-  phone: "+91 98765 43210",
-  address: "Sector 62, Noida, Uttar Pradesh 201309, India",
+  email: "craftdesk.tech@gmail.com",
+  phone: "+91 94034 29923",
+  address: "Ashoka Marg, Nashik, Maharashtra.",
 };
 
 export function logoUrl(version = siteConfig.logoVersion) {
@@ -25,10 +25,12 @@ export function createMetadata({
   title,
   description,
   path = "",
+  keywords,
 }: {
   title?: string;
   description?: string;
   path?: string;
+  keywords?: string[];
 }): Metadata {
   const pageTitle = title
     ? `${title} | ${siteConfig.name}`
@@ -38,6 +40,7 @@ export function createMetadata({
   return {
     title: pageTitle,
     description: pageDescription,
+    ...(keywords?.length ? { keywords } : {}),
     metadataBase: new URL(siteConfig.url),
     alternates: { canonical: path },
     openGraph: {

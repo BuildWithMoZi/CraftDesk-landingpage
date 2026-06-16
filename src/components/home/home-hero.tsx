@@ -1,16 +1,10 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import {
-  ArrowDown,
-  ArrowUpRight,
-  Cloud,
-  Code2,
-  Cpu,
-  Smartphone,
-} from "lucide-react";
-import { Logo } from "@/components/ui/brand-name";
+import { ArrowUpRight } from "lucide-react";
+import { heroContent } from "@/lib/data";
 
 const circuits = [
   {
@@ -54,42 +48,47 @@ const junctions = [
 function HomeCircuitLines() {
   return (
     <svg
-      className="pointer-events-none absolute inset-0 z-[5] hidden h-full w-full md:block"
-      viewBox="0 0 100 100"
-      preserveAspectRatio="none"
-      aria-hidden="true"
-    >
+      className='pointer-events-none absolute inset-0 z-[5] hidden h-full w-full md:block'
+      viewBox='0 0 100 100'
+      preserveAspectRatio='none'
+      aria-hidden='true'>
       <defs>
-        <filter id="circuit-glow" x="-50%" y="-50%" width="200%" height="200%">
-          <feGaussianBlur stdDeviation="0.35" result="blur" />
+        <filter id='circuit-glow' x='-50%' y='-50%' width='200%' height='200%'>
+          <feGaussianBlur stdDeviation='0.35' result='blur' />
           <feMerge>
-            <feMergeNode in="blur" />
-            <feMergeNode in="SourceGraphic" />
+            <feMergeNode in='blur' />
+            <feMergeNode in='SourceGraphic' />
           </feMerge>
         </filter>
       </defs>
 
       <circle
-        cx="50"
-        cy="49"
-        r="1.2"
-        fill="none"
-        stroke="rgba(255,255,255,0.12)"
-        strokeWidth="0.15"
-        className="circuit-hub"
+        cx='50'
+        cy='49'
+        r='1.2'
+        fill='none'
+        stroke='rgba(255,255,255,0.12)'
+        strokeWidth='0.15'
+        className='circuit-hub'
       />
-      <circle cx="50" cy="49" r="0.35" fill="var(--orange)" className="circuit-hub-core" />
+      <circle
+        cx='50'
+        cy='49'
+        r='0.35'
+        fill='var(--orange)'
+        className='circuit-hub-core'
+      />
 
       {junctions.map((j, i) => (
         <circle
           key={`${j.cx}-${j.cy}-${i}`}
           cx={j.cx}
           cy={j.cy}
-          r="0.45"
-          fill="rgba(255,255,255,0.06)"
-          stroke="rgba(255,255,255,0.1)"
-          strokeWidth="0.12"
-          className="circuit-junction"
+          r='0.45'
+          fill='rgba(255,255,255,0.06)'
+          stroke='rgba(255,255,255,0.1)'
+          strokeWidth='0.12'
+          className='circuit-junction'
           style={{ animationDelay: `${i * 0.25}s` }}
         />
       ))}
@@ -98,49 +97,49 @@ function HomeCircuitLines() {
         <g key={circuit.id}>
           <path
             d={circuit.d}
-            fill="none"
-            stroke="rgba(255,255,255,0.05)"
-            strokeWidth="0.18"
-            vectorEffect="non-scaling-stroke"
+            fill='none'
+            stroke='rgba(255,255,255,0.05)'
+            strokeWidth='0.18'
+            vectorEffect='non-scaling-stroke'
           />
 
           <path
             d={circuit.d}
-            fill="none"
-            stroke="rgba(255,255,255,0.03)"
-            strokeWidth="0.35"
-            vectorEffect="non-scaling-stroke"
-            strokeLinecap="round"
-            strokeLinejoin="round"
+            fill='none'
+            stroke='rgba(255,255,255,0.03)'
+            strokeWidth='0.35'
+            vectorEffect='non-scaling-stroke'
+            strokeLinecap='round'
+            strokeLinejoin='round'
           />
 
           <path
             d={circuit.d}
-            fill="none"
-            stroke="var(--orange)"
-            strokeWidth="0.3"
-            vectorEffect="non-scaling-stroke"
-            strokeLinecap="round"
-            strokeLinejoin="round"
+            fill='none'
+            stroke='var(--orange)'
+            strokeWidth='0.3'
+            vectorEffect='non-scaling-stroke'
+            strokeLinecap='round'
+            strokeLinejoin='round'
             pathLength={100}
-            className="circuit-pulse-orange"
+            className='circuit-pulse-orange'
             style={{
               animationDuration: `${circuit.duration}s`,
               animationDelay: `${circuit.delay}s`,
             }}
-            filter="url(#circuit-glow)"
+            filter='url(#circuit-glow)'
           />
 
           <path
             d={circuit.d}
-            fill="none"
-            stroke="var(--foreground)"
-            strokeWidth="0.22"
-            vectorEffect="non-scaling-stroke"
-            strokeLinecap="round"
-            strokeLinejoin="round"
+            fill='none'
+            stroke='var(--foreground)'
+            strokeWidth='0.22'
+            vectorEffect='non-scaling-stroke'
+            strokeLinecap='round'
+            strokeLinejoin='round'
             pathLength={100}
-            className="circuit-pulse-white"
+            className='circuit-pulse-white'
             style={{
               animationDuration: `${circuit.duration + 1.4}s`,
               animationDelay: `${circuit.delay + 1.6}s`,
@@ -152,52 +151,12 @@ function HomeCircuitLines() {
   );
 }
 
-const floatingNodes = [
-  {
-    label: "Web Apps",
-    value: "150+",
-    icon: Code2,
-    position: "top-[18%] left-[8%] md:left-[12%]",
-    delay: 0,
-  },
-  {
-    label: "Mobile",
-    value: "98%",
-    icon: Smartphone,
-    position: "bottom-[28%] left-[6%] md:left-[10%]",
-    delay: 0.15,
-  },
-  {
-    label: "Cloud",
-    value: "50+",
-    icon: Cloud,
-    position: "top-[20%] right-[6%] md:right-[10%]",
-    delay: 0.1,
-  },
-  {
-    label: "AI Tech",
-    value: "12+",
-    icon: Cpu,
-    position: "bottom-[26%] right-[8%] md:right-[12%]",
-    delay: 0.2,
-  },
-];
-
-const partnerLogos = [
-  "React",
-  "Next.js",
-  "AWS",
-  "Flutter",
-  "Node.js",
-  "Azure",
-  "PostgreSQL",
-];
-
 export function HomeHero() {
   return (
     <section
       id='home-hero'
-      className='relative flex min-h-[calc(100vh-5rem)] flex-col overflow-hidden'>
+      className='relative flex min-h-0 flex-1 flex-col overflow-hidden'>
+
       {/* Ambient glows — orange & white */}
       <div className='pointer-events-none absolute -left-32 top-1/4 h-80 w-80 rounded-full bg-[var(--orange)]/10 blur-[120px]' />
       <div className='pointer-events-none absolute -right-24 top-1/3 h-72 w-72 rounded-full bg-[var(--subtle)] blur-[100px]' />
@@ -219,7 +178,7 @@ export function HomeHero() {
       </div>
 
       {/* Center light streaks */}
-      <div className='pointer-events-none absolute bottom-[22%] left-1/2 flex -translate-x-1/2 gap-6 md:gap-10'>
+      <div className='pointer-events-none absolute bottom-[30%] left-1/2 flex -translate-x-1/2 gap-6 md:gap-10'>
         {[80, 120, 60].map((h, i) => (
           <motion.div
             key={i}
@@ -238,63 +197,40 @@ export function HomeHero() {
       {/* Orthogonal circuit lines with traveling pulses */}
       <HomeCircuitLines />
 
-      {floatingNodes.map((node) => (
-        <motion.div
-          key={node.label}
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5 + node.delay, duration: 0.6 }}
-          className={`absolute ${node.position} z-10 hidden md:block`}>
+      {/* Hero copy — title overlaps image like Future Desks */}
+      <div className='relative z-20 mx-auto flex min-h-0 flex-1 flex-col items-center justify-center px-4 pb-20 pt-4 text-center sm:px-6 sm:pb-24 md:pb-28 md:pt-6'>
+        <div className='relative w-full max-w-4xl'>
           <motion.div
-            animate={{ y: [0, -6, 0] }}
-            transition={{
-              duration: 4 + node.delay * 2,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
-            className='flex items-center gap-3 rounded-2xl border border-[var(--border)] bg-[var(--card)] px-4 py-3 backdrop-blur-xl'>
-            <span className='flex h-9 w-9 items-center justify-center rounded-xl border border-[var(--border)] bg-[var(--subtle)]'>
-              <node.icon className='h-4 w-4 text-[var(--orange)]' />
-            </span>
-            <div>
-              <p className='text-xs text-[var(--muted)]'>{node.label}</p>
-              <p className='text-sm font-semibold text-[var(--foreground)]'>
-                {node.value}
-              </p>
-            </div>
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className='relative mx-auto w-full max-w-[140px] sm:max-w-[180px] md:max-w-[220px] lg:max-w-[260px]'>
+            <Image
+              src={heroContent.image.src}
+              alt={heroContent.image.alt}
+              width={560}
+              height={560}
+              priority
+              className='h-auto w-full object-contain'
+            />
           </motion.div>
-        </motion.div>
-      ))}
 
-      {/* Hero copy — centered */}
-      <div className='relative z-20 mx-auto flex flex-1 flex-col items-center justify-center px-4 pb-36 pt-8 text-center sm:px-6'>
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className='mb-8 inline-flex items-center gap-2.5 rounded-full border border-[var(--border)] bg-[var(--card)] px-4 py-2 backdrop-blur-md'>
-          <Logo size={18} alt='' className='h-[18px] w-[18px]' />
-          <span className='text-sm text-[var(--muted-strong)]'>
-            Unlock Your Digital Spark!
-          </span>
-          <ArrowUpRight className='h-3.5 w-3.5 text-[var(--orange)]' />
-        </motion.div>
-
-        <motion.h1
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.1 }}
-          className='max-w-4xl text-4xl font-bold leading-[1.1] tracking-tight text-[var(--foreground)] sm:text-5xl md:text-6xl lg:text-7xl'>
-          One-Click for
-          <br />
-          <span className='text-[var(--foreground)]'>Digital Excellence</span>
-        </motion.h1>
+          <motion.h1
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.1 }}
+            className='relative z-10 mx-auto -mt-6 max-w-4xl px-2 text-3xl font-bold leading-[1.05] tracking-tight text-[var(--foreground)] sm:-mt-8 sm:text-4xl md:-mt-10 md:text-5xl lg:-mt-12 lg:text-6xl'>
+            Build Your Startup
+            <br />
+            <span className='text-[var(--foreground)]'>With CraftDesk</span>
+          </motion.h1>
+        </div>
 
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.2 }}
-          className='mt-6 max-w-lg text-sm leading-relaxed text-[var(--muted)] sm:text-base'>
+          className='mt-4 max-w-lg text-sm leading-relaxed text-[var(--muted)] sm:mt-5 sm:text-base'>
           Dive into smart software solutions, where innovative technology meets
           engineering expertise for startups and enterprises.
         </motion.p>
@@ -303,7 +239,7 @@ export function HomeHero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.3 }}
-          className='mt-10 flex flex-wrap items-center justify-center gap-3'>
+          className='mt-6 flex flex-wrap items-center justify-center gap-3 sm:mt-8'>
           <Link
             href='/contact'
             className='inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--card)] px-6 py-3 text-sm font-medium text-[var(--foreground)] backdrop-blur-md transition-all hover:border-[var(--orange)]/40 hover:bg-[var(--subtle)]'>
@@ -318,17 +254,14 @@ export function HomeHero() {
         </motion.div>
       </div>
 
-      {/* Bottom bar — scroll + progress + logos */}
+      {/* Bottom bar — scroll + progress */}
       <div className='absolute bottom-0 left-0 right-0 z-20 px-4 pb-6 sm:px-8'>
         <div className='mb-6 flex items-end justify-between gap-4'>
           <a
-            href='#services'
+            href='#trust'
             className='group flex items-center gap-3 text-[var(--muted)] transition-colors hover:text-[var(--foreground)]'>
-            <span className='flex h-10 w-10 items-center justify-center rounded-full border border-[var(--border)] bg-[var(--card)] transition-colors group-hover:border-[var(--orange)]/30'>
-              <ArrowDown className='h-4 w-4' />
-            </span>
             <span className='hidden text-xs sm:inline'>
-              <span className='text-[var(--muted-subtle)]'>01/08</span>
+              <span className='text-[var(--muted-subtle)]'>01/06</span>
               <span className='mx-2'>·</span>
               Scroll down
             </span>
@@ -336,7 +269,7 @@ export function HomeHero() {
 
           <div className='text-right'>
             <p className='mb-2 text-xs text-[var(--muted)]'>Digital horizons</p>
-            <div className='flex gap-1'>
+            <div className='flex justify-end gap-1'>
               {Array.from({ length: 6 }).map((_, i) => (
                 <span
                   key={i}
@@ -349,16 +282,6 @@ export function HomeHero() {
               ))}
             </div>
           </div>
-        </div>
-
-        <div className='flex flex-wrap items-center justify-center gap-6 border-t border-[var(--border)] pt-6 opacity-40 sm:justify-between sm:gap-8'>
-          {partnerLogos.map((logo) => (
-            <span
-              key={logo}
-              className='text-sm font-semibold tracking-wide text-[var(--foreground)]'>
-              {logo}
-            </span>
-          ))}
         </div>
       </div>
     </section>

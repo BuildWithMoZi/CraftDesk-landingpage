@@ -5,7 +5,7 @@
 [data-theme="light"] {
   color-scheme: light;
   --background: #fafafa;
-  --foreground: #0a0a0a;
+  --foreground: #1c1c1e;
   --muted: rgba(0, 0, 0, 0.5);
   --muted-strong: rgba(0, 0, 0, 0.65);
   --muted-subtle: rgba(0, 0, 0, 0.4);
@@ -27,7 +27,7 @@
   --hero-gradient-via: #fafafa;
   --scrollbar-track: #f4f4f5;
   --scrollbar-thumb: #d4d4d8;
-  --selection-fg: #0a0a0a;
+  --selection-fg: #1c1c1e;
   --section-label: rgba(0, 0, 0, 0.35);
   --shadow-color: rgba(0, 0, 0, 0.08);
   --shadow-inset: rgba(0, 0, 0, 0.04);
@@ -353,6 +353,62 @@ body {
 }
 
 /* Per-section ambient themes */
+.home-theme-trust::before {
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(0, 0, 0, 0.02) 50%,
+    transparent
+  );
+}
+
+.home-theme-saas::before {
+  inset: auto -10% -20% -10%;
+  height: 60%;
+  background: radial-gradient(ellipse at bottom, rgba(249, 115, 22, 0.08), transparent 68%);
+}
+
+.home-theme-saas::after {
+  right: 5%;
+  top: 10%;
+  width: 100px;
+  height: 100px;
+  border-radius: 9999px;
+  border: 1px solid rgba(249, 115, 22, 0.1);
+  opacity: 0.4;
+}
+
+.home-theme-faq::before {
+  inset: 0;
+  background: radial-gradient(ellipse 70% 50% at 50% 0%, rgba(249, 115, 22, 0.05), transparent 70%);
+}
+
+.home-theme-cta::before {
+  inset: 0;
+  opacity: 0.5;
+  background: radial-gradient(ellipse at center, rgba(249, 115, 22, 0.04), transparent 65%);
+}
+
+@keyframes trust-marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.trust-marquee-track {
+  animation: trust-marquee 28s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .trust-marquee-track {
+    animation: none;
+  }
+}
+
 .home-theme-services::before {
   inset: -20% -10% auto auto;
   width: 55%;
@@ -587,6 +643,100 @@ body {
   border: 1px solid var(--border);
   background: var(--card);
   backdrop-filter: blur(20px);
+}
+
+.solution-panel-prebuilt {
+  background: linear-gradient(
+    145deg,
+    color-mix(in srgb, var(--orange) 16%, var(--surface)),
+    color-mix(in srgb, var(--orange) 7%, var(--background))
+  );
+  border: 1px solid color-mix(in srgb, var(--orange) 22%, var(--border));
+}
+
+.solution-panel-custom {
+  background: linear-gradient(
+    145deg,
+    color-mix(in srgb, var(--brand-gradient-via) 14%, var(--surface)),
+    color-mix(in srgb, var(--brand-gradient-via) 6%, var(--background))
+  );
+  border: 1px solid color-mix(in srgb, var(--brand-gradient-via) 20%, var(--border));
+}
+
+.solution-card-floating {
+  box-shadow: 0 20px 48px var(--shadow-color);
+}
+
+.solution-card-prebuilt {
+  background: linear-gradient(
+    155deg,
+    color-mix(in srgb, var(--orange) 14%, var(--surface)),
+    color-mix(in srgb, var(--orange) 6%, var(--surface-elevated))
+  );
+  border: 1px solid color-mix(in srgb, var(--orange) 28%, var(--border));
+}
+
+.solution-card-custom {
+  background: linear-gradient(
+    155deg,
+    color-mix(in srgb, var(--brand-gradient-via) 12%, var(--surface)),
+    color-mix(in srgb, var(--brand-gradient-via) 5%, var(--surface-elevated))
+  );
+  border: 1px solid color-mix(in srgb, var(--brand-gradient-via) 24%, var(--border));
+}
+
+[data-theme="dark"] .solution-card-prebuilt {
+  background: linear-gradient(
+    155deg,
+    color-mix(in srgb, var(--orange) 28%, #1c1408),
+    color-mix(in srgb, var(--orange) 12%, #120a04)
+  );
+  border: 1px solid color-mix(in srgb, var(--orange) 35%, transparent);
+  box-shadow:
+    0 24px 56px rgba(249, 115, 22, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+[data-theme="dark"] .solution-card-custom {
+  background: linear-gradient(
+    155deg,
+    color-mix(in srgb, var(--brand-gradient-via) 24%, #0c1619),
+    color-mix(in srgb, var(--brand-gradient-via) 10%, #070e10)
+  );
+  border: 1px solid color-mix(in srgb, var(--brand-gradient-via) 32%, transparent);
+  box-shadow:
+    0 24px 56px rgba(103, 232, 249, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+.solution-cta-prebuilt {
+  background: var(--orange);
+  color: #ffffff;
+}
+
+.solution-cta-prebuilt:hover {
+  background: var(--orange-light);
+}
+
+.solution-cta-custom {
+  background: var(--foreground);
+  color: var(--background);
+}
+
+.solution-cta-custom:hover {
+  opacity: 0.92;
+}
+
+.solution-badge-prebuilt {
+  background: color-mix(in srgb, var(--orange) 28%, var(--surface));
+  color: var(--foreground);
+  border: 1px solid color-mix(in srgb, var(--orange) 35%, transparent);
+}
+
+.solution-badge-custom {
+  background: color-mix(in srgb, var(--brand-gradient-via) 24%, var(--surface));
+  color: var(--foreground);
+  border: 1px solid color-mix(in srgb, var(--brand-gradient-via) 30%, transparent);
 }
 
 .scrollbar-none {

@@ -1,8 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Image from "next/image";
-import { Star, Quote } from "lucide-react";
+import { Star, Quote, Building2 } from "lucide-react";
 import { testimonials } from "@/lib/data";
 import { SectionHeading } from "@/components/ui/section-heading";
 import {
@@ -32,9 +31,9 @@ export function TestimonialsSection({
       )}
       <SectionHeading
         variant={hv}
-        badge="Testimonials"
-        title="What Our Clients Say"
-        description="Don't just take our word for it — hear from the businesses we've helped succeed."
+        badge="Client Proof"
+        title="Trusted by Founders & Teams"
+        description="Real names, roles, and companies — proof of delivery without the personal brand noise."
         align={isHome ? "left" : "center"}
       />
 
@@ -49,7 +48,7 @@ export function TestimonialsSection({
             className={cn(
               "relative p-6",
               isHome ?
-                homeSectionCardClass(sectionIndex ?? 7)
+                homeSectionCardClass(sectionIndex ?? 6)
               : "rounded-2xl border border-[var(--border)] bg-[var(--card)] backdrop-blur-xl"
             )}
           >
@@ -63,20 +62,17 @@ export function TestimonialsSection({
               &ldquo;{testimonial.quote}&rdquo;
             </p>
             <div className="flex items-center gap-3">
-              <div className="relative h-10 w-10 overflow-hidden rounded-full border border-[var(--border)]">
-                <Image
-                  src={testimonial.avatar}
-                  alt={testimonial.author}
-                  fill
-                  className="object-cover"
-                  sizes="40px"
-                />
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-[var(--border)] bg-[var(--subtle)]">
+                <span className="text-xs font-bold text-[var(--orange)]">
+                  {testimonial.companyInitial}
+                </span>
               </div>
-              <div>
-                <p className="text-sm font-semibold text-[var(--foreground)]">
+              <div className="min-w-0">
+                <p className="truncate text-sm font-semibold text-[var(--foreground)]">
                   {testimonial.author}
                 </p>
-                <p className="text-xs text-[var(--muted-subtle)]">
+                <p className="flex items-center gap-1 truncate text-xs text-[var(--muted-subtle)]">
+                  <Building2 className="h-3 w-3 shrink-0" />
                   {testimonial.role}, {testimonial.company}
                 </p>
               </div>

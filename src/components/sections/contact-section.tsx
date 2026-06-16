@@ -153,7 +153,7 @@ export function ContactSection({
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="phone">Phone Number</Label>
-                  <Input id="phone" name="phone" type="tel" placeholder="+91 98765 43210" />
+                  <Input id="phone" name="phone" type="tel" placeholder="+91 94034 29923" />
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="company">Company Name</Label>
@@ -162,13 +162,13 @@ export function ContactSection({
               </div>
 
               <div className="mt-5 space-y-2">
-                <Label htmlFor="budget">Project Budget</Label>
+                <Label htmlFor="budget">Project Scope</Label>
                 <select
                   id="budget"
                   name="budget"
                   className="flex h-11 w-full rounded-xl border border-[var(--border)] bg-[var(--subtle)] px-4 py-2 text-sm text-[var(--foreground)] backdrop-blur-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500/50"
                 >
-                  <option value="" className="bg-[var(--surface)]">Select budget range</option>
+                  <option value="" className="bg-[var(--surface)]">Select project scope</option>
                   {budgetOptions.map((option) => (
                     <option key={option} value={option} className="bg-[var(--surface)]">
                       {option}
