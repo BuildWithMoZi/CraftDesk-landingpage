@@ -72,7 +72,7 @@ function BottomNavSocialButtons() {
     "flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[var(--subtle)] transition-colors min-[400px]:h-9 min-[400px]:w-9 sm:h-10 sm:w-10";
 
   return (
-    <div className='flex shrink-0 items-center gap-1.5 min-[400px]:gap-2'>
+    <div className='hidden shrink-0 items-center gap-1.5 min-[400px]:gap-2 md:flex'>
       <a
         href={heroSocialLinks.whatsapp.href}
         target='_blank'
@@ -190,19 +190,25 @@ export function HomeNav() {
   }, [pathname]);
 
   return (
-    <header className='relative z-30 shrink-0 px-4 pt-5 sm:px-6 md:px-8'>
-      <div className='flex items-center justify-between gap-3'>
+    <header
+      className={cn(
+        "relative z-30 shrink-0 px-4 pt-5 sm:px-6 md:px-8",
+        "max-md:fixed max-md:inset-x-0 max-md:top-0 max-md:z-50 max-md:box-border max-md:w-full max-md:max-w-full max-md:min-w-0 max-md:overflow-hidden max-md:border-b max-md:border-[var(--border)] max-md:bg-[var(--header-bg)] max-md:px-4 max-md:py-3 max-md:pt-[max(0.75rem,env(safe-area-inset-top))] max-md:backdrop-blur-xl",
+      )}>
+      <div className='flex w-full min-w-0 max-w-full items-center justify-between gap-2 overflow-hidden sm:gap-3'>
         <Link
           href='/'
           onClick={() => onHomeLinkClick(pathname)}
-          className='group flex shrink-0 items-center gap-2.5 transition-opacity hover:opacity-90'>
+          className='group flex min-w-0 items-center gap-2 transition-opacity hover:opacity-90 max-md:gap-1.5 md:shrink-0 md:gap-2.5'>
           <Logo
             size={44}
             priority
             alt=''
-            className='h-11 w-11 shrink-0 transition-transform group-hover:scale-105'
+            className='h-11 w-11 shrink-0 transition-transform group-hover:scale-105 max-md:h-9 max-md:w-9'
           />
-          <BrandName className='text-lg' />
+          <span className='min-w-0 overflow-hidden text-ellipsis whitespace-nowrap'>
+            <BrandName className='text-lg max-md:text-base' />
+          </span>
         </Link>
 
         <div className='hidden lg:block'>
@@ -214,9 +220,8 @@ export function HomeNav() {
           <HeaderSocialButtons />
         </div>
 
-        <div className='flex items-center gap-2 sm:hidden'>
+        <div className='flex shrink-0 items-center gap-1.5 sm:gap-2 sm:hidden'>
           <ThemeToggle size='sm' />
-          <HeaderSocialButtons />
           <button
             type='button'
             className='flex h-10 w-10 items-center justify-center rounded-full border border-[var(--border)] bg-[var(--card)] text-[var(--foreground)] lg:hidden'
@@ -251,6 +256,7 @@ export function HomeBottomNav() {
   const [visible, setVisible] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [visibleLinkCount, setVisibleLinkCount] = useState(1);
+  const [isMobileBottomNav, setIsMobileBottomNav] = useState(false);
   const pathname = usePathname();
 
   useEffect(() => {
@@ -273,6 +279,7 @@ export function HomeBottomNav() {
   useEffect(() => {
     const updateVisibleLinks = () => {
       setVisibleLinkCount(getBottomNavVisibleLinkCount(window.innerWidth));
+      setIsMobileBottomNav(window.innerWidth < 768);
     };
 
     updateVisibleLinks();
@@ -283,7 +290,10 @@ export function HomeBottomNav() {
   const isDesktopNav = visibleLinkCount >= pillLinks.length;
   const inlineLinks = pillLinks.slice(0, visibleLinkCount);
   const overflowLinks = pillLinks.slice(visibleLinkCount);
-  const showMenuButton = !isDesktopNav && overflowLinks.length > 0;
+  const showCenterMenuButton =
+    !isMobileBottomNav && !isDesktopNav && overflowLinks.length > 0;
+  const showRightMenuButton = isMobileBottomNav;
+  const menuLinks = isMobileBottomNav ? pillLinks : overflowLinks;
 
   const linkClass =
     "shrink-0 rounded-full px-2.5 py-1.5 text-xs font-medium tracking-wide transition-colors duration-200 min-[400px]:px-3 min-[400px]:py-2 min-[400px]:text-sm sm:px-3.5 sm:py-2";
@@ -305,18 +315,23 @@ export function HomeBottomNav() {
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: 80, opacity: 0 }}
           transition={{ type: "spring", stiffness: 380, damping: 32 }}
-          className='fixed bottom-0 left-0 right-0 z-50 flex justify-center px-2 pt-2 sm:px-4 sm:pb-6'
+          className='bottom-nav-root fixed bottom-0 left-0 right-0 z-50 hidden justify-center px-2 pt-2 md:flex sm:px-4 sm:pb-6'
           style={{
             paddingBottom: "max(0.75rem, env(safe-area-inset-bottom))",
           }}>
-          <div className='relative w-full max-w-[min(100%,22rem)] min-[400px]:max-w-md sm:max-w-xl md:max-w-2xl lg:max-w-4xl'>
+          <div className='bottom-nav-shell relative w-full min-w-0 max-md:!max-w-full max-w-[min(100%,22rem)] min-[400px]:max-w-md sm:max-w-xl md:max-w-2xl lg:max-w-4xl'>
             <div className='bottom-nav-glow-ring w-full rounded-full'>
               <div className='bottom-nav-ambient-glow' aria-hidden='true' />
               <div className='bottom-nav-beam-lanes' aria-hidden='true'>
                 <div className='bottom-nav-single-beam' />
               </div>
-              <div className='bottom-nav-inner relative grid w-full min-w-0 grid-cols-[1fr_auto_1fr] items-center gap-1 rounded-full bg-[var(--surface-elevated)] px-1.5 py-1.5 shadow-lg shadow-black/50 backdrop-blur-xl min-[400px]:gap-1.5 min-[400px]:px-2 min-[400px]:py-2 sm:gap-2 sm:px-2.5 sm:py-2 lg:px-3 lg:py-2.5'>
-                <div className='flex min-w-0 items-center justify-start'>
+              <div
+                className={cn(
+                  "bottom-nav-inner relative grid w-full min-w-0 max-w-full grid-cols-[1fr_auto_1fr] items-center gap-1 rounded-full bg-[var(--surface-elevated)] px-1.5 py-1.5 shadow-lg shadow-black/50 backdrop-blur-xl",
+                  "min-[400px]:gap-1.5 min-[400px]:px-2 min-[400px]:py-2 sm:gap-2 sm:px-2.5 sm:py-2 lg:px-3 lg:py-2.5",
+                  "max-md:!flex max-md:justify-between max-md:gap-2 max-md:overflow-hidden max-md:!px-2.5 max-md:!py-2",
+                )}>
+                <div className='flex min-w-0 shrink-0 items-center justify-start'>
                   <Link
                     href='/'
                     onClick={() => handleLinkClick("/")}
@@ -325,14 +340,14 @@ export function HomeBottomNav() {
                     <Logo
                       size={26}
                       alt=''
-                      className='h-6 w-6 shrink-0 transition-transform group-hover:scale-105 min-[400px]:h-7 min-[400px]:w-7'
+                      className='h-6 w-6 shrink-0 transition-transform group-hover:scale-105 max-md:!h-7 max-md:!w-7 min-[400px]:h-7 min-[400px]:w-7'
                     />
-                    <BrandName className='hidden text-xs min-[400px]:inline min-[400px]:text-sm sm:text-base' />
+                    <BrandName className='hidden min-[400px]:inline min-[400px]:text-sm sm:text-base max-md:!hidden' />
                   </Link>
                 </div>
 
                 <nav
-                  className='flex items-center justify-center gap-0.5'
+                  className='hidden min-w-0 items-center justify-center gap-0.5 md:flex'
                   aria-label='Home navigation'>
                   {inlineLinks.map((link) => (
                     <Link
@@ -366,11 +381,11 @@ export function HomeBottomNav() {
                     </>
                   )}
 
-                  {showMenuButton && (
+                  {showCenterMenuButton && (
                     <button
                       type='button'
                       onClick={() => setMenuOpen(!menuOpen)}
-                      className='flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-[var(--foreground)] transition-colors hover:bg-[var(--subtle)] min-[400px]:h-9 min-[400px]:w-9'
+                      className='hidden h-8 w-8 shrink-0 items-center justify-center rounded-full text-[var(--foreground)] transition-colors hover:bg-[var(--subtle)] min-[400px]:h-9 min-[400px]:w-9 md:flex'
                       aria-label={menuOpen ? "Close menu" : "More links"}
                       aria-expanded={menuOpen}>
                       {menuOpen ?
@@ -380,22 +395,34 @@ export function HomeBottomNav() {
                   )}
                 </nav>
 
-                <div className='flex items-center justify-end'>
+                <div className='flex shrink-0 items-center justify-end'>
                   <BottomNavSocialButtons />
+                  {showRightMenuButton && (
+                    <button
+                      type='button'
+                      onClick={() => setMenuOpen(!menuOpen)}
+                      className='flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[var(--border)] bg-[var(--card)] text-[var(--foreground)] transition-colors hover:bg-[var(--subtle)] md:hidden'
+                      aria-label={menuOpen ? "Close menu" : "Open menu"}
+                      aria-expanded={menuOpen}>
+                      {menuOpen ?
+                        <X className='h-4 w-4' />
+                      : <Menu className='h-4 w-4' />}
+                    </button>
+                  )}
                 </div>
               </div>
             </div>
 
             <AnimatePresence>
-              {menuOpen && showMenuButton && (
+              {menuOpen && (showCenterMenuButton || showRightMenuButton) && (
                 <motion.nav
                   initial={{ opacity: 0, y: 12 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: 12 }}
                   transition={{ duration: 0.2 }}
-                  className='absolute bottom-full left-0 right-0 mb-2 max-h-[min(60vh,20rem)] overflow-y-auto rounded-2xl border border-[var(--border)] bg-[var(--surface-elevated)] p-2 shadow-xl backdrop-blur-xl sm:mb-3 sm:p-3'
+                  className='bottom-nav-dropdown absolute bottom-full left-0 right-0 z-[60] mb-2 max-h-[min(60vh,20rem)] overflow-y-auto rounded-2xl border border-[var(--border)] bg-[var(--surface-elevated)] p-2 shadow-xl backdrop-blur-xl sm:mb-3 sm:p-3'
                   aria-label='More navigation'>
-                  {overflowLinks.map((link) => (
+                  {menuLinks.map((link) => (
                     <Link
                       key={link.href}
                       href={link.href}

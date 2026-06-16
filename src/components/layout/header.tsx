@@ -41,21 +41,24 @@ export function Header() {
   return (
     <header
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
+        "fixed top-0 left-0 right-0 z-50 box-border w-full max-w-full min-w-0 transition-all duration-300",
         scrolled ?
           "border-b border-[var(--border-subtle)] bg-[var(--header-bg)] backdrop-blur-xl"
         : "bg-transparent",
+        "max-md:overflow-hidden max-md:border-b max-md:border-[var(--border-subtle)] max-md:bg-[var(--header-bg)] max-md:backdrop-blur-xl",
       )}>
-      <div className='mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8'>
+      <div className='mx-auto flex h-16 w-full min-w-0 max-w-7xl items-center justify-between gap-2 overflow-hidden px-4 max-md:max-w-full sm:px-6 sm:gap-3 lg:px-8'>
         <Link
           href='/'
           onClick={() => onHomeLinkClick(pathname)}
-          className='flex items-center gap-2.5 group'>
+          className='group flex min-w-0 items-center gap-2 max-md:gap-1.5'>
           <Logo
             size={36}
-            className='h-14 w-14 transition-transform group-hover:scale-105'
+            className='h-14 w-14 shrink-0 transition-transform group-hover:scale-105 max-md:h-10 max-md:w-10'
           />
-          <BrandName />
+          <span className='min-w-0 overflow-hidden text-ellipsis whitespace-nowrap'>
+            <BrandName className='max-md:text-base' />
+          </span>
         </Link>
 
         <nav
@@ -84,7 +87,7 @@ export function Header() {
           </Button>
         </div>
 
-        <div className='flex items-center gap-2 lg:hidden'>
+        <div className='flex shrink-0 items-center gap-1.5 sm:gap-2 lg:hidden'>
           <ThemeToggle size='sm' />
           <button
             type='button'
