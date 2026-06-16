@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://craftdesk.com";
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ??
+  "https://buildwithmozi.github.io/CraftDesk-landingpage";
 
 export const siteConfig = {
   name: "CraftDesk Solutions",
