@@ -2,7 +2,7 @@
 
 import { cn } from "@/lib/utils";
 
-const TOTAL_SECTIONS = 6;
+const TOTAL_SECTIONS = 7;
 
 export type SectionVariant = "default" | "home";
 
@@ -28,19 +28,21 @@ const SECTION_THEMES: Record<
 > = {
   1: { shell: "home-theme-trust", content: "max-w-7xl", labelSide: "right" },
   2: { shell: "home-theme-why", content: "max-w-6xl", labelSide: "left" },
-  3: { shell: "home-theme-portfolio", content: "max-w-7xl", labelSide: "right" },
+  3: { shell: "home-theme-process", content: "max-w-7xl", labelSide: "right" },
   4: { shell: "home-theme-testimonials", content: "max-w-5xl", labelSide: "right" },
   5: { shell: "home-theme-faq", content: "max-w-5xl", labelSide: "right" },
-  6: { shell: "home-theme-cta", content: "max-w-6xl", labelSide: "left" },
+  6: { shell: "home-theme-team", content: "max-w-7xl", labelSide: "left" },
+  7: { shell: "home-theme-cta", content: "max-w-6xl", labelSide: "left" },
 };
 
 const HOME_CARD_VARIANTS: Record<number, string> = {
   1: "home-card-chip",
   2: "home-card-accent",
-  3: "home-card-media",
+  3: "home-card-step",
   4: "home-card-quote",
   5: "home-card-tile",
-  6: "home-glass-card",
+  6: "home-card-accent",
+  7: "home-glass-card",
 };
 
 export function homeSectionCardClass(sectionIndex: number, extra?: string) {

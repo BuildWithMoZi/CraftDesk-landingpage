@@ -4,6 +4,7 @@
 :root,
 [data-theme="light"] {
   color-scheme: light;
+  --site-marquee-height: 2.75rem;
   --background: #fafafa;
   --foreground: #1c1c1e;
   --muted: rgba(0, 0, 0, 0.5);
@@ -221,6 +222,63 @@ body {
   animation: circuit-hub-breathe 2.5s ease-in-out infinite;
 }
 
+/* Process section — pipeline visual */
+@keyframes process-orbit-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes process-spine-flow {
+  0% {
+    stroke-dashoffset: 100;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes process-node-glow {
+  0%,
+  100% {
+    opacity: 0.45;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.process-orbit-slow {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: process-orbit-spin 22s linear infinite;
+}
+
+.process-orbit-mid {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: process-orbit-spin 16s linear infinite reverse;
+}
+
+.process-orbit-fast {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: process-orbit-spin 11s linear infinite;
+}
+
+.process-spine-pulse {
+  stroke-dasharray: 6 94;
+  animation: process-spine-flow 4s linear infinite;
+  opacity: 0.55;
+}
+
+.process-node-pulse {
+  animation: process-node-glow 2.8s ease-in-out infinite;
+}
+
 /* Bottom navbar — single beam on straight edges only */
 @keyframes bottom-nav-ambient-pulse {
   0%,
@@ -436,8 +494,16 @@ body {
   animation: trust-marquee 28s linear infinite;
 }
 
+.hero-tagline-marquee-track {
+  animation: trust-marquee 38s linear infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .trust-marquee-track {
+    animation: none;
+  }
+
+  .hero-tagline-marquee-track {
     animation: none;
   }
 }
@@ -574,6 +640,22 @@ body {
   background: linear-gradient(135deg, rgba(249, 115, 22, 0.04), transparent 45%);
 }
 
+.home-theme-team::before {
+  left: -6%;
+  top: 10%;
+  width: 32%;
+  height: 55%;
+  background: radial-gradient(ellipse at center, rgba(249, 115, 22, 0.07), transparent 70%);
+}
+
+.home-theme-team::after {
+  right: -6%;
+  bottom: 12%;
+  width: 28%;
+  height: 48%;
+  background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.04), transparent 70%);
+}
+
 .home-theme-pricing::before {
   inset: auto 0 0 0;
   height: 55%;
@@ -688,7 +770,7 @@ body {
   backdrop-filter: blur(20px);
 }
 
-.solution-panel-prebuilt {
+.solution-panel-products {
   background: linear-gradient(
     145deg,
     color-mix(in srgb, var(--orange) 16%, var(--surface)),
@@ -710,7 +792,7 @@ body {
   box-shadow: 0 20px 48px var(--shadow-color);
 }
 
-.solution-card-prebuilt {
+.solution-card-products {
   background: linear-gradient(
     155deg,
     color-mix(in srgb, var(--orange) 14%, var(--surface)),
@@ -728,7 +810,7 @@ body {
   border: 1px solid color-mix(in srgb, var(--brand-gradient-via) 24%, var(--border));
 }
 
-[data-theme="dark"] .solution-card-prebuilt {
+[data-theme="dark"] .solution-card-products {
   background: linear-gradient(
     155deg,
     color-mix(in srgb, var(--orange) 28%, #1c1408),
@@ -752,12 +834,12 @@ body {
     inset 0 1px 0 rgba(255, 255, 255, 0.04);
 }
 
-.solution-cta-prebuilt {
+.solution-cta-products {
   background: var(--orange);
   color: #ffffff;
 }
 
-.solution-cta-prebuilt:hover {
+.solution-cta-products:hover {
   background: var(--orange-light);
 }
 
@@ -770,7 +852,7 @@ body {
   opacity: 0.92;
 }
 
-.solution-badge-prebuilt {
+.solution-badge-products {
   background: color-mix(in srgb, var(--orange) 28%, var(--surface));
   color: var(--foreground);
   border: 1px solid color-mix(in srgb, var(--orange) 35%, transparent);

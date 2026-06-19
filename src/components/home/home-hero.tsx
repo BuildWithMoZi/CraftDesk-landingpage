@@ -5,6 +5,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { heroContent } from "@/lib/data";
+import { routes } from "@/lib/routes";
 
 const circuits = [
   {
@@ -197,21 +198,21 @@ export function HomeHero() {
       {/* Orthogonal circuit lines with traveling pulses */}
       <HomeCircuitLines />
 
-      {/* Hero copy — title overlaps image like Future Desks */}
-      <div className='relative z-20 mx-auto flex min-h-0 flex-1 flex-col items-center justify-center px-4 pb-14 pt-3 text-center max-md:pb-16 sm:px-6 sm:pb-24 md:pb-28 md:pt-6'>
-        <div className='relative w-full max-w-4xl'>
+      {/* Hero copy — image + title centered as one stack */}
+      <div className='relative z-20 mx-auto flex min-h-0 flex-1 flex-col items-center justify-center px-4 pb-14 pt-6 text-center max-md:pb-16 sm:px-6 sm:pb-24 sm:pt-8 md:pb-28 md:pt-10'>
+        <div className='relative flex w-full max-w-3xl flex-col items-center'>
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className='relative mx-auto w-full max-w-[120px] sm:max-w-[180px] md:max-w-[220px] lg:max-w-[260px]'>
+            className='relative mx-auto mt-4 w-full max-w-[120px] sm:mt-6 sm:max-w-[180px] md:mt-8 md:max-w-[220px] lg:mt-10 lg:max-w-[260px]'>
             <Image
               src={heroContent.image.src}
               alt={heroContent.image.alt}
               width={560}
               height={560}
               priority
-              className='h-auto w-full object-contain'
+              className='mx-auto h-auto w-full object-contain'
             />
           </motion.div>
 
@@ -219,39 +220,42 @@ export function HomeHero() {
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.1 }}
-            className='relative z-10 mx-auto -mt-5 max-w-4xl px-2 text-2xl font-bold leading-[1.05] tracking-tight text-[var(--foreground)] sm:-mt-8 sm:text-4xl md:-mt-10 md:text-5xl lg:-mt-12 lg:text-6xl'>
-            Build Your Startup
-            <br />
-            <span className='text-[var(--foreground)]'>With CraftDesk</span>
+            className='relative z-10 mx-auto -mt-5 w-full max-w-3xl px-2 sm:-mt-7 md:-mt-9 lg:-mt-11'>
+            <span className='block text-balance text-2xl font-bold leading-[1.1] tracking-tight text-[var(--foreground)] sm:text-4xl md:text-5xl lg:text-6xl'>
+              Turn Your Startup Vision
+            </span>
+            <span className='mt-1 block text-balance text-lg font-bold leading-[1.15] tracking-tight sm:mt-1.5 sm:text-2xl md:text-3xl lg:text-4xl'>
+              <span className='bg-gradient-to-r from-[var(--orange)] to-[var(--orange-light)] bg-clip-text text-transparent brand-accent-glow'>
+                Into a Scalable Web or
+                <br />
+                Mobile Product
+              </span>
+            </span>
           </motion.h1>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.2 }}
+            className='mt-6 flex w-full flex-col items-center gap-2.5 sm:mt-8'>
+            <div className='flex flex-wrap items-center justify-center gap-3'>
+              <Link
+                href='/contact'
+                className='inline-flex h-12 min-w-[11rem] items-center justify-center gap-2 rounded-full bg-black px-7 text-sm font-semibold text-white shadow-[0_4px_20px_rgba(0,0,0,0.25)] transition-all hover:bg-zinc-900 hover:shadow-[0_6px_28px_rgba(0,0,0,0.35)] dark:border dark:border-white/10 dark:shadow-[0_4px_24px_rgba(0,0,0,0.6)] sm:min-w-[12.5rem]'>
+                Let&apos;s Build Together
+                <ArrowUpRight className='h-4 w-4 shrink-0' />
+              </Link>
+              <Link
+                href={routes.customized}
+                className='inline-flex h-12 min-w-[10rem] items-center justify-center rounded-full border border-[var(--border)] bg-transparent px-6 text-sm font-normal text-[var(--muted)] transition-all hover:border-[var(--muted)]/30 hover:bg-[var(--subtle)] hover:text-[var(--foreground)] sm:min-w-[11rem]'>
+                View Our Work
+              </Link>
+            </div>
+            <p className='text-xs text-[var(--muted)]'>
+              Book a quick 15-min discovery call
+            </p>
+          </motion.div>
         </div>
-
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.2 }}
-          className='mt-4 max-w-lg text-sm leading-relaxed text-[var(--muted)] sm:mt-5 sm:text-base'>
-          Dive into smart software solutions, where innovative technology meets
-          engineering expertise for startups and enterprises.
-        </motion.p>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.3 }}
-          className='mt-6 flex flex-wrap items-center justify-center gap-3 sm:mt-8'>
-          <Link
-            href='/contact'
-            className='inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--card)] px-6 py-3 text-sm font-medium text-[var(--foreground)] backdrop-blur-md transition-all hover:border-[var(--orange)]/40 hover:bg-[var(--subtle)]'>
-            Get Free Consultation
-            <ArrowUpRight className='h-4 w-4' />
-          </Link>
-          <Link
-            href='/portfolio'
-            className='inline-flex items-center gap-2 rounded-full bg-[var(--foreground)] px-6 py-3 text-sm font-semibold text-[var(--background)] transition-all hover:opacity-90'>
-            Discover More
-          </Link>
-        </motion.div>
       </div>
 
       {/* Bottom bar — scroll + progress */}
@@ -270,7 +274,7 @@ export function HomeHero() {
           <div className='text-right'>
             <p className='mb-2 text-xs text-[var(--muted)]'>Digital horizons</p>
             <div className='flex justify-end gap-1'>
-              {Array.from({ length: 6 }).map((_, i) => (
+              {Array.from({ length: 7 }).map((_, i) => (
                 <span
                   key={i}
                   className={`h-1 rounded-full transition-all ${

@@ -193,7 +193,7 @@ export function HomeNav() {
     <header
       className={cn(
         "relative z-30 shrink-0 px-4 pt-5 sm:px-6 md:px-8",
-        "max-md:fixed max-md:inset-x-0 max-md:top-0 max-md:z-50 max-md:box-border max-md:w-full max-md:max-w-full max-md:min-w-0 max-md:overflow-hidden max-md:border-b max-md:border-[var(--border)] max-md:bg-[var(--header-bg)] max-md:px-4 max-md:py-3 max-md:pt-[max(0.75rem,env(safe-area-inset-top))] max-md:backdrop-blur-xl",
+        "max-md:fixed max-md:inset-x-0 max-md:top-[var(--site-marquee-height)] max-md:z-50 max-md:box-border max-md:w-full max-md:max-w-full max-md:min-w-0 max-md:overflow-hidden max-md:border-b max-md:border-[var(--border)] max-md:bg-[var(--header-bg)] max-md:px-4 max-md:py-3 max-md:backdrop-blur-xl",
       )}>
       <div className='flex w-full min-w-0 max-w-full items-center justify-between gap-2 overflow-hidden sm:gap-3'>
         <Link

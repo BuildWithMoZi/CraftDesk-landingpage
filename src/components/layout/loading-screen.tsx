@@ -2,7 +2,6 @@
 
 import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { BrandName, Logo } from "@/components/ui/brand-name";
 import { siteConfig } from "@/lib/metadata";
 import { assetPath } from "@/lib/paths";
 
@@ -113,7 +112,7 @@ export function LoadingScreen({ onComplete }: LoadingScreenProps) {
           initial={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.5, ease: "easeInOut" }}
-          className='fixed inset-0 z-[200] flex flex-col items-center justify-center overflow-hidden bg-black'
+          className='fixed inset-0 z-[200] flex flex-col items-center overflow-hidden bg-black'
           aria-label={`Loading ${siteConfig.name}`}
           role='progressbar'
           aria-valuenow={Math.round(progress)}
@@ -129,52 +128,30 @@ export function LoadingScreen({ onComplete }: LoadingScreenProps) {
             className='absolute inset-0 h-full w-full object-cover'
           />
 
-          <div className='absolute inset-0 bg-black/50' />
-          <div className='absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-black/60' />
-          <div className='pointer-events-none absolute left-1/2 top-1/2 h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-orange-500/10 blur-[150px]' />
+          <div className='pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-black/70 via-black/30 to-transparent' />
 
-          <div className='relative z-10 flex flex-col items-center px-6'>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.15, duration: 0.7 }}
-              className='mb-12 flex flex-col items-center gap-4'>
-              <div className='relative flex items-center gap-4'>
-                <div className='absolute -inset-6 rounded-full bg-orange-500/20 blur-2xl animate-pulse' />
-                <Logo
-                  size={64}
-                  priority
-                  className='relative h-16 w-16 drop-shadow-[0_0_30px_rgba(249,115,22,0.5)] md:h-20 md:w-20'
-                />
-                <h1 className='relative'>
-                  <BrandName variant='full' />
-                </h1>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2, duration: 0.6, ease: "easeOut" }}
+            className='absolute inset-x-0 bottom-0 z-10 px-6 pb-10 md:px-10 md:pb-14'>
+            <div className='mx-auto w-full max-w-2xl md:max-w-3xl'>
+              <div className='mb-3 flex items-end justify-between'>
+                <span className='text-sm font-semibold uppercase tracking-widest text-zinc-300 md:text-base'>
+                  Loading
+                </span>
+                <span className='font-brand text-3xl font-bold tabular-nums text-orange-400 md:text-4xl'>
+                  {Math.round(progress)}%
+                </span>
               </div>
-              <motion.p
-                animate={{ opacity: [0.5, 1, 0.5] }}
-                transition={{ duration: 2, repeat: Infinity }}
-                className='font-brand text-sm font-medium uppercase tracking-[0.25em] text-orange-400 md:text-base'>
-                {siteConfig.tagline}
-              </motion.p>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3, duration: 0.7 }}
-              className='w-full max-w-sm md:max-w-md'>
-              <div className='mb-2 flex justify-between text-xs font-medium text-zinc-400'>
-                <span>Loading</span>
-                <span>{Math.round(progress)}%</span>
-              </div>
-              <div className='h-2 overflow-hidden rounded-full bg-white/10 backdrop-blur-sm'>
+              <div className='h-3 overflow-hidden rounded-full bg-white/15 backdrop-blur-sm md:h-4'>
                 <div
-                  className='h-full rounded-full bg-gradient-to-r from-orange-600 via-orange-400 to-amber-400 shadow-[0_0_24px_rgba(249,115,22,0.7)] transition-[width] duration-200 ease-linear'
+                  className='h-full rounded-full bg-gradient-to-r from-orange-600 via-orange-400 to-amber-400 shadow-[0_0_32px_rgba(249,115,22,0.8)] transition-[width] duration-200 ease-linear'
                   style={{ width: `${progress}%` }}
                 />
               </div>
-            </motion.div>
-          </div>
+            </div>
+          </motion.div>
         </motion.div>
       )}
     </AnimatePresence>

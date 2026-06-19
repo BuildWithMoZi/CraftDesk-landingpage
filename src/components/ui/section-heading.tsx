@@ -13,7 +13,6 @@ interface SectionHeadingProps {
 }
 
 export function SectionHeading({
-  badge,
   title,
   description,
   align = "center",
@@ -32,18 +31,6 @@ export function SectionHeading({
         className
       )}
     >
-      {badge && (
-        <span
-          className={cn(
-            "mb-4 inline-block text-xs font-semibold uppercase tracking-widest",
-            variant === "home" ?
-              "rounded-full border border-[var(--border)] bg-[var(--card)] px-4 py-2 text-[var(--orange)] backdrop-blur-md"
-            : "rounded-full border border-orange-500/30 bg-orange-500/10 px-4 py-1.5 text-orange-400"
-          )}
-        >
-          {badge}
-        </span>
-      )}
       <h2
         className={cn(
           "font-bold tracking-tight text-[var(--foreground)]",

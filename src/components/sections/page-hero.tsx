@@ -1,29 +1,37 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { cn } from "@/lib/utils";
 
 interface PageHeroProps {
   badge?: string;
   title: string;
   description?: string;
+  /** Fill viewport below site marquee (full-screen landing hero) */
+  fullScreen?: boolean;
+  className?: string;
 }
 
-export function PageHero({ badge, title, description }: PageHeroProps) {
+export function PageHero({
+  title,
+  description,
+  fullScreen = false,
+  className,
+}: PageHeroProps) {
   return (
-    <section className="relative overflow-hidden pt-24 pb-16 md:pt-32 md:pb-20">
+    <section
+      className={cn(
+        "relative overflow-hidden",
+        fullScreen ?
+          "flex min-h-0 flex-1 flex-col justify-center pt-16 md:pt-20"
+        : "pb-16 pt-[calc(var(--site-marquee-height)+5rem)] md:pb-20 md:pt-[calc(var(--site-marquee-height)+7rem)]",
+        className,
+      )}
+    >
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,var(--hero-gradient-from),var(--hero-gradient-via)_50%,var(--background))]" />
       <div className="absolute top-0 left-1/2 h-64 w-96 -translate-x-1/2 rounded-full bg-orange-500/10 blur-[120px]" />
 
-      <div className="relative mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8">
-        {badge && (
-          <motion.span
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="mb-4 inline-block rounded-full border border-orange-500/30 bg-orange-500/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-orange-400"
-          >
-            {badge}
-          </motion.span>
-        )}
+      <div className="relative mx-auto w-full max-w-7xl px-4 text-center sm:px-6 lg:px-8">
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}

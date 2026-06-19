@@ -1,14 +1,10 @@
+export { AlternatingShowcaseSection } from "./alternating-showcase-section";
 export { ContactSection } from "./contact-section";
 export { FaqSection } from "./faq-section";
 export { FinalCtaSection } from "./final-cta-section";
 export { PageHero } from "./page-hero";
-export { PortfolioSection } from "./portfolio-section";
-export { PricingSection } from "./pricing-section";
 export { ProcessSection } from "./process-section";
-export { SaasPortfolioSection } from "./saas-portfolio-section";
-export { ServiceCard } from "./service-card";
-export { ServicesBentoSection } from "./services-bento-section";
-export { ServicesSection } from "./services-section";
 export { SolutionsSplitSection } from "./solutions-split-section";
 export { TestimonialsSection } from "./testimonials-section";
+export { TeamSection } from "./team-section";
 export { TrustMarqueeSection } from "./trust-marquee-section";

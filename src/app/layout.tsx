@@ -4,6 +4,7 @@ import "./globals.css";
 import { createMetadata, logoUrl, siteConfig } from "@/lib/metadata";
 import { themeInitScript } from "@/lib/theme";
 import { ThemeProvider } from "@/components/layout/theme-provider";
+import { SiteTaglineMarquee } from "@/components/layout/site-tagline-marquee";
 import { ScrollToTop, HomeLoaderGuard } from "@/components/navigation/home-navigation";
 import { JsonLd } from "@/components/seo/json-ld";
 import { globalSchemas } from "@/lib/schema";
@@ -37,7 +38,7 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang='en'
+      lang='en-IN'
       className={`${inter.variable} ${orbitron.variable} h-full scroll-smooth`}
       data-theme='light'
       suppressHydrationWarning>
@@ -52,6 +53,7 @@ export default function RootLayout({
         <ThemeProvider>
           <ScrollToTop />
           <HomeLoaderGuard />
+          <SiteTaglineMarquee />
           {children}
         </ThemeProvider>
       </body>

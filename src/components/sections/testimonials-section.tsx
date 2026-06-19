@@ -15,6 +15,9 @@ import { cn } from "@/lib/utils";
 interface TestimonialsSectionProps {
   variant?: SectionVariant;
   sectionIndex?: number;
+  badge?: string;
+  title?: string;
+  description?: string;
 }
 
 function DesktopTestimonialCard({
@@ -102,6 +105,9 @@ function MobileMessengerCard({
 export function TestimonialsSection({
   variant = "default",
   sectionIndex,
+  badge = "Client Proof",
+  title = "Trusted by Founders & Teams",
+  description = "Real names, roles, and companies — proof of delivery without the personal brand noise.",
 }: TestimonialsSectionProps) {
   const hv = sectionHeadingVariant(variant);
   const isHome = variant === "home";
@@ -113,9 +119,9 @@ export function TestimonialsSection({
       )}
       <SectionHeading
         variant={hv}
-        badge="Client Proof"
-        title="Trusted by Founders & Teams"
-        description="Real names, roles, and companies — proof of delivery without the personal brand noise."
+        badge={badge}
+        title={title}
+        description={description}
         align={isHome ? "left" : "center"}
       />
 
