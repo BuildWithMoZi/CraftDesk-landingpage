@@ -42,8 +42,9 @@ export const seoLandingPages: SeoLandingPageData[] = [
         "B2B SaaS landing page optimization services with fixed scope. Conversion-focused pages delivered in 5–7 days by CraftDesk.",
       keywords: [
         "landing page design agency",
+        "high-converting landing page design",
         "b2b saas landing page optimization services",
-        "conversion landing page design",
+        "Next.js website development",
       ],
     },
     hero: {
@@ -139,9 +140,11 @@ export const seoLandingPages: SeoLandingPageData[] = [
       description:
         "Build micro SaaS products with CraftDesk. Fixed-scope MVP development services — working product in 4–6 weeks with auth, payments, and deployment.",
       keywords: [
-        "build micro saas",
-        "micro saas mvp development services",
-        "saas mvp development agency",
+        "micro saas mvp development",
+        "custom saas application development",
+        "mvp development for startups",
+        "fixed price mvp development",
+        "saas product development agency",
       ],
     },
     hero: {
@@ -249,8 +252,9 @@ export const seoLandingPages: SeoLandingPageData[] = [
         "Productized website packages for startups and SMBs — CMS, blog, and growth-ready structure. Contact CraftDesk for a tailored quote.",
       keywords: [
         "productized website design service for startups",
-        "startup website design packages",
-        "local website designers",
+        "custom website development agency",
+        "responsive website design agency",
+        "web design agency Nashik",
       ],
     },
     hero: {
@@ -346,9 +350,11 @@ export const seoLandingPages: SeoLandingPageData[] = [
       description:
         "React Native mobile app development for SMBs. Fixed-scope iOS and Android builds — polished UI, secure backend, predictable delivery. Contact for pricing.",
       keywords: [
+        "react native app development agency",
         "react native mobile app development agency for smbs",
-        "custom mobile app development fixed price",
-        "mobile app development agency india",
+        "cross-platform app development",
+        "mobile mvp development",
+        "app development agency Nashik",
       ],
     },
     hero: {
@@ -444,3 +450,9 @@ export function getSeoPageByPath(path: string): SeoLandingPageData | undefined {
 }
 
 export const seoPagePaths = seoLandingPages.map((page) => page.path);
+
+export const seoPageSlugs = seoPagePaths.map((path) => path.replace(/^\//, ""));
+
+export function getSeoPageBySlug(slug: string): SeoLandingPageData | undefined {
+  return getSeoPageByPath(`/${slug}`);
+}

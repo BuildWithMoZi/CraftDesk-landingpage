@@ -1,63 +1,27 @@
 import { assetPath } from "@/lib/paths";
-import {
-  Calendar,
-  Code2,
-  Database,
-  FileText,
-  Globe,
-  Layers,
-  LayoutTemplate,
-  LineChart,
-  Receipt,
-  Rocket,
-  Shield,
-  ShieldCheck,
-  Smartphone,
-  Sparkles,
-  Wallet,
-  Zap,
-  type LucideIcon,
-} from "lucide-react";
+import { siteConfig } from "@/lib/metadata";
+import { routes } from "@/lib/routes";
+import { type LucideIcon } from "lucide-react";
 
 const img = (path: string) => assetPath(path);
 
 export const navLinks = [
   { href: "/", label: "Home" },
   { href: "/about", label: "About" },
-  { href: "/services", label: "Services" },
-  { href: "/products", label: "Products" },
+  { href: routes.products, label: "Products" },
+  { href: routes.customized, label: "Customized" },
   { href: "/contact", label: "Contact" },
 ];
 
-export const CONTACT_FOR_PRICING_LABEL = "Contact for pricing";
-
-export type ServiceItem = {
-  id: string;
-  title: string;
-  description: string;
-  category: string;
-  image: string;
-  icon: LucideIcon;
-  stats: { label: string; value: string }[];
-  href?: string;
-  variant?: "overlay" | "split";
-  gradient: string;
-  subtitle: string;
-};
-
-export type BentoServiceItem = {
-  id: string;
-  title: string;
-  description: string;
-  timeline: string;
-  icon: LucideIcon;
-  href: string;
-  span?: "normal" | "wide";
-  variant: "overlay" | "split";
-  gradient: string;
-  image?: string;
-  subtitle: string;
-};
+/** Footer service links — title + href only */
+export const services = [
+  { title: "Landing Page Development", href: "/landing-page-design-agency" },
+  { title: "Website Development", href: "/productized-website-design" },
+  { title: "Mobile App Development", href: "/react-native-app-development" },
+  { title: "Appointment Booking Systems", href: "/contact" },
+  { title: "Custom Software Development", href: "/contact" },
+  { title: "Maintenance & Support", href: "/contact" },
+];
 
 export type MicroSaasProduct = {
   id: string;
@@ -86,125 +50,13 @@ export type TestimonialItem = {
   companyInitial: string;
 };
 
-export const services: ServiceItem[] = [
-  {
-    id: "landing-page",
-    title: "Landing Page Development",
-    description:
-      "High-converting landing pages optimized for lead generation, campaigns, and product launches.",
-    category: "Web Development · Marketing",
-    image: img("/services/landing-page.jpg"),
-    icon: LayoutTemplate,
-    stats: [
-      { label: "Timeline", value: "2-3 W" },
-      { label: "Pages", value: "1-5" },
-      { label: "Rating", value: "4.9" },
-    ],
-    href: "/landing-page-design-agency",
-    variant: "overlay",
-    gradient: "from-zinc-900 via-orange-950/80 to-amber-900/60",
-    subtitle: "Conversion sprint · Marketing",
-  },
-  {
-    id: "website",
-    title: "Website Development",
-    description:
-      "Business websites, portfolios, corporate sites, and custom web platforms built for growth.",
-    category: "Web Development · Business",
-    image: img("/services/website.jpg"),
-    icon: Globe,
-    stats: [
-      { label: "Timeline", value: "3-6 W" },
-      { label: "Pages", value: "5-20" },
-      { label: "Rating", value: "4.9" },
-    ],
-    href: "/productized-website-design",
-    variant: "split",
-    gradient: "from-sky-900/70 via-blue-800/50 to-zinc-900",
-    subtitle: "CMS ready · Business sites",
-  },
-  {
-    id: "mobile-app",
-    title: "Mobile App Development",
-    description:
-      "Android and iOS applications with polished UI, secure backends, and scalable architecture.",
-    category: "Mobile · Product",
-    image: img("/services/mobile-app.jpg"),
-    icon: Smartphone,
-    stats: [
-      { label: "Timeline", value: "6-12 W" },
-      { label: "Platforms", value: "2" },
-      { label: "Rating", value: "4.8" },
-    ],
-    href: "/react-native-app-development",
-    variant: "overlay",
-    gradient: "from-indigo-950 via-violet-900/70 to-zinc-900",
-    subtitle: "iOS + Android · React Native",
-  },
-  {
-    id: "booking",
-    title: "Appointment Booking Systems",
-    description:
-      "Scheduling systems for clinics, salons, and consultants with reminders and admin panels.",
-    category: "SaaS · Scheduling",
-    image: img("/services/booking.jpg"),
-    icon: Calendar,
-    stats: [
-      { label: "Timeline", value: "4-8 W" },
-      { label: "Modules", value: "6+" },
-      { label: "Rating", value: "4.9" },
-    ],
-    href: "/contact",
-    variant: "split",
-    gradient: "from-teal-900/60 via-emerald-900/40 to-zinc-900",
-    subtitle: "Scheduling · SaaS module",
-  },
-  {
-    id: "custom-software",
-    title: "Custom Software Development",
-    description:
-      "CRM systems, dashboards, ERP tools, and business automation tailored to your workflow.",
-    category: "Enterprise · Automation",
-    image: img("/services/custom-software.jpg"),
-    icon: Code2,
-    stats: [
-      { label: "Timeline", value: "8-16 W" },
-      { label: "Systems", value: "CRM+" },
-      { label: "Rating", value: "5.0" },
-    ],
-    href: "/contact",
-    variant: "overlay",
-    gradient: "from-slate-900 via-zinc-800 to-orange-950/50",
-    subtitle: "Enterprise · Automation",
-  },
-  {
-    id: "maintenance",
-    title: "Maintenance & Support",
-    description:
-      "Long-term technical support, monitoring, security updates, and performance improvements.",
-    category: "Support · DevOps",
-    image: img("/services/maintenance.jpg"),
-    icon: ShieldCheck,
-    stats: [
-      { label: "Uptime", value: "99.9%" },
-      { label: "Support", value: "24/7" },
-      { label: "Rating", value: "4.9" },
-    ],
-    href: "/contact",
-    variant: "split",
-    gradient: "from-orange-900/50 via-amber-900/30 to-zinc-900",
-    subtitle: "DevOps · Long-term support",
-  },
-];
-
 export const deployedProjects = [
   "Cavrio",
-  "Belfrie & co Cafe",
-  "Safal Toy studio",
-  "Mykonos",
-  "CarftDesk",
-  "Naziya Makeovers",
-  "scanTable",
+  "MemorYou & co Cafe",
+  "Galaxy Toy studio",
+  "Ex-Seats Restaurant",
+  "Dreamy Makeovers",
+  "ScanTable",
 ];
 
 type SolutionHighlight = {
@@ -221,27 +73,29 @@ export type SolutionPath = {
   cta: string;
   href: string;
   image: string;
+  imageAlt?: string;
   price: string;
   priceNote: string;
   badge: string;
-  accent: "prebuilt" | "custom";
+  accent: "products" | "custom";
 };
 
 export const solutionPaths: SolutionPath[] = [
   {
-    id: "prebuilt",
-    title: "Prebuilt Products",
-    subtitle: "Launch your prebuilt site in days",
+    id: "products",
+    title: "Products",
+    subtitle: "Software built for your business",
     description:
-      "Landing pages, campaign sites, and Micro SaaS MVPs delivered on strict timelines with clear scope.",
+      "Explore CraftDesk products — purpose-built software for startups and growing teams.",
     highlights: [],
-    cta: "Explore Packages",
-    href: "/contact",
-    image: img("/services/landing-page.jpg"),
+    cta: "Explore Products",
+    href: routes.products,
+    image: img("/projects/Toy-store.png"),
+    imageAlt: "Toys Studio Gallery ecommerce website",
     price: "Contact us",
     priceNote: "Get a custom quote",
-    badge: "Landing Sprint",
-    accent: "prebuilt" as const,
+    badge: "Products",
+    accent: "products" as const,
   },
   {
     id: "custom",
@@ -251,65 +105,13 @@ export const solutionPaths: SolutionPath[] = [
       "Complex web apps, mobile products, and enterprise systems engineered for long-term growth.",
     highlights: [],
     cta: "Book a Consultation",
-    href: "/contact",
-    image: img("/services/custom-software.jpg"),
+    href: routes.customized,
+    image: img("/projects/resturant-system.png"),
+    imageAlt: "Restaurant web application with digital menu and booking",
     price: "Contact us",
     priceNote: "Scoped after discovery",
     badge: "Full Platform",
     accent: "custom" as const,
-  },
-];
-
-export const bentoServices: BentoServiceItem[] = [
-  {
-    id: "landing-architecture",
-    title: "Landing Page Architecture",
-    description: "Conversion-focused pages built for campaigns, launches, and lead generation.",
-    timeline: "5–7 days",
-    icon: LayoutTemplate,
-    href: "/landing-page-design-agency",
-    span: "wide",
-    variant: "overlay",
-    gradient: "from-zinc-900 via-orange-950/80 to-amber-900/60",
-    subtitle: "High-velocity sprint",
-    image: img("/services/landing-page.jpg"),
-  },
-  {
-    id: "full-stack-websites",
-    title: "Full-Stack Websites",
-    description: "Marketing sites and CMS platforms with clean structure and premium polish.",
-    timeline: "3–5 weeks",
-    icon: Globe,
-    href: "/productized-website-design",
-    variant: "split",
-    gradient: "from-sky-900/70 via-blue-800/50 to-zinc-900",
-    subtitle: "Productized website tier",
-    image: img("/services/website.jpg"),
-  },
-  {
-    id: "mobile-apps",
-    title: "Mobile Apps",
-    description: "React Native and native builds with secure backends and polished UX.",
-    timeline: "6–10 weeks",
-    icon: Smartphone,
-    href: "/react-native-app-development",
-    variant: "split",
-    gradient: "from-indigo-950 via-violet-900/70 to-zinc-900",
-    subtitle: "Cross-platform build",
-    image: img("/services/mobile-app.jpg"),
-  },
-  {
-    id: "micro-saas",
-    title: "Micro SaaS Builds",
-    description: "Focused software products with auth, payments, and deployment included.",
-    timeline: "4–6 weeks",
-    icon: Rocket,
-    href: "/micro-saas-development",
-    span: "wide",
-    variant: "overlay",
-    gradient: "from-violet-950 via-purple-900/60 to-zinc-900",
-    subtitle: "MVP accelerator",
-    image: img("/services/custom-software.jpg"),
   },
 ];
 
@@ -359,151 +161,86 @@ export const whyStory = {
   note: "Senior team · Clear updates · Secure builds · Long-term partnership",
 };
 
-export const portfolioProjects = [
-  {
-    id: "finflow",
-    title: "FinFlow Analytics",
-    category: "FinTech SaaS",
-    image: img("/portfolio/finflow.jpg"),
-    description:
-      "Real-time financial analytics platform serving 50K+ users with sub-second data processing.",
-    metrics: ["50K+ Users", "99.9% Uptime", "3x Revenue Growth"],
-    gradient: "from-orange-600/40 via-amber-500/20 to-zinc-900",
-    testimonial: {
-      quote:
-        "CraftDesk transformed our vision into a market-leading product. Their expertise in fintech compliance was invaluable.",
-      author: "Priya Sharma",
-      role: "CEO, FinFlow Pvt. Ltd.",
-      rating: 5,
-    },
-  },
-  {
-    id: "healthbridge",
-    title: "HealthBridge Portal",
-    category: "Healthcare",
-    image: img("/portfolio/healthbridge.jpg"),
-    description:
-      "NABH-compliant patient management system connecting 200+ healthcare providers.",
-    metrics: ["200+ Providers", "40% Efficiency Gain", "NABH Compliant"],
-    gradient: "from-zinc-800 via-orange-900/30 to-black",
-    testimonial: {
-      quote:
-        "The team delivered a secure, user-friendly platform that revolutionized our patient care workflow.",
-      author: "Dr. Rajesh Mehta",
-      role: "CMO, HealthBridge",
-      rating: 5,
-    },
-  },
-  {
-    id: "shopnova",
-    title: "ShopNova Commerce",
-    category: "E-Commerce",
-    image: img("/portfolio/shopnova.jpg"),
-    description:
-      "Multi-vendor marketplace with AI-powered recommendations and UPI & Razorpay payment support.",
-    metrics: ["₹16 Cr+ GMV", "150+ Vendors", "45% Conversion Lift"],
-    gradient: "from-amber-600/30 via-orange-500/10 to-zinc-950",
-    testimonial: {
-      quote:
-        "Our marketplace went from concept to launch in 4 months. CraftDesk exceeded every expectation.",
-      author: "Arjun Malhotra",
-      role: "Founder, ShopNova",
-      rating: 5,
-    },
-  },
-  {
-    id: "logitrack",
-    title: "LogiTrack Pro",
-    category: "Logistics",
-    image: img("/portfolio/logitrack.jpg"),
-    description:
-      "Fleet management and route optimization platform reducing delivery costs by 35%.",
-    metrics: ["35% Cost Reduction", "500+ Vehicles", "Real-time Tracking"],
-    gradient: "from-orange-700/20 via-zinc-800 to-black",
-    testimonial: {
-      quote:
-        "The logistics platform CraftDesk built has become the backbone of our operations across India.",
-      author: "Ananya Reddy",
-      role: "COO, LogiTrack",
-      rating: 5,
-    },
-  },
-];
-
 export const processSteps = [
   {
     step: 1,
-    title: "Discovery",
+    title: "Discovery & Scoping",
     description:
-      "We align on goals, users, scope, and success metrics to define a clear project roadmap.",
+      "We align on your vision, users, features, and budget — so you know exactly what you're building before development starts.",
   },
   {
     step: 2,
-    title: "Design",
+    title: "UI/UX Design",
     description:
-      "Wireframes, UI systems, and prototypes shaped for conversion, clarity, and brand consistency.",
+      "Wireframes and interactive prototypes you can see and approve, shaped for clarity, conversion, and brand consistency.",
   },
   {
     step: 3,
-    title: "Technical Development",
+    title: "Agile Development & Testing",
     description:
-      "Agile sprints with clean code, regular demos, integrations, and performance-first engineering.",
+      "Bi-weekly demos, clean code, and rigorous QA — you stay in the loop while we build in focused sprints.",
   },
   {
     step: 4,
-    title: "Launch",
+    title: "Launch & Support",
     description:
-      "Deployment, QA, handoff, and go-live support so your product ships confidently on schedule.",
+      "Deployment, performance checks, handoff docs, and post-launch support so your product goes live with confidence.",
   },
 ];
 
-export const techStack = {
-  frontend: ["React", "Next.js", "Vue.js", "Angular"],
-  backend: ["Node.js", "Laravel", "Django", "ASP.NET"],
-  mobile: ["Flutter", "React Native", "Swift", "Kotlin"],
-  cloud: ["AWS", "Azure", "Google Cloud", "PostgreSQL", "MongoDB"],
-};
+/** About page — partnership journey (not the same as delivery process). */
+export const aboutPartnershipSteps = [
+  {
+    step: 1,
+    title: "You Bring the Vision",
+    description:
+      "Founders and operators come to us with a problem worth solving. We listen first — market, users, constraints, and what success looks like for you.",
+  },
+  {
+    step: 2,
+    title: "We Map the Path Together",
+    description:
+      "No black-box proposals. We co-create scope, milestones, and trade-offs so you always know what ships, when, and why.",
+  },
+  {
+    step: 3,
+    title: "Delivery Without the Drama",
+    description:
+      "Structured sprints, async updates, and demo-driven feedback — the same rigor we use on our own Micro SaaS products.",
+  },
+  {
+    step: 4,
+    title: "Proof Over Promises",
+    description:
+      "Live products, clean handoffs, and measurable outcomes. We earn trust through shipped software, not personality marketing.",
+  },
+];
 
-export const industries = [
+/** Services page — how engagements run (package-focused). */
+export const serviceWorkflowSteps = [
   {
-    name: "Healthcare",
-    description: "NABH-compliant solutions for providers, patients, and health tech startups.",
-    icon: Shield,
+    step: 1,
+    title: "Pick Your Package",
+    description:
+      "Landing Page Sprint, Website Ecosystem, or Micro SaaS MVP — each with fixed scope, timeline, and deliverables listed upfront.",
   },
   {
-    name: "Finance",
-    description: "Secure fintech platforms, payment systems, and regulatory-compliant apps.",
-    icon: LineChart,
+    step: 2,
+    title: "Scope & Sign-Off",
+    description:
+      "One structured kickoff to lock requirements, integrations, and acceptance criteria before design or code begins.",
   },
   {
-    name: "Real Estate",
-    description: "Property management, virtual tours, and CRM platforms for real estate.",
-    icon: Globe,
+    step: 3,
+    title: "Design → Build → Demo",
+    description:
+      "UI approval, then agile build with bi-weekly demos. You see progress in Figma and staging — not just status emails.",
   },
   {
-    name: "Education",
-    description: "LMS platforms, e-learning apps, and student management systems.",
-    icon: Sparkles,
-  },
-  {
-    name: "E-Commerce",
-    description: "Online stores, marketplaces, and omnichannel retail solutions.",
-    icon: Wallet,
-  },
-  {
-    name: "Logistics",
-    description: "Fleet tracking, warehouse management, and supply chain optimization.",
-    icon: Rocket,
-  },
-  {
-    name: "Manufacturing",
-    description: "IoT integrations, ERP systems, and production monitoring dashboards.",
-    icon: Database,
-  },
-  {
-    name: "Startups",
-    description: "MVP development, rapid prototyping, and scale-ready architecture.",
-    icon: Zap,
+    step: 4,
+    title: "Launch + Optional Care",
+    description:
+      "Deployment, analytics, handoff docs, and post-launch support windows so your product goes live with confidence.",
   },
 ];
 
@@ -546,57 +283,6 @@ export const testimonials: TestimonialItem[] = [
   },
 ];
 
-export const pricingPlans = [
-  {
-    name: "Landing Page Sprint",
-    timeline: "5–7 days",
-    description:
-      "A fully designed, copywritten, and developed landing page — delivered on a strict timeline.",
-    features: [
-      "Conversion-focused UI/UX design",
-      "Mobile-responsive development",
-      "Copywriting & SEO basics",
-      "1 structured revision round",
-      "Analytics setup",
-      "Launch support",
-    ],
-    highlighted: false,
-    cta: "Contact Us",
-  },
-  {
-    name: "Website Ecosystem",
-    timeline: "3–5 weeks",
-    description:
-      "Clean marketing websites with optional CMS, blog, and growth-ready structure.",
-    features: [
-      "Up to 5 custom pages",
-      "CMS integration available",
-      "Responsive across all devices",
-      "Performance optimization",
-      "Contact forms & integrations",
-      "3 months post-launch support",
-    ],
-    highlighted: true,
-    cta: "Contact Us",
-  },
-  {
-    name: "Micro SaaS MVP Accelerator",
-    timeline: "4–6 weeks",
-    description:
-      "A working MVP for non-technical founders — auth, core features, payments, and deployment.",
-    features: [
-      "Product scoping & architecture",
-      "Auth & user management",
-      "Core feature development",
-      "Payment gateway integration",
-      "Cloud deployment",
-      "30-day post-launch support",
-    ],
-    highlighted: false,
-    cta: "Contact Us",
-  },
-];
-
 export const homeFaqs: FaqItem[] = [
   {
     question: "How long does a typical project take?",
@@ -619,116 +305,128 @@ export const homeFaqs: FaqItem[] = [
       "Yes — milestone-based payments aligned with project phases: typically 30% upfront, 40% at midpoint, and 30% at delivery.",
   },
   {
+    question: "Do you work with startups in Nashik and across India?",
+    answer:
+      `Yes. CraftDesk Solutions is based at ${siteConfig.address}. We partner with founders locally and across India through remote collaboration, structured milestones, and transparent scoping.`,
+  },
+  {
     question: "Who owns the code and designs?",
     answer:
       "You do. Upon final payment, all source code, designs, and assets are transferred to you with full ownership rights.",
   },
 ];
 
-export const blogPosts = [
+export const customizedTickerPhrases = [
+  "Build from Scratch",
+  "Design to Deployment",
+  "Crafted for Your Brand",
+  "Scale with Confidence",
+];
+
+export const customizedProjectFilters = [
+  { id: "websites", label: "Websites" },
+  { id: "applications", label: "Applications" },
+] as const;
+
+export const customizedProjects = [
   {
-    slug: "choosing-right-tech-stack-2026",
-    title: "How to Choose the Right Tech Stack in 2026",
-    excerpt:
-      "A comprehensive guide to selecting technologies that balance performance, scalability, and team expertise.",
-    category: "Development",
-    image: img("/blog/tech-stack.jpg"),
-    date: "May 28, 2026",
-    readTime: "8 min read",
-    gradient: "from-slate-900 via-zinc-800 to-orange-950/40",
-    variant: "overlay" as const,
-    relatedHref: "/productized-website-design",
+    id: "restaurant-web-app",
+    title: "Restaurant Web App",
+    category: "websites",
+    features: [
+      "Digital menu with categories, specials, and item details",
+      "Table booking and reservation management flow",
+      "Admin-ready structure for orders and daily operations",
+    ],
+    image: img("/projects/resturant-system.png"),
+    imageAlt: "Restaurant web application with digital menu and booking",
+    gradient: "from-red-800/45 via-orange-950/40 to-zinc-900",
+    href: "https://buildwithmozi.github.io/Restaurant-web-app/",
   },
   {
-    slug: "saas-mvp-launch-guide",
-    title: "From Idea to Launch: Building Your SaaS MVP",
-    excerpt:
-      "Step-by-step strategies for validating your idea and shipping a minimum viable product fast.",
-    category: "SaaS",
-    image: img("/blog/saas-mvp.jpg"),
-    date: "May 15, 2026",
-    readTime: "12 min read",
-    gradient: "from-violet-950 via-indigo-900/70 to-zinc-900",
-    variant: "split" as const,
-    relatedHref: "/micro-saas-development",
+    id: "toys-studio-gallery",
+    title: "Toys Studio Gallery",
+    category: "websites",
+    features: [
+      "Product gallery with collections and visual storytelling",
+      "Brand-forward layout built for a toy retail studio",
+      "Mobile-first design with smooth browsing experience",
+    ],
+    image: img("/projects/Toy-store.png"),
+    imageAlt: "Toys Studio Gallery ecommerce website",
+    gradient: "from-indigo-900/50 via-violet-900/40 to-zinc-900",
+    href: "https://buildwithmozi.github.io/Toys-Studio-Gallery/",
   },
   {
-    slug: "ai-integration-business",
-    title: "AI Integration: Practical Applications for Business",
-    excerpt:
-      "How companies are leveraging AI and automation to reduce costs and improve customer experience.",
-    category: "AI",
-    image: img("/blog/ai-integration.jpg"),
-    date: "April 30, 2026",
-    readTime: "10 min read",
-    gradient: "from-cyan-950/80 via-blue-900/50 to-zinc-900",
-    variant: "overlay" as const,
-    relatedHref: "/contact",
+    id: "cosmetic-products-site",
+    title: "Cosmetic Products Site",
+    category: "websites",
+    features: [
+      "Skincare and beauty product catalog with ordering flow",
+      "Category-based browsing for cosmetics and wellness items",
+      "Conversion-focused product pages with clear CTAs",
+    ],
+    image: img("/projects/skin-care-and-beauty-ordering-system.png"),
+    imageAlt: "Cosmetic products ordering website",
+    gradient: "from-rose-800/40 via-pink-900/30 to-zinc-900",
+    href: "https://buildwithmozi.github.io/cosmetic-products-site/",
   },
   {
-    slug: "mobile-app-security-best-practices",
-    title: "Mobile App Security Best Practices",
-    excerpt:
-      "Essential security measures every mobile application should implement before going to production.",
-    category: "Security",
-    image: img("/blog/mobile-security.jpg"),
-    date: "April 18, 2026",
-    readTime: "7 min read",
-    gradient: "from-indigo-950 via-violet-900/60 to-zinc-900",
-    variant: "split" as const,
-    relatedHref: "/react-native-app-development",
-  },
-  {
-    slug: "cloud-migration-strategies",
-    title: "Cloud Migration Strategies for Enterprise",
-    excerpt:
-      "Planning your move to the cloud with minimal downtime and maximum ROI.",
-    category: "Cloud",
-    image: img("/blog/cloud-migration.jpg"),
-    date: "April 5, 2026",
-    readTime: "9 min read",
-    gradient: "from-sky-950 via-blue-900/50 to-zinc-900",
-    variant: "overlay" as const,
-    relatedHref: "/contact",
-  },
-  {
-    slug: "ux-design-conversion-rates",
-    title: "UX Design Patterns That Boost Conversion Rates",
-    excerpt:
-      "Proven design principles that turn visitors into customers and increase engagement.",
-    category: "Design",
-    image: img("/blog/ux-design.jpg"),
-    date: "March 22, 2026",
-    readTime: "6 min read",
+    id: "cafe-landing-page",
+    title: "Cafe Landing Page",
+    category: "websites",
+    features: [
+      "Menu showcase with cafe branding and atmosphere",
+      "Location, gallery, and contact sections for local discovery",
+      "Fast-loading landing page optimized for conversions",
+    ],
+    image: img("/projects/cafeteria-shop.png"),
+    imageAlt: "Cafe landing page with menu and branding",
     gradient: "from-orange-950/80 via-amber-900/50 to-zinc-900",
-    variant: "split" as const,
-    relatedHref: "/landing-page-design-agency",
+    href: "https://buildwithmozi.github.io/cafe-landing-page/",
   },
   {
-    slug: "productized-agency-model-guide",
-    title: "Why Productized Agencies Beat Custom Quotes Every Time",
-    excerpt:
-      "How fixed-scope packages reduce friction, speed up delivery, and build trust with modern buyers.",
-    category: "Strategy",
-    image: img("/blog/ux-design.jpg"),
-    date: "June 10, 2026",
-    readTime: "7 min read",
-    gradient: "from-zinc-900 via-stone-800 to-orange-950/30",
-    variant: "overlay" as const,
-    relatedHref: "/contact",
+    id: "shopnova-mobile",
+    title: "ShopNova Mobile App",
+    category: "applications",
+    features: [
+      "Cross-platform iOS & Android ecommerce experience",
+      "Product browsing, cart, checkout, and order tracking",
+      "Push notifications, wishlist, and personalized recommendations",
+    ],
+    image: img("/projects/skin-care-and-beauty-ordering-system.png"),
+    imageAlt: "Cosmetic products ordering website — ShopNova mobile app preview",
+    gradient: "from-amber-600/30 via-orange-500/10 to-zinc-950",
+    href: "/contact",
+    comingSoon: true,
+  },
+];
+
+export const customizedFaqs: FaqItem[] = [
+  {
+    question: "How long does a custom project take?",
+    answer:
+      "Timelines depend on scope — landing pages take 1–2 weeks, business websites 3–5 weeks, and full platforms 8–16 weeks. We share a fixed timeline after discovery.",
   },
   {
-    slug: "landing-page-conversion-checklist",
-    title: "The B2B Landing Page Conversion Checklist for 2026",
-    excerpt:
-      "A practical audit framework for SaaS landing pages — from hero copy to CTA placement and page speed.",
-    category: "Marketing",
-    image: img("/blog/saas-mvp.jpg"),
-    date: "June 5, 2026",
-    readTime: "9 min read",
-    gradient: "from-amber-950/70 via-orange-900/40 to-zinc-900",
-    variant: "split" as const,
-    relatedHref: "/landing-page-design-agency",
+    question: "Do you provide post-launch support?",
+    answer:
+      "Yes. We offer post-launch support windows and ongoing maintenance plans for updates, monitoring, security patches, and feature additions.",
+  },
+  {
+    question: "What is the process of building custom software?",
+    answer:
+      "Discovery → UI/UX design → agile development with demos → testing → launch & handoff. You stay in the loop at every milestone.",
+  },
+  {
+    question: "Do you provide source code?",
+    answer:
+      "Yes. After final payment you receive full source code, designs, and deployment assets with complete ownership rights.",
+  },
+  {
+    question: "What is the cost of building custom software?",
+    answer:
+      "Every project is scoped individually. Share your requirements and we will send a transparent quote — typically with milestone-based payments.",
   },
 ];
 
@@ -740,6 +438,104 @@ export const budgetOptions = [
   "Not sure yet",
 ];
 
+export type TeamMember = {
+  id: string;
+  name: string;
+  role: string;
+  bio: string;
+  initials: string;
+  gradient: string;
+  image?: string;
+  social: { name: string; href: string }[];
+};
+
+export const teamMembers: TeamMember[] = [
+  {
+    id: "zishan",
+    name: "Zishan Shaikh",
+    role: "Founder & Chief Technology Officer (CTO)",
+    bio: "Leads product vision, technology strategy, and software architecture while driving innovation across CraftDesk.",
+    initials: "ZS",
+    gradient: "from-slate-600/80 to-slate-800/80",
+    image: img("/team/zeeshan_shaikhjpeg.jpeg"),
+    social: [
+      { name: "LinkedIn", href: "https://www.linkedin.com/company/craftdesk" },
+      { name: "Gmail", href: "mailto:craftdesk.tech@gmail.com" },
+      { name: "Instagram", href: "https://instagram.com/craftdesk" },
+    ],
+  },
+  {
+    id: "moin",
+    name: "Moin Shaikh",
+    role: "Co-Founder & Solutions Architect",
+    bio: "Designs scalable system architecture, business workflows, and technical solutions for complex software products.",
+    initials: "MS",
+    gradient: "from-emerald-600/80 to-teal-700/80",
+    image: img("/team/Moin_shaikh.jpeg"),
+    social: [
+      { name: "LinkedIn", href: "https://www.linkedin.com/company/craftdesk" },
+      { name: "Gmail", href: "mailto:support.buildwithmozi@gmail.com" },
+      { name: "Instagram", href: "https://instagram.com/craftdesk" },
+    ],
+  },
+  {
+    id: "juned",
+    name: "Juned Shaikh",
+    role: "Co-Founder & Senior Full Stack Developer",
+    bio: "Develops robust web applications, backend services, and seamless user experiences using modern technologies.",
+    initials: "JS",
+    gradient: "from-orange-500/80 to-amber-600/80",
+    image: img("/team/Juned_shaikh.jpeg"),
+    social: [
+      { name: "LinkedIn", href: "https://www.linkedin.com/in/juned-shaikh-833258410" },
+      { name: "Gmail", href: "mailto:skjuned7666@gmail.com" },
+      { name: "Instagram", href: "https://www.instagram.com/skjuned_7666" },
+    ],
+  },
+  {
+    id: "maaz",
+    name: "Maaz Khan",
+    role: "UI/UX Designer & Product Designer",
+    bio: "Creates intuitive interfaces and engaging user experiences with a focus on usability and modern design.",
+    initials: "MK",
+    gradient: "from-violet-500/80 to-purple-700/80",
+    image: img("/team/maaz-khan.png"),
+    social: [
+      { name: "LinkedIn", href: "https://www.linkedin.com/company/craftdesk" },
+      { name: "Gmail", href: "mailto:craftdesk.tech@gmail.com" },
+      { name: "Instagram", href: "https://instagram.com/craftdesk" },
+    ],
+  },
+  {
+    id: "zoya",
+    name: "Zoya Ansari",
+    role: "Backend Engineer",
+    bio: "Builds secure APIs, database architecture, and scalable backend systems powering CraftDesk products.",
+    initials: "ZA",
+    gradient: "from-sky-500/80 to-blue-700/80",
+    image: img("/team/Zoya-ansari.png"),
+    social: [
+      { name: "LinkedIn", href: "https://www.linkedin.com/company/craftdesk" },
+      { name: "Gmail", href: "mailto:craftdesk.tech@gmail.com" },
+      { name: "Instagram", href: "https://instagram.com/craftdesk" },
+    ],
+  },
+  {
+    id: "bushra",
+    name: "Bushra Pathan",
+    role: "Growth & Digital Marketing Specialist",
+    bio: "Drives business growth through digital marketing, lead generation, branding, and customer engagement.",
+    initials: "BP",
+    gradient: "from-pink-500/80 to-rose-600/80",
+    image: img("/team/bushra-pathan.png"),
+    social: [
+      { name: "LinkedIn", href: "https://www.linkedin.com/company/craftdesk" },
+      { name: "Gmail", href: "mailto:craftdesk.tech@gmail.com" },
+      { name: "Instagram", href: "https://instagram.com/craftdesk" },
+    ],
+  },
+];
+
 export const socialLinks = [
   { name: "LinkedIn", href: "https://www.linkedin.com/company/craftdesk" },
   { name: "Twitter", href: "https://twitter.com/craftdesk" },
@@ -749,9 +545,11 @@ export const socialLinks = [
 
 export const heroContent = {
   image: {
-    src: img("/hero-center-img-Photoroom.png"),
-    alt: "CraftDesk creative innovation",
+    src: img("/startup-mvp-development-hero.png"),
+    alt: "CraftDesk brand illustration",
   },
+  tagline:
+    "Nashik-based software development company building custom web platforms, React Native mobile apps, and MVPs that help founders launch faster and grow revenue across India.",
 };
 
 export const heroSocialLinks = {

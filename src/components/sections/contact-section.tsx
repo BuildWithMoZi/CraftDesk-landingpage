@@ -81,7 +81,7 @@ export function ContactSection({
         variant={hv}
         badge="Contact"
         title="Let's Build Something Great"
-        description="Ready to start your project? Fill out the form and our team will get back to you within 24 hours."
+        description="Reach our Nashik studio on Ashoka Marg or book a free discovery call — we partner with founders across India on MVP, web, and mobile projects."
       />
 
       <div className="grid gap-8 lg:grid-cols-5">
@@ -103,9 +103,17 @@ export function ContactSection({
                 </p>
                 <p>
                   <span className="block text-[var(--muted-subtle)]">Phone</span>
-                  <a href={`tel:${siteConfig.phone.replace(/\s/g, "")}`} className="text-[var(--orange)] hover:underline">
-                    {siteConfig.phone}
-                  </a>
+                  <span className="flex flex-col gap-1">
+                    {siteConfig.phones.map((phone) => (
+                      <a
+                        key={phone}
+                        href={`tel:${phone.replace(/\s/g, "")}`}
+                        className="text-[var(--orange)] hover:underline"
+                      >
+                        {phone}
+                      </a>
+                    ))}
+                  </span>
                 </p>
                 <p>
                   <span className="block text-[var(--muted-subtle)]">Address</span>
@@ -153,7 +161,7 @@ export function ContactSection({
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="phone">Phone Number</Label>
-                  <Input id="phone" name="phone" type="tel" placeholder="+91 94034 29923" />
+                  <Input id="phone" name="phone" type="tel" placeholder={siteConfig.phones.join(" / ")} />
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="company">Company Name</Label>

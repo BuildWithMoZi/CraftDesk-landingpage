@@ -1,20 +1,25 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import { ArrowUpRight, Check, Compass, Map, Shield, Sparkles } from "lucide-react";
+import { Check, Compass, Map, Shield, Sparkles } from "lucide-react";
 import { MainLayout } from "@/components/layout/main-layout";
 import { PageHero } from "@/components/sections/page-hero";
+import { ProcessSection } from "@/components/sections/process-section";
 import { TestimonialsSection } from "@/components/sections/testimonials-section";
 import { JsonLd } from "@/components/seo/json-ld";
-import { microSaasProducts, processSteps, stats } from "@/lib/data";
+import { microSaasProducts, stats } from "@/lib/data";
 import { createMetadata } from "@/lib/metadata";
-import { organizationSchema } from "@/lib/schema";
-import { Button } from "@/components/ui/button";
+import { aboutPageSchemas } from "@/lib/schema";
 
 export const metadata: Metadata = createMetadata({
   title: "About Us",
   description:
-    "CraftDesk is the silent engineering guide behind your digital product — productized delivery, clear scoping, and proven results without the personal brand noise.",
+    "CraftDesk Solutions is a software development company in Nashik, Maharashtra — MVP development, custom web apps, and React Native mobile apps for startup founders across India.",
   path: "/about",
+  keywords: [
+    "about CraftDesk Solutions",
+    "software company Nashik",
+    "web development team India",
+    "MVP development agency",
+  ],
 });
 
 const storyBrand = [
@@ -42,21 +47,21 @@ const storyBrand = [
   {
     icon: Shield,
     label: "The Plan",
-    title: "Four steps from idea to launch",
+    title: "Structured delivery, zero guesswork",
     description:
-      "Discovery → Design → Development → Launch. Every engagement follows the same proven framework — so you always know where your project stands.",
+      "Every engagement runs on the same transparent playbook — scoped packages, demo-driven sprints, and launch support so you always know what ships next.",
   },
 ];
 
 export default function AboutPage() {
   return (
     <MainLayout>
-      <JsonLd data={organizationSchema()} />
+      <JsonLd data={aboutPageSchemas()} />
 
       <PageHero
         badge="About CraftDesk"
         title="We Guide. You Lead. Together We Ship."
-        description="CraftDesk is the authoritative engineering partner for founders who want results — not reels, headshots, or hype."
+        description="CraftDesk is a software development company in Nashik, Maharashtra — your engineering partner for MVP, web, and mobile products across India."
       />
 
       {/* StoryBrand narrative */}
@@ -181,36 +186,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Plan preview — compact 4 steps */}
-      <section className="border-t border-[var(--border)] bg-[var(--card)] py-16 md:py-24">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <h2 className="mb-10 text-center text-2xl font-bold text-[var(--foreground)] md:text-3xl">
-            Your Path to Launch
-          </h2>
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {processSteps.map((step) => (
-              <div
-                key={step.step}
-                className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5 sm:p-6"
-              >
-                <span className="font-mono text-sm font-bold text-[var(--orange)]">
-                  {String(step.step).padStart(2, "0")}
-                </span>
-                <h3 className="mt-2 font-semibold text-[var(--foreground)]">{step.title}</h3>
-                <p className="mt-2 text-sm text-[var(--muted-foreground)]">{step.description}</p>
-              </div>
-            ))}
-          </div>
-          <div className="mt-10 text-center">
-            <Button asChild size="lg">
-              <Link href="/contact">
-                Start Your Project
-                <ArrowUpRight className="ml-1 h-4 w-4" />
-              </Link>
-            </Button>
-          </div>
-        </div>
-      </section>
+      <ProcessSection layout="about-journey" />
 
       <TestimonialsSection />
     </MainLayout>

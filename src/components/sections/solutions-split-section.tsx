@@ -13,17 +13,17 @@ import {
 import { cn } from "@/lib/utils";
 
 const PANEL_CLASS = {
-  prebuilt: "solution-panel-prebuilt",
+  products: "solution-panel-products",
   custom: "solution-panel-custom",
 } as const;
 
 const CTA_CLASS = {
-  prebuilt: "solution-cta-prebuilt",
+  products: "solution-cta-products",
   custom: "solution-cta-custom",
 } as const;
 
 const BADGE_CLASS = {
-  prebuilt: "solution-badge-prebuilt",
+  products: "solution-badge-products",
   custom: "solution-badge-custom",
 } as const;
 
@@ -44,8 +44,8 @@ export function SolutionsSplitSection({
       <SectionHeading
         variant={hv}
         badge="Solutions"
-        title="Prebuilt Speed or Custom Scale"
-        description="Choose a productized package for fast launches, or a tailored build for complex products."
+        title="Products or Custom Scale"
+        description="Explore our software products, or choose a tailored build for complex platforms."
         align={isHome ? "left" : "center"}
       />
 
@@ -65,21 +65,21 @@ export function SolutionsSplitSection({
             <article
               className={cn(
                 "solution-card-floating flex flex-1 flex-col overflow-hidden rounded-[28px]",
-                path.accent === "prebuilt" ?
-                  "solution-card-prebuilt"
+                path.accent === "products" ?
+                  "solution-card-products"
                 : "solution-card-custom",
               )}>
               <div
                 className={cn(
                   "relative h-52 w-full shrink-0 overflow-hidden sm:h-56 md:h-64",
-                  path.accent === "prebuilt" ?
+                  path.accent === "products" ?
                     "ring-b-2 ring-[var(--orange)]/25"
                   : "ring-b-2 ring-[var(--brand-gradient-via)]/25",
                 )}
               >
                 <Image
                   src={path.image}
-                  alt=""
+                  alt={path.imageAlt ?? `${path.title} — ${path.subtitle}`}
                   fill
                   priority={index === 0}
                   sizes="(max-width: 1024px) 100vw, 50vw"
@@ -111,7 +111,7 @@ export function SolutionsSplitSection({
                           <Icon
                             className={cn(
                               "h-4 w-4 shrink-0",
-                              path.accent === "prebuilt" ?
+                              path.accent === "products" ?
                                 "text-[var(--orange)]"
                               : "text-[var(--brand-gradient-via)]",
                             )}

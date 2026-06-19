@@ -104,7 +104,7 @@ export function Footer() {
               {services.slice(0, 2).map((service) => (
                 <li key={service.title}>
                   <Link
-                    href={service.href ?? "/services"}
+                    href={service.href}
                     className='text-sm text-[var(--muted-foreground)] transition-colors hover:text-orange-400'>
                     {service.title}
                   </Link>
@@ -161,12 +161,15 @@ export function Footer() {
                 <Mail className='h-4 w-4 shrink-0' />
                 {siteConfig.email}
               </a>
-              <a
-                href={`tel:${siteConfig.phone.replace(/\s/g, "")}`}
-                className='flex items-center gap-2 text-sm text-[var(--muted-foreground)] hover:text-orange-400'>
-                <Phone className='h-4 w-4 shrink-0' />
-                {siteConfig.phone}
-              </a>
+              {siteConfig.phones.map((phone) => (
+                <a
+                  key={phone}
+                  href={`tel:${phone.replace(/\s/g, "")}`}
+                  className='flex items-center gap-2 text-sm text-[var(--muted-foreground)] hover:text-orange-400'>
+                  <Phone className='h-4 w-4 shrink-0' />
+                  {phone}
+                </a>
+              ))}
               <p className='flex items-start gap-2 text-sm text-[var(--muted-foreground)]'>
                 <MapPin className='mt-0.5 h-4 w-4 shrink-0' />
                 {siteConfig.address}
