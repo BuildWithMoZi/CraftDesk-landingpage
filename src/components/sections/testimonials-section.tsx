@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Star, Quote, Building2 } from "lucide-react";
+import { Star } from "lucide-react";
 import { testimonials } from "@/lib/data";
 import { SectionHeading } from "@/components/ui/section-heading";
 import {
@@ -20,85 +20,53 @@ interface TestimonialsSectionProps {
   description?: string;
 }
 
-function DesktopTestimonialCard({
-  testimonial,
-}: {
-  testimonial: (typeof testimonials)[number];
-}) {
+function StarRating({ rating, className }: { rating: number; className?: string }) {
   return (
-    <>
-      <Quote className="absolute right-6 top-6 h-8 w-8 text-[var(--orange)]/10" />
-      <div className="mb-4 flex gap-1">
-        {Array.from({ length: testimonial.rating }).map((_, i) => (
-          <Star
-            key={i}
-            className="h-4 w-4 fill-[var(--orange)] text-[var(--orange)]"
-          />
-        ))}
-      </div>
-      <p className="mb-6 text-sm leading-relaxed text-[var(--muted-strong)]">
-        &ldquo;{testimonial.quote}&rdquo;
-      </p>
-      <div className="flex items-center gap-3">
-        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-[var(--border)] bg-[var(--subtle)]">
-          <span className="text-xs font-bold text-[var(--orange)]">
-            {testimonial.companyInitial}
-          </span>
-        </div>
-        <div className="min-w-0">
-          <p className="truncate text-sm font-semibold text-[var(--foreground)]">
-            {testimonial.author}
-          </p>
-          <p className="flex items-center gap-1 truncate text-xs text-[var(--muted-subtle)]">
-            <Building2 className="h-3 w-3 shrink-0" />
-            {testimonial.role}, {testimonial.company}
-          </p>
-        </div>
-      </div>
-    </>
+    <div className={cn("flex gap-0.5", className)} aria-label={`${rating} out of 5 stars`}>
+      {Array.from({ length: rating }).map((_, i) => (
+        <Star
+          key={i}
+          className="h-3 w-3 fill-[var(--orange)] text-[var(--orange)] sm:h-3.5 sm:w-3.5"
+        />
+      ))}
+    </div>
   );
 }
 
-function MobileMessengerCard({
+function CompactTestimonialCard({
   testimonial,
+  cardClassName,
 }: {
   testimonial: (typeof testimonials)[number];
+  cardClassName?: string;
 }) {
   return (
-    <div className="flex w-full min-w-0 items-end gap-2.5">
-      <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[var(--border)] bg-[var(--subtle)]">
-        <span className="text-[10px] font-bold text-[var(--orange)]">
-          {testimonial.companyInitial}
-        </span>
-      </div>
+    <article
+      className={cn(
+        "flex h-full min-h-[9.5rem] flex-col rounded-2xl border border-[var(--border)] bg-[var(--card)] p-3.5 sm:min-h-[10.5rem] sm:p-4",
+        cardClassName,
+      )}
+    >
+      <StarRating rating={testimonial.rating} className="mb-2.5" />
 
-      <div className="min-w-0 flex-1">
-        <div className="inline-block max-w-full rounded-2xl rounded-bl-md border border-[var(--border)] bg-[var(--subtle)] px-3 py-2.5 shadow-sm">
-          <p className="text-xs leading-relaxed text-[var(--foreground)]">
-            {testimonial.quote}
+      <p className="line-clamp-4 flex-1 text-[11px] leading-relaxed text-[var(--muted-strong)] sm:text-xs">
+        &ldquo;{testimonial.quote}&rdquo;
+      </p>
+
+      <div className="mt-3 flex items-center gap-2 border-t border-[var(--border)] pt-3">
+        <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-[var(--orange)]/10 text-[10px] font-bold text-[var(--orange)] sm:h-8 sm:w-8 sm:text-[11px]">
+          {testimonial.companyInitial}
+        </div>
+        <div className="min-w-0 flex-1">
+          <p className="truncate text-[11px] font-semibold text-[var(--foreground)] sm:text-xs">
+            {testimonial.author}
+          </p>
+          <p className="truncate text-[10px] text-[var(--muted-subtle)] sm:text-[11px]">
+            {testimonial.role} · {testimonial.company}
           </p>
         </div>
-
-        <div className="mt-1.5 flex min-w-0 items-center justify-between gap-2 px-0.5">
-          <div className="min-w-0">
-            <p className="truncate text-[11px] font-semibold text-[var(--foreground)]">
-              {testimonial.author}
-            </p>
-            <p className="truncate text-[10px] text-[var(--muted-subtle)]">
-              {testimonial.role} · {testimonial.company}
-            </p>
-          </div>
-          <div className="flex shrink-0 gap-0.5">
-            {Array.from({ length: testimonial.rating }).map((_, i) => (
-              <Star
-                key={i}
-                className="h-2.5 w-2.5 fill-[var(--orange)] text-[var(--orange)]"
-              />
-            ))}
-          </div>
-        </div>
       </div>
-    </div>
+    </article>
   );
 }
 
@@ -125,31 +93,32 @@ export function TestimonialsSection({
         align={isHome ? "left" : "center"}
       />
 
-      <div className="grid min-w-0 max-w-full grid-cols-1 gap-3 overflow-x-hidden md:grid-cols-2 md:gap-4">
+      <div
+        className={cn(
+          "grid grid-cols-2 gap-2 sm:gap-2.5 lg:grid-cols-4 lg:gap-3",
+          !isHome && "mx-auto max-w-4xl",
+        )}
+      >
         {testimonials.map((testimonial, index) => (
           <motion.div
             key={testimonial.author}
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: index * 0.1 }}
-            className={cn(
-              "relative min-w-0 max-w-full",
-              isHome ?
-                homeSectionCardClass(
-                  sectionIndex ?? 6,
-                  "max-md:border-0 max-md:bg-transparent max-md:p-0 max-md:shadow-none md:p-6",
-                )
-              : "max-md:p-0 md:rounded-2xl md:border md:border-[var(--border)] md:bg-[var(--card)] md:p-6 md:backdrop-blur-xl",
-            )}
+            transition={{ duration: 0.35, delay: index * 0.06 }}
+            className="min-w-0"
           >
-            <div className="md:hidden">
-              <MobileMessengerCard testimonial={testimonial} />
-            </div>
-
-            <div className="hidden md:block">
-              <DesktopTestimonialCard testimonial={testimonial} />
-            </div>
+            <CompactTestimonialCard
+              testimonial={testimonial}
+              cardClassName={
+                isHome ?
+                  homeSectionCardClass(
+                    sectionIndex ?? 4,
+                    "home-card-hover !rounded-2xl !p-3.5 sm:!p-4",
+                  )
+                : undefined
+              }
+            />
           </motion.div>
         ))}
       </div>

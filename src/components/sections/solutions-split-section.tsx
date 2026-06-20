@@ -40,7 +40,7 @@ export function SolutionsSplitSection({
   const isHome = variant === "home";
 
   return (
-    <SectionLayout variant={variant} sectionIndex={sectionIndex}>
+    <SectionLayout id="solutions" variant={variant} sectionIndex={sectionIndex}>
       <SectionHeading
         variant={hv}
         badge="Solutions"

@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { heroContent } from "@/lib/data";
 import { routes } from "@/lib/routes";
+import { TOTAL_SECTIONS } from "@/components/home/home-section-shell";
 
 const circuits = [
   {
@@ -265,7 +266,9 @@ export function HomeHero() {
             href='#trust'
             className='group flex items-center gap-3 text-[var(--muted)] transition-colors hover:text-[var(--foreground)]'>
             <span className='hidden text-xs sm:inline'>
-              <span className='text-[var(--muted-subtle)]'>01/06</span>
+              <span className='text-[var(--muted-subtle)]'>
+                01/{String(TOTAL_SECTIONS).padStart(2, "0")}
+              </span>
               <span className='mx-2'>·</span>
               Scroll down
             </span>
@@ -274,7 +277,7 @@ export function HomeHero() {
           <div className='text-right'>
             <p className='mb-2 text-xs text-[var(--muted)]'>Digital horizons</p>
             <div className='flex justify-end gap-1'>
-              {Array.from({ length: 7 }).map((_, i) => (
+              {Array.from({ length: TOTAL_SECTIONS }).map((_, i) => (
                 <span
                   key={i}
                   className={`h-1 rounded-full transition-all ${

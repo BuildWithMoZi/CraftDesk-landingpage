@@ -50,7 +50,7 @@ export function FinalCtaSection({
           <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <Link
               href="/contact"
-              className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-[var(--orange)] px-7 py-3.5 text-sm font-semibold text-black transition-opacity hover:opacity-90 sm:w-auto"
+              className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-[var(--orange)] px-7 py-3.5 text-sm font-semibold text-white transition-opacity hover:opacity-90 sm:w-auto"
             >
               Book Free Consultation
               <ArrowUpRight className="h-4 w-4" />
