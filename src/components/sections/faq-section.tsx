@@ -47,7 +47,7 @@ function FaqAccordion({
             className={cn(
               "overflow-hidden",
               isHome ?
-                homeSectionCardClass(sectionIndex ?? 7, "p-0")
+                homeSectionCardClass(sectionIndex ?? 6, "p-0")
               : "rounded-2xl border border-[var(--border)] bg-[var(--card)] backdrop-blur-xl",
             )}
           >

@@ -54,8 +54,8 @@ export function HomePage() {
           <SolutionsSplitSection variant={HOME_VARIANT} sectionIndex={2} />
           <ProcessSection variant={HOME_VARIANT} sectionIndex={3} />
           <TestimonialsSection variant={HOME_VARIANT} sectionIndex={4} />
-          <FaqSection variant={HOME_VARIANT} sectionIndex={5} />
-          <TeamSection variant={HOME_VARIANT} sectionIndex={6} />
+          <TeamSection variant={HOME_VARIANT} sectionIndex={5} />
+          <FaqSection variant={HOME_VARIANT} sectionIndex={6} />
           <FinalCtaSection variant={HOME_VARIANT} sectionIndex={7} />
         </div>
       </main>
