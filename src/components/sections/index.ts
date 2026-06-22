@@ -2,6 +2,7 @@ export { AlternatingShowcaseSection } from "./alternating-showcase-section";
 export { ContactSection } from "./contact-section";
 export { FaqSection } from "./faq-section";
 export { FinalCtaSection } from "./final-cta-section";
+export { LegalPolicyView } from "./legal-policy";
 export { PageHero } from "./page-hero";
 export { ProcessSection } from "./process-section";
 export { SolutionsSplitSection } from "./solutions-split-section";
