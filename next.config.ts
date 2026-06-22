@@ -1,4 +1,5 @@
 import type { NextConfig } from "next";
+import { initOpenNextCloudflareForDev } from "@opennextjs/cloudflare";
 import { appRedirects } from "./src/lib/redirects";
 
 const isStaticExport = process.env.STATIC_EXPORT === "true";
@@ -60,3 +61,5 @@ const nextConfig: NextConfig = {
 };
 
 export default nextConfig;
+
+initOpenNextCloudflareForDev();

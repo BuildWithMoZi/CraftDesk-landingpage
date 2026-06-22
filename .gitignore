@@ -33,6 +33,12 @@ tsconfig.tsbuildinfo
 # deployment
 .vercel
 
+# cloudflare / opennext
+.open-next/
+.wrangler/
+cloudflare-env.d.ts
+.dev.vars
+
 # debug logs
 npm-debug.log*
 yarn-debug.log*
