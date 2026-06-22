@@ -1,7 +1,7 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "main": ".open-next/worker.js",
-  "name": "craftdesk-solutions",
+  "name": "craftdesk",
   "compatibility_date": "2025-03-25",
   "compatibility_flags": [
     "nodejs_compat",
@@ -14,7 +14,7 @@
   "services": [
     {
       "binding": "WORKER_SELF_REFERENCE",
-      "service": "craftdesk-solutions"
+      "service": "craftdesk"
     }
   ],
   "observability": {
