@@ -1,6 +1,7 @@
 import Link from "next/link";
-import { Mail, MapPin, Phone } from "lucide-react";
+import { Mail, MapPin, Phone, Shield } from "lucide-react";
 import { navLinks, services, socialLinks } from "@/lib/data";
+import { legalPolicies } from "@/lib/legal";
 import { seoLandingPages } from "@/lib/seo-pages";
 import { siteConfig } from "@/lib/metadata";
 import { HomeLink } from "@/components/navigation/home-navigation";
@@ -178,18 +179,21 @@ export function Footer() {
           </div>
         </div>
 
-        <div className='mt-12 flex flex-col items-center justify-between gap-4 border-t border-[var(--border-subtle)] pt-8 sm:flex-row'>
+        <div className='mt-12 flex flex-col items-center justify-between gap-5 border-t border-[var(--border-subtle)] pt-8 sm:flex-row'>
           <p className='text-sm text-[var(--muted-foreground)]'>
             &copy; {new Date().getFullYear()} {siteConfig.name}. All rights
             reserved.
           </p>
-          <div className='flex gap-6 text-sm text-[var(--muted-foreground)]'>
-            <Link href='/contact' className='hover:text-orange-400'>
-              Privacy Policy
-            </Link>
-            <Link href='/contact' className='hover:text-orange-400'>
-              Terms of Service
-            </Link>
+          <div className='flex flex-wrap items-center justify-center gap-3'>
+            {legalPolicies.map((policy) => (
+              <Link
+                key={policy.slug}
+                href={policy.path}
+                className='group inline-flex items-center gap-1.5 rounded-full border border-[var(--border)] bg-[var(--subtle)] px-4 py-2 text-sm font-medium text-[var(--muted-foreground)] backdrop-blur-sm transition-all duration-300 hover:border-orange-500/40 hover:bg-orange-500/10 hover:text-orange-400'>
+                <Shield className='h-3.5 w-3.5 transition-colors group-hover:text-orange-400' />
+                {policy.navLabel}
+              </Link>
+            ))}
           </div>
         </div>
       </div>

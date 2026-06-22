@@ -10,6 +10,8 @@ const staticPages: { path: string; priority: number; changeFrequency: MetadataRo
   { path: "/about", priority: 0.85, changeFrequency: "monthly" },
   { path: routes.customized, priority: 0.9, changeFrequency: "weekly" },
   { path: "/contact", priority: 0.85, changeFrequency: "monthly" },
+  { path: "/terms", priority: 0.3, changeFrequency: "yearly" },
+  { path: "/privacy", priority: 0.3, changeFrequency: "yearly" },
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {
