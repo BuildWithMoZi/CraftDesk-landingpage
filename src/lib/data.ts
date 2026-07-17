@@ -459,9 +459,7 @@ export const teamMembers: TeamMember[] = [
     gradient: "from-slate-600/80 to-slate-800/80",
     image: img("/team/zeeshan_shaikhjpeg.jpeg"),
     social: [
-      { name: "LinkedIn", href: "https://www.linkedin.com/company/craftdesk" },
-      { name: "Gmail", href: "mailto:craftdesk.tech@gmail.com" },
-      { name: "Instagram", href: "https://instagram.com/craftdesk" },
+      { name: "Gmail", href: "mailto:support.buildwithmozi@gmail.com" },
     ],
   },
   {
@@ -473,9 +471,7 @@ export const teamMembers: TeamMember[] = [
     gradient: "from-emerald-600/80 to-teal-700/80",
     image: img("/team/Moin_shaikh.jpeg"),
     social: [
-      { name: "LinkedIn", href: "https://www.linkedin.com/company/craftdesk" },
       { name: "Gmail", href: "mailto:support.buildwithmozi@gmail.com" },
-      { name: "Instagram", href: "https://instagram.com/craftdesk" },
     ],
   },
   {
@@ -487,9 +483,7 @@ export const teamMembers: TeamMember[] = [
     gradient: "from-orange-500/80 to-amber-600/80",
     image: img("/team/Juned_shaikh.jpeg"),
     social: [
-      { name: "LinkedIn", href: "https://www.linkedin.com/in/juned-shaikh-833258410" },
       { name: "Gmail", href: "mailto:skjuned7666@gmail.com" },
-      { name: "Instagram", href: "https://www.instagram.com/skjuned_7666" },
     ],
   },
   {
@@ -501,9 +495,7 @@ export const teamMembers: TeamMember[] = [
     gradient: "from-violet-500/80 to-purple-700/80",
     image: img("/team/maaz-khan.png"),
     social: [
-      { name: "LinkedIn", href: "https://www.linkedin.com/company/craftdesk" },
       { name: "Gmail", href: "mailto:craftdesk.tech@gmail.com" },
-      { name: "Instagram", href: "https://instagram.com/craftdesk" },
     ],
   },
   {
@@ -515,9 +507,7 @@ export const teamMembers: TeamMember[] = [
     gradient: "from-sky-500/80 to-blue-700/80",
     image: img("/team/Zoya-ansari.png"),
     social: [
-      { name: "LinkedIn", href: "https://www.linkedin.com/company/craftdesk" },
       { name: "Gmail", href: "mailto:craftdesk.tech@gmail.com" },
-      { name: "Instagram", href: "https://instagram.com/craftdesk" },
     ],
   },
   {
@@ -529,18 +519,13 @@ export const teamMembers: TeamMember[] = [
     gradient: "from-pink-500/80 to-rose-600/80",
     image: img("/team/bushra-pathan.png"),
     social: [
-      { name: "LinkedIn", href: "https://www.linkedin.com/company/craftdesk" },
       { name: "Gmail", href: "mailto:craftdesk.tech@gmail.com" },
-      { name: "Instagram", href: "https://instagram.com/craftdesk" },
     ],
   },
 ];
 
 export const socialLinks = [
-  { name: "LinkedIn", href: "https://www.linkedin.com/company/craftdesk" },
-  { name: "Twitter", href: "https://twitter.com/craftdesk" },
   { name: "Gmail", href: "mailto:craftdesk.tech@gmail.com" },
-  { name: "Instagram", href: "https://instagram.com/craftdesk" },
 ];
 
 export const heroContent = {
@@ -556,10 +541,6 @@ export const heroSocialLinks = {
   whatsapp: {
     label: "WhatsApp",
     href: "https://wa.me/919403429923",
-  },
-  instagram: {
-    label: "Instagram",
-    href: "https://instagram.com",
   },
 };
 

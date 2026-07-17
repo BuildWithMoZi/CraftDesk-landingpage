@@ -26,24 +26,6 @@ function WhatsAppIcon({ className }: { className?: string }) {
   );
 }
 
-function InstagramIcon({ className }: { className?: string }) {
-  return (
-    <svg
-      viewBox='0 0 24 24'
-      fill='none'
-      stroke='currentColor'
-      strokeWidth='2'
-      strokeLinecap='round'
-      strokeLinejoin='round'
-      className={className}
-      aria-hidden='true'>
-      <rect width='20' height='20' x='2' y='2' rx='5' ry='5' />
-      <path d='M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z' />
-      <line x1='17.5' x2='17.51' y1='6.5' y2='6.5' />
-    </svg>
-  );
-}
-
 function HeaderSocialButtons() {
   return (
     <>
@@ -54,14 +36,6 @@ function HeaderSocialButtons() {
         aria-label={heroSocialLinks.whatsapp.label}
         className='flex h-9 w-9 items-center justify-center rounded-full border border-[var(--border)] bg-[var(--card)] text-[#25D366] transition-all hover:border-[#25D366]/40 hover:bg-[#25D366]/10'>
         <WhatsAppIcon className='h-4 w-4' />
-      </a>
-      <a
-        href={heroSocialLinks.instagram.href}
-        target='_blank'
-        rel='noopener noreferrer'
-        aria-label={heroSocialLinks.instagram.label}
-        className='flex h-9 w-9 items-center justify-center rounded-full border border-[var(--border)] bg-[var(--card)] text-[#E4405F] transition-all hover:border-[#E4405F]/40 hover:bg-[#E4405F]/10'>
-        <InstagramIcon className='h-4 w-4' />
       </a>
     </>
   );
@@ -80,14 +54,6 @@ function BottomNavSocialButtons() {
         aria-label={heroSocialLinks.whatsapp.label}
         className={`${buttonClass} text-[#25D366] hover:bg-[#25D366]/10`}>
         <WhatsAppIcon className='h-4 w-4 min-[400px]:h-[18px] min-[400px]:w-[18px] sm:h-5 sm:w-5' />
-      </a>
-      <a
-        href={heroSocialLinks.instagram.href}
-        target='_blank'
-        rel='noopener noreferrer'
-        aria-label={heroSocialLinks.instagram.label}
-        className={`${buttonClass} text-[#E4405F] hover:bg-[#E4405F]/10`}>
-        <InstagramIcon className='h-4 w-4 min-[400px]:h-[18px] min-[400px]:w-[18px] sm:h-5 sm:w-5' />
       </a>
     </div>
   );
